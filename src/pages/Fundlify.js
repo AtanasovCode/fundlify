@@ -10,7 +10,6 @@ const Fundlify = () => {
                     <Route path="/" element={<HomePage />} />
                 </Routes>
             </BrowserRouter>
-           <HomePage />
         </div>
     );
 }

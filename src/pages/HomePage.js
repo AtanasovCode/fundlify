@@ -8,9 +8,9 @@ import arrow from '../images/icons/arrow.png';
 const HomePage = () => {
     return (
         <div className="home-page-container">
-            <div className="nav-container">
+            <div className="home-nav-container">
                 <Nav />
-                <div className="nav-img-container">
+                <div className="home-nav-img-container">
                     {/*Image Goes Here*/}
                 </div>
                 <div className="add-project-btn-container">
