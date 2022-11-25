@@ -1,0 +1,421 @@
+.home-page-container {
+    max-width: 100vw;
+    height: 100vh;
+}
+
+.nav-container {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-img-container {
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    background-image: url("../../images/2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.add-project-btn-container {
+    z-index: 2;
+    width: 260px;
+    height: 60px;
+    border-radius: 30px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.add-project-btn-container:hover {
+    cursor: pointer;
+    background-color: #222;
+}
+
+.add-project-text {
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    padding-left: 7px;
+}
+
+.group-icon {
+    width: 25px;
+    height: 25px;
+}
+
+
+
+
+
+
+.funds-raised-full-container {
+    height: min-content;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #000;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fundlify-funds-desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 22px;
+    font-weight: 300;
+    opacity: .8;
+}
+
+.funds-raised-container {
+    width: 85%;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.money-raised-container {
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
+.money-raised h1 {
+    width: 100%;
+    height: min-content;
+    font-size: 72px;
+    font-weight: 700;
+    text-align: left;
+    text-align: center;
+}
+
+.fund-desc {
+    margin-top: -20px;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+
+.sub-info-container {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fund-stats-container {
+    width: 35%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fund-number {
+    font-size: 22px;
+}
+
+.fund-text {
+    font-size: 15px;
+}
+
+.line {
+    width: 50%;
+    height: 1px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+
+
+
+.fund-steps-container {
+    padding: 40px;
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.fund-steps-desc {
+    height: 130px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.fund-steps-heading {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.fund-steps-sub-text {
+    opacity: .6;
+}
+
+.steps-full-container {
+    margin-top: 40px;
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.step-container {
+    width: 28%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.step-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 114, 0);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.step-desc {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.step-desc-title {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+
+
+
+
+.explore-full-container {
+    width: 100%;
+    height: 80vh;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+.explore-info-container {
+    width: 15%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.explore-subtitle {
+    font-size: 17px;
+    font-weight: 400;
+    opacity: .6;
+    margin-bottom: 20px;
+}
+
+.explore-title {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+
+.explore-category-container {
+    height: 90%;
+    width: 23%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    position: relative;
+}
+
+.category-info {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 2;
+}
+
+.category-name {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.arrow-point {
+    width: 30px;
+    height: 30px;
+}
+
+.category-image-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.category-image-tint {
+    width: 100%;
+    height: 100%;
+    border: 1px solid transparent;
+    background-color: rgba(0, 0, 0, .7);
+    transition: all .7s ease-in-out;
+}
+
+.category-image-tint:hover {
+    background-color: rgba(0, 0, 0, .4);
+    border: 1px solid #fff;
+    cursor: pointer;
+    transition: all .7s ease-in-out;
+}
+
+.games-image {
+    background-image: url("../../images/game1.jpg")
+}
+
+.comics-image {
+    background-image: url("../../images/comics.jpg");
+}
+
+.tech-image {
+    background-image: url("../../images/tech.jpg");
+}
+
+
+
+
+
+.get-started-full-container {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+}
+
+.get-started-container {
+    width: 85%;
+    height: 85%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #111;
+}
+
+.get-started-text-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-right: 50px;
+}
+
+.get-started-heading {
+    width: 100%;
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.get-started-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.started-btn {
+    width: 45%;
+    height: 50px;
+    border-radius: 20px;
+    text-align: center;
+    border: none;
+}
+
+.create-acc-btn {
+    background-color: lime;
+}
+
+.how-it-works-btn {
+    background-color: #222;
+    color: #fff;
+}
+
+.get-started-icon-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.illustration-icon {
+    width: 80%;
+    height: 80%;
+}

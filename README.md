@@ -1,1 +1,3 @@
-# fundventure
+# FundVenture
+
+A crowdfunding app
