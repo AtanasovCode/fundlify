@@ -1,4 +1,5 @@
-
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Nav from './Nav';
 import './styles/homepage.css';
 import illustration from '../images/illustration.svg';
@@ -6,6 +7,7 @@ import group from '../images/icons/group.png';
 import arrow from '../images/icons/arrow.png';
 
 const HomePage = () => {
+
     return (
         <div className="home-page-container">
             <div className="home-nav-container">
@@ -26,7 +28,12 @@ const HomePage = () => {
             </div>
             <div className="funds-raised-full-container">
                 <div className="fundlify-funds-desc">
-                    <div className="title">Bring A Creative Project To Life!</div>
+                    <div className="title">
+                        Bring A
+                        <span className="creative">
+                            Creative</span>
+                        Project To Life!
+                    </div>
                     <div className="subtitle">On Fundlify:</div>
                 </div>
                 <div className="funds-raised-container">
