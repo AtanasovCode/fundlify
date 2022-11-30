@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Fundlify from './pages/Fundlify';
+import Fundlify from './components/primary/Fundlify';
 
 import { initializeApp } from 'firebase/app';
 

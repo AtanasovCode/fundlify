@@ -17,7 +17,7 @@
     width: 100%;
     height: 90%;
     position: absolute;
-    background-image: url("../../images/2.jpg");
+    background-image: url("../images/2.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -256,7 +256,7 @@
 
 .explore-full-container {
     width: 100%;
-    height: 80vh;
+    height: 70vh;
     background-color: var(--main-bg);
     color: #fff;
     display: flex;
@@ -267,7 +267,7 @@
 
 .explore-info-container {
     width: 15%;
-    height: 90%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -288,7 +288,7 @@
 
 
 .explore-category-container {
-    height: 90%;
+    height: 100%;
     width: 23%;
     display: flex;
     flex-direction: column;
@@ -342,15 +342,15 @@
 }
 
 .games-image {
-    background-image: url("../../images/game1.jpg")
+    background-image: url("../images/game1.jpg")
 }
 
 .comics-image {
-    background-image: url("../../images/comics.jpg");
+    background-image: url("../images/comics.jpg");
 }
 
 .tech-image {
-    background-image: url("../../images/tech.jpg");
+    background-image: url("../images/tech.jpg");
 }
 
 

@@ -1,17 +1,23 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Nav from './Nav';
-import './styles/homepage.css';
-import illustration from '../images/illustration.svg';
-import group from '../images/icons/group.png';
-import arrow from '../images/icons/arrow.png';
+import Nav from '../secondary/Nav';
+import '../../styles/homepage.css';
+import illustration from '../../images/icons/illustration.svg';
+import group from '../../images/icons/group.png';
+import arrow from '../../images/icons/arrow.png';
 
-const HomePage = () => {
+const HomePage = ({
+    userLoggedIn,
+    auth,
+}) => {
 
     return (
         <div className="home-page-container">
             <div className="home-nav-container">
-                <Nav />
+                <Nav 
+                    userLoggedIn={userLoggedIn} 
+                    auth={auth}
+                />
                 <div className="home-nav-img-container">
                     {/*Image Goes Here*/}
                 </div>
