@@ -1,0 +1,51 @@
+.edit-profile-container {
+    max-width: 100vw;
+    height: 100vh;
+    background-color: var(--main-bg);
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.edit-profile-heading {
+    font-size: 38px;
+    font-weight: 500;
+}
+
+.edit-pfp-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.input-file {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    font-size: 90px;
+    cursor: pointer;
+}
+
+.edit-pfp-btn {
+    z-index: 2;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    border: none;
+    font-size: 17px;
+    background: var(--auth-btn-bg);
+    cursor: pointer;
+}
+
+.input-bio {
+    width: 100%;
+    height: 100px;
+    color: #fff;
+    background-color: transparent;
+    resize: none;
+}
+

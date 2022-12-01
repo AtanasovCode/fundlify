@@ -5,23 +5,43 @@ import {
     createUserWithEmailAndPassword,
     updateProfile,
 } from 'firebase/auth';
+import {
+    collection,
+    addDoc,
+    serverTimestamp,
+    updateDoc,
+    doc,
+} from 'firebase/firestore'
 const SignUp = ({
     auth,
+    db,
+    user,
+    userLoggedIn,
 }) => {
 
     const [regMail, setRegMail] = useState("");
     const [regPassword, setRegPassword] = useState("");
     const [name, setName] = useState("");
 
-    let navigate = useNavigate();
 
-    const handleSignUp = () => {
+    let navigate = useNavigate();
+    const colRef = collection(db, "users");
+
+    const handleSignUp = (e) => {
+        e.preventDefault();
         createUserWithEmailAndPassword(auth, regMail, regPassword)
             .then((currentUser) => {
+                console.log(currentUser);
                 updateProfile(auth.currentUser, {
                     displayName: name,
                     userId: currentUser.uid,
-                    projectsBacked: 0,
+                })
+                addDoc(colRef, {
+                    username: name,
+                    userId: currentUser.user.uid,
+                    bio: "I am a mysterious person that has not yet updated their bio.",
+                    location: false,
+                    projectsBacked: false,
                 })
                     .then(() => {
                         setRegMail("");

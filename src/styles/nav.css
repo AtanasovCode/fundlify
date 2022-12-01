@@ -29,6 +29,13 @@
     padding-left: 20px;
     font-size: 23px;
     font-weight: 200;
+    color: #fff;
+    text-decoration: none;
+    user-select: none;
+}
+
+.nav-logo:visited {
+    color: #fff;
 }
 
 .nav-info {
@@ -48,7 +55,8 @@
     text-decoration: none;
 }
 
-.nav-links:hover {
+.nav-links:hover,
+.nav-info a:hover {
     color: lime;
 }
 

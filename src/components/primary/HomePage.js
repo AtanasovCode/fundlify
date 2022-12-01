@@ -11,6 +11,8 @@ const HomePage = ({
     auth,
 }) => {
 
+    const [navClass, setNavClass] = useState("nav-container");
+
     return (
         <div className="home-page-container">
             <div className="home-nav-container">

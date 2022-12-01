@@ -7,32 +7,29 @@ import pfp from '../../images/icons/pfp.avif';
 const Nav = ({
     userLoggedIn,
     auth,
+    grow,
 }) => {
 
-    const [navClass, setNavClass] = useState("nav-container");
+    const [navClass, setNavClass] = useState(grow ? "nav-container grow" : "nav-container");
 
     useEffect(() => {
-        window.addEventListener("scroll", () => {
-            setNavClass("nav-container grow");
+        if (grow !== true) {
+            window.addEventListener("scroll", () => {
+                setNavClass("nav-container grow");
 
-            if (window.scrollY === 0) {
-                setNavClass("nav-container");
-            }
-        })
-    }, [])
-
-    const handleSignOut = () => {
-        signOut(auth)
-            .then(() => {
-                console.log("user signed out");
+                if (window.scrollY === 0) {
+                    setNavClass("nav-container");
+                }
             })
-    }
+        }
+
+    }, [])
 
     return (
         <nav className={navClass}>
-            <div className="nav-logo">
+            <Link className="nav-logo" to="/">
                 Fundlify
-            </div>
+            </Link>
             <div className="nav-info">
                 <div className="nav-links">
                     Discover

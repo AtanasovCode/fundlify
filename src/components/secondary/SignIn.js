@@ -37,7 +37,7 @@ const SignIn = ({ auth }) => {
                     className="auth-input"
                     name="mail"
                     value={mail}
-                    onClick={(e) => setMail(e.currentTarget.value)}
+                    onChange={(e) => setMail(e.currentTarget.value)}
                 />
                 <input
                     type="password"
@@ -45,7 +45,7 @@ const SignIn = ({ auth }) => {
                     className="auth-input"
                     name="password"
                     value={password}
-                    onClick={(e) => setPassword(e.currentTarget.value)}
+                    onChange={(e) => setPassword(e.currentTarget.value)}
                 />
                 <input
                     type="button"
