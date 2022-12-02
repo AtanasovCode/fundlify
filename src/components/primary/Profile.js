@@ -16,12 +16,13 @@ import {
 const Profile = ({
     user,
     setUser,
+    userInfo,
     auth,
     userLoggedIn,
     db,
+    setUpdateId,
 }) => {
 
-    const [userInfo, setUserInfo] = useState([]);
     const [grow, setGrow] = useState(true);
 
     let navigate = useNavigate();
@@ -36,6 +37,12 @@ const Profile = ({
             })
     }
 
+    useEffect(() => {
+        userInfo.forEach((info) => {
+            setUpdateId(info.id);
+        })
+    }, [])
+
     return (
         <div className="profile-container">
             <Nav
@@ -45,40 +52,43 @@ const Profile = ({
             <div className="profile-title-container">
                 Profile
             </div>
-            <div className="profile-info-container" key={user.userId}>
-                <div className="profile-info">
-                    <div className="profile-icon-container">
-                        <img
-                            src={pfp}
-                            alt="profile picture"
-                            className="pfp"
-                        />
-                        <Link
-                            to="/edit-profile"
-                            className="edit-profile"
-                        >
-                            Edit Profile
-                        </Link>
-                    </div>
-                    <div className="profile-name-container">
-                        <div className="profile-display-name">
-                            {user.displayName}
-                        </div>
-                        <div className="profile-location-container">
-                            <div className="profile-location">
-                                Location
+            {userInfo.map((user) => {
+                return (
+                    <div className="profile-info-container" key={user.userId}>
+                        <div className="profile-info">
+                            <div className="profile-icon-container">
+                                <img
+                                    src={pfp}
+                                    alt="profile picture"
+                                    className="pfp"
+                                />
+                                <Link
+                                    to="/edit-profile"
+                                    className="edit-profile"
+                                >
+                                    Edit Profile
+                                </Link>
+                            </div>
+                            <div className="profile-name-container">
+                                <div className="profile-display-name">
+                                    {user.username}
+                                </div>
+                                <div className="profile-location-container">
+                                    <div className="profile-location">
+                                        {user.location ? user.location : ""}
+                                    </div>
+                                </div>
+                                <div className="projects-backed-container">
+                                    Projects Backed {user.projectsBacked ? user.projectsBacked : 0}
+                                </div>
                             </div>
                         </div>
-                        <div className="projects-backed-container">
-                            Projects Backed 0
+                        <div className="profile-desc">
+                            {user.bio}
                         </div>
                     </div>
-                </div>
-                <div className="profile-desc">
-                    I am a mysterious individual who has not yet 
-                    updated their bio.
-                </div>
-            </div>
+                );
+            })}
             <input
                 type="button"
                 value="sign out"

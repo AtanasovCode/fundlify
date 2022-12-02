@@ -11,9 +11,11 @@ import {
     updateDoc,
     serverTimestamp,
     doc,
+    docs,
     query,
     where,
     onSnapshot,
+    orderBy,
 } from 'firebase/firestore';
 
 import HomePage from "./HomePage";
@@ -28,6 +30,7 @@ const Fundlify = () => {
     const [user, setUser] = useState({});
     const [userInfo, setUserInfo] = useState([]);
     const [userLoggedIn, setUserLoggedIn] = useState();
+    const [updateId, setUpdateId] = useState("");
 
     const auth = getAuth();
     const db = getFirestore();
@@ -37,10 +40,19 @@ const Fundlify = () => {
     useEffect(() => {
         onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
+                const q = query(colRef, where("userId", "==", currentUser.uid))
+                onSnapshot(q, (snapshot) => {
+                    let getUser = [];
+                    snapshot.docs.forEach((doc) => {
+                        getUser.push({...doc.data(), id: doc.id});
+                    })
+                    setUserInfo(getUser);
+                })
                 setUser(currentUser);
                 setUserLoggedIn(true);
             } else {
                 setUserLoggedIn(false);
+                setUserInfo([]);
             }
         })
     }, [])
@@ -57,14 +69,19 @@ const Fundlify = () => {
                     <Route path="/profile" element={<Profile
                         user={user}
                         setUser={setUser}
+                        userInfo={userInfo}
                         auth={auth}
                         userLoggedIn={userLoggedIn}
+                        setUpdateId={setUpdateId}
                         db={db}
                     />} />
                     <Route path="/edit-profile" element={<EditProfile
                         userLoggedIn={userLoggedIn}
                         auth={auth}
                         user={user}
+                        userInfo={userInfo}
+                        setUpdateId={setUpdateId}
+                        updateId={updateId}
                         db={db}
                     />} />
                     <Route path="/sign-in" element={<SignIn auth={auth} />} />

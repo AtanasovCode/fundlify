@@ -1,29 +1,59 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../../styles/edit-profile.css';
 import { useNavigate } from 'react-router-dom';
 import { updateProfile } from 'firebase/auth';
+import {
+    updateDoc,
+    doc,
+} from 'firebase/firestore';
 
 const EditProfile = ({
     user,
     auth,
     db,
+    query,
+    where,
+    userInfo,
+    updateId,
 }) => {
+
+    const [name, setName] = useState(user.displayName);
+    const [bio, setBio] = useState("");
+    const [location, setLocation] = useState("");
+
+
 
     let navigate = useNavigate();
 
-    const [name, setName] = useState(user.displayName);
-    const [bio, setBio] = useState(user.bio);
-    const [location, setLocation] = useState(user.location);
+    useEffect(() => {
+        userInfo.forEach((info) => {
+            setBio(info.bio);
+        })
+    }, [])
+
+    const docRef = doc(db, "users", updateId);
+
 
     const handleUpdateProfile = (e) => {
         e.preventDefault();
         updateProfile(auth.currentUser, {
-            name: name,
-            bio: bio,
-            location: location
+            displayName: name,
         })
             .then(() => {
-                navigate("../profile", {replace: true});
+                updateDoc(docRef, {
+                    bio: bio,
+                    location: location,
+                    username: name,
+                })
+                    .then(() => {
+                        navigate("../profile", { replace: true });
+                    })
+                    .catch((err) => {
+                        console.log(err.message);
+                    })
+            })
+            .catch((err) => {
+                console.log(err.message);
             })
     }
 
@@ -50,7 +80,7 @@ const EditProfile = ({
                 <div className="edit-pfp-container">
                     <div>Avatar</div>
                     <div className="edit-pfp-wrap">
-                        <input 
+                        <input
                             type="button"
                             value="Chose an image from your computer"
                             className="edit-pfp-btn"
@@ -61,28 +91,28 @@ const EditProfile = ({
                         />
                     </div>
                     <div>
-                        JPEG. PNG, WEBP - 5MB Limit 
+                        JPEG. PNG, WEBP - 5MB Limit
                     </div>
                 </div>
                 <div className="edit-bio-container">
                     <div>Biograpghy</div>
-                    <textarea 
+                    <textarea
                         className="input-bio"
                         maxLength={200}
                         value={bio}
                         onChange={(e) => setBio(e.currentTarget.value)}
-                        
+
                     />
                     <div>
-                        We suggest a short bio, anything under 200 
-                        characters looks best. 
+                        We suggest a short bio, anything under 200
+                        characters looks best.
                     </div>
                 </div>
                 <div className="edit-location-container">
                     <div>
                         Location
                     </div>
-                    <input 
+                    <input
                         type="text"
                         placeholder="Eg. London, UK"
                         name="location"
@@ -91,7 +121,7 @@ const EditProfile = ({
                     />
                 </div>
                 <div className="update-profile-container">
-                    <input 
+                    <input
                         type="button"
                         value="Update Profile"
                         onClick={handleUpdateProfile}
