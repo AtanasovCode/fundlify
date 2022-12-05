@@ -23,6 +23,12 @@ import SignIn from "../secondary/SignIn";
 import SignUp from "../secondary/SignUp";
 import Profile from "./Profile";
 import EditProfile from "../secondary/EditProfile";
+import CreateProject from "./CreateProject";
+import ProjectLocation from "../secondary/ProjectLocation";
+import StartProject from "../secondary/StartProject";
+import ProjectBasics from "../secondary/ProjectBasics";
+import ProjectRewards from "../secondary/ProjectRewards";
+import Congratulations from "../secondary/Congratulations";
 import '../../styles/fundlify.css';
 
 const Fundlify = () => {
@@ -31,6 +37,9 @@ const Fundlify = () => {
     const [userInfo, setUserInfo] = useState([]);
     const [userLoggedIn, setUserLoggedIn] = useState();
     const [updateId, setUpdateId] = useState("");
+
+    const [categorySelected, setCategorySelected] = useState("");
+    const [subCategorySelected, setSubCategorySelected] = useState("");
 
     const auth = getAuth();
     const db = getFirestore();
@@ -44,7 +53,7 @@ const Fundlify = () => {
                 onSnapshot(q, (snapshot) => {
                     let getUser = [];
                     snapshot.docs.forEach((doc) => {
-                        getUser.push({...doc.data(), id: doc.id});
+                        getUser.push({ ...doc.data(), id: doc.id });
                     })
                     setUserInfo(getUser);
                 })
@@ -84,6 +93,33 @@ const Fundlify = () => {
                         updateId={updateId}
                         db={db}
                     />} />
+                    <Route path="/create-project" element={<CreateProject
+                        user={user}
+                        db={db}
+                        auth={auth}
+                        userLoggedIn={userLoggedIn}
+                    />} >
+                        <Route path="/create-project/start" element={
+                            <StartProject
+                                categorySelected={categorySelected}
+                                setCategorySelected={setCategorySelected}
+                                setSubCategorySelected={setSubCategorySelected}
+                                subCategorySelected={subCategorySelected}
+                            />
+                        } />
+                        <Route path="/create-project/project-location" element={
+                            <ProjectLocation />
+                        } />
+                        <Route
+                            path="/create-project/project-basics"
+                            element={<ProjectBasics />}
+                        />
+                        <Route
+                            path="/create-project/project-rewards"
+                            element={<ProjectRewards />}
+                        />
+                        <Route path="/create-project/congratulations" element={<Congratulations />} />
+                    </Route>
                     <Route path="/sign-in" element={<SignIn auth={auth} />} />
                     <Route path="/sign-up" element={<SignUp auth={auth} db={db} user={user} userLoggedIn={userLoggedIn} />} />
                 </Routes>

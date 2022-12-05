@@ -1,0 +1,54 @@
+.congratulations-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.congratulations-box {
+    width: 55%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 30px 40px;
+}
+
+.congratulations-info-container {
+    width: 85%;
+    text-align: center;
+}
+
+.congratulations-title {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.congratulations-subtitle {
+    font-size: 15px;
+    font-weight: 200;
+    opacity: .7;
+}
+
+.congratulations-btn-container {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.congrats-btn {
+    width: 60%;
+    height: 50px;
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    text-decoration: none;
+    color: #fff;
+}

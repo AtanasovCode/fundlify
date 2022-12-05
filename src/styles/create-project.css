@@ -1,0 +1,135 @@
+.create-project-container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--main-bg);
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*
+========--Start Project--======
+*/
+
+.start-project-container {
+    margin-top: 100px;
+    width: 50%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-start-info-container {
+    height: 45%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-start-heading,
+.project-location-heading {
+    font-size: 28px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.project-start-sub {
+    font-size: 22px;
+    text-align: center;
+}
+
+.project-start-explanation,
+.project-location-explanation {
+    font-size: 16px;
+    font-weight: 300;
+    opacity: .6;
+    text-align: center;
+}
+
+.project-start-category-container {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.select-category,
+.sub-category-disabled,
+.select-location {
+    color: #fff;
+    padding: 5px;
+    border: none;
+    background-color: #000;
+    border: 1px solid #fff;
+    width: 160px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 17px;
+}
+
+.sub-category-disabled {
+    opacity: .4;
+    cursor: no-drop;
+}
+
+
+.project-start-btn-container {
+    width: 100%;
+    height: 25%;
+    padding-right: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.continue-btn {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lime;
+    border-radius: 50%;
+    text-decoration: none;
+    opacity: .3;
+    cursor: not-allowed;
+    transition: all .4s ease-in;
+}
+
+.continue-btn.active {
+    opacity: 1;
+    cursor: pointer;
+    transition: all .4s ease-in;
+}
+
+
+/*
+========--Select Location--======
+*/
+
+.project-location-container {
+    width: 50%;
+    height: 70vh;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.select-location {
+    width: 250px;
+}
+
+

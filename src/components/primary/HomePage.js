@@ -24,9 +24,9 @@ const HomePage = ({
                     {/*Image Goes Here*/}
                 </div>
                 <div className="add-project-btn-container">
-                    <div className="add-project-text">
+                    <Link to="/create-project/start" className="add-project-text">
                         Add Fundlify Project
-                    </div>
+                    </Link>
                     <img
                         src={group}
                         className="group-icon"

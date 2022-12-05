@@ -1,0 +1,120 @@
+.project-rewards-container {
+    width: 100%;
+    min-height: 100vh;
+    height: min-content;
+    padding-top: 120px;
+}
+
+.project-rewards-heading {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-rewards-title {
+    font-size: 26px;
+    font-weight: 300;
+}
+
+.project-rewards-subtitle {
+    width: 50%;
+    text-align: center;
+    font-weight: 300;
+    opacity: .7;
+}
+
+.project-rewards-tiers-container {
+    padding-top: 60px;
+    width: 100%;
+    min-height: 100vh;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reward-tier-container {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.tier-title {
+    font-size: 24px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.tier-rewards-details-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.tier-rewards-input-container {
+    width: 40%;
+}
+
+.tier-name {
+    font-size: 22px;
+    font-weight: 300;
+}
+
+.tier-input,
+.tier-input-text {
+    width: 80%;
+    height: 50px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    padding: 0 7px;
+    font-size: 17px;
+}
+
+.tier-input-text {
+    height: 50px;
+    font-family: inherit;
+    resize: none;
+}
+
+
+.create-project-btn-container {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 5px 40px;
+}
+
+.create-project-btn {
+    width: 200px;
+    height: 50px;
+    background-color: lime;
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    opacity: .3;
+    transition: all .5s ease-in;
+}
+
+.create-project-btn.active {
+    opacity: 1;
+    transition: all .5s ease-in;
+}
+
+.create-project-btn-desc {
+    opacity: .7;
+    font-weight: 200;
+}
