@@ -1,9 +1,37 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { 
+    updateDoc,
+    collection,
+    doc,
+} from "firebase/firestore";
 
-const ProjectLocation = () => {
+const ProjectLocation = ({
+    locationSelected,
+    setLocationSelected,
+    db,
+    auth,
+    user,
+}) => {
 
     const [isLocationSelected, setIsLocationSelected] = useState(false);
+    const [docId, setDocId] = useState("");
+
+    const docRef = doc(db, "projects", sessionStorage.getItem("docId"));
+
+
+    const navigate = useNavigate();
+
+    const handleContinue = (e) => {
+        e.preventDefault();
+
+        updateDoc(docRef, {
+            location: locationSelected,
+        })
+            .then(() => {
+                navigate("../project-basics");
+            })
+    }
 
     return (
         <div className="project-location-container">
@@ -22,10 +50,11 @@ const ProjectLocation = () => {
                     className="select-location"
                     onChange={(e) => {
                         setIsLocationSelected(true)
+                        setLocationSelected(e.currentTarget.value)
                     }}
                 >
                     <option
-                        value=""
+                        value="f"
                         disabled
                         selected
                     >
@@ -43,15 +72,14 @@ const ProjectLocation = () => {
                 </select>
             </div>
             <div className="project-start-btn-container">
-                <Link
-                    to="/create-project/project-basics"
+                <input
                     className={isLocationSelected ?
                         "continue-btn active"
                         :
-                        "continue-btn"}
-                >
-                    ->
-                </Link>
+                        "continue-btn"
+                    }
+                    onClick={handleContinue}
+                />
             </div>
         </div>
     );

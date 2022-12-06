@@ -1,17 +1,42 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import {
+    collection,
+    updateDoc,
+    addDoc,
+    doc,
+} from 'firebase/firestore'
 import '../../styles/create-project.css';
 
 
 const StartProject = ({
+    db,
+    auth,
+    user,
     categorySelected,
     setCategorySelected,
     subCategorySelected,
     setSubCategorySelected,
 }) => {
 
+    const navigate = useNavigate();
+
     const [isCategorySelected, setIsCategorySelected] = useState(false);
     const [isSubCategorySelected, setIsSubCategorySelected] = useState(false);
+
+    const colRef = collection(db, "projects");
+
+    const handleContinue = () => {
+        addDoc(colRef, {
+            userId: user.uid,
+            category: categorySelected,
+            subCategory: subCategorySelected
+        })
+            .then((docRef) => {
+                sessionStorage.setItem("docId", docRef.id)
+                navigate("../project-location")
+            })
+    }
 
 
     const returnSelectSubCategory = () => {
@@ -194,15 +219,15 @@ const StartProject = ({
                 }
             </div>
             <div className="project-start-btn-container">
-                <Link
-                    to="/create-project/project-location"
+                <input
+                    type="button"
+                    value="->"
+                    onClick={handleContinue}
                     className={isSubCategorySelected ? 
                         "continue-btn active" 
                         : 
                         "continue-btn"}
-                >
-                    ->
-                </Link>
+                />
             </div>
         </div>
     );

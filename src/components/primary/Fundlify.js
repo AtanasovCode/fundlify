@@ -40,6 +40,16 @@ const Fundlify = () => {
 
     const [categorySelected, setCategorySelected] = useState("");
     const [subCategorySelected, setSubCategorySelected] = useState("");
+    const [locationSelected, setLocationSelected] = useState("");
+    const [projectTitle, setProjectTitle] = useState("");
+    const [projectDescription, setProjectDescription] = useState("");
+    const [fundingGoal, setFundingGoal] = useState("");
+    const [reward1, setReward1] = useState("");
+    const [reward2, setReward2] = useState("");
+    const [reward3, setReward3] = useState("");
+    const [pledge1, setPledge1] = useState("");
+    const [pledge2, setPledge2] = useState("");
+    const [pledge3, setPledge3] = useState("");
 
     const auth = getAuth();
     const db = getFirestore();
@@ -101,6 +111,9 @@ const Fundlify = () => {
                     />} >
                         <Route path="/create-project/start" element={
                             <StartProject
+                                db={db}
+                                auth={auth}
+                                user={user}
                                 categorySelected={categorySelected}
                                 setCategorySelected={setCategorySelected}
                                 setSubCategorySelected={setSubCategorySelected}
@@ -108,17 +121,50 @@ const Fundlify = () => {
                             />
                         } />
                         <Route path="/create-project/project-location" element={
-                            <ProjectLocation />
+                            <ProjectLocation
+                                db={db}
+                                auth={auth}
+                                user={user}
+                                locationSelected={locationSelected}
+                                setLocationSelected={setLocationSelected}
+                            />
                         } />
-                        <Route
-                            path="/create-project/project-basics"
-                            element={<ProjectBasics />}
-                        />
-                        <Route
-                            path="/create-project/project-rewards"
-                            element={<ProjectRewards />}
-                        />
-                        <Route path="/create-project/congratulations" element={<Congratulations />} />
+                        <Route path="/create-project/project-basics" element={
+                            <ProjectBasics
+                                db={db}
+                                auth={auth}
+                                user={user}
+                                projectTitle={projectTitle}
+                                setProjectTitle={setProjectTitle}
+                                projectDescription={projectDescription}
+                                setProjectDescription={setProjectDescription}
+                                fundingGoal={fundingGoal}
+                                setFundingGoal={setFundingGoal}
+                            />
+                        } />
+                        <Route path="/create-project/project-rewards" element={
+                            <ProjectRewards
+                                db={db}
+                                auth={auth}
+                                user={user}
+                                reward1={reward1}
+                                setReward1={setReward1}
+                                reward2={reward2}
+                                setReward2={setReward2}
+                                reward3={reward3}
+                                setReward3={setReward3}
+                                pledge1={pledge1}
+                                setPledge1={setPledge1}
+                                pledge2={pledge2}
+                                setPledge2={setPledge2}
+                                pledge3={pledge3}
+                                setPledge3={setPledge3}
+
+                            />
+                        } />
+                        <Route path="/create-project/congratulations" element={
+                            <Congratulations />
+                        } />
                     </Route>
                     <Route path="/sign-in" element={<SignIn auth={auth} />} />
                     <Route path="/sign-up" element={<SignUp auth={auth} db={db} user={user} userLoggedIn={userLoggedIn} />} />

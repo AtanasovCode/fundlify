@@ -1,13 +1,36 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { 
+    doc,
+    updateDoc,
+} from 'firebase/firestore';
 import '../../styles/project-basics.css';
 
 
-const ProjectBasics = () => {
+const ProjectBasics = ({
+    db,
+    auth,
+    user,
+    projectTitle,
+    setProjectTitle,
+    projectDescription,
+    setProjectDescription,
+    fundingGoal,
+    setFundingGoal,
+}) => {
 
     const [isTitle, setIsTitle] = useState(false);
     const [isDesc, setIsDesc] = useState(false);
     const [isGoal, setIsGoal] = useState(false);
+
+    const docRef = doc(db, "projects", sessionStorage.getItem("docId"));
+    const navigate = useNavigate();
+
+     const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, [pathname]);
 
     const getBtnClass = () => {
         if (isTitle && isDesc && isGoal) {
@@ -16,6 +39,17 @@ const ProjectBasics = () => {
         else {
             return "continue-btn"
         }
+    }
+
+    const handleContinue = () => {
+        updateDoc(docRef, {
+            projectTitle: projectTitle,
+            projectDescription: projectDescription,
+            fundingGoal: fundingGoal
+        })
+            .then(() => {
+                navigate("../project-rewards");
+            })
     }
 
 
@@ -52,8 +86,10 @@ const ProjectBasics = () => {
                             type="text"
                             placeholder="The Community Microscope Kit"
                             className="project-info-input"
+                            value={projectTitle}
                             onChange={(e) => {
                                 setIsTitle(true);
+                                setProjectTitle(e.currentTarget.value)
                             }}
                         />
                     </div>
@@ -79,8 +115,10 @@ const ProjectBasics = () => {
                             className="project-info-input"
                             id="project-desc"
                             maxLength={200}
+                            value={projectDescription}
                             onChange={(e) => {
                                 setIsDesc(true);
+                                setProjectDescription(e.currentTarget.value)
                             }}
                         />
                     </div>
@@ -132,8 +170,10 @@ const ProjectBasics = () => {
                             type="text"
                             placeholder="$0"
                             className="project-info-input"
+                            value={fundingGoal}
                             onChange={(e) => {
                                 setIsGoal(true);
+                                setFundingGoal(e.currentTarget.value)
                             }}
                         />
                     </div>
@@ -153,8 +193,8 @@ const ProjectBasics = () => {
                                 "Fill inputs to continue"
                         }
                     </div>
-                    <Link
-                        to="/create-project/project-rewards"
+                    <input
+                        onClick={handleContinue}
                         className={
                             isTitle ?
                                 isDesc ?
@@ -167,9 +207,7 @@ const ProjectBasics = () => {
                                 :
                                 "continue-btn"
                         }
-                    >
-                    ->
-                    </Link>
+                    />
                 </div>
             </div>
         </div>

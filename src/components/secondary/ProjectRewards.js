@@ -1,8 +1,25 @@
+import { updateDoc, doc } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import '../../styles/project-rewards.css';
 
-const ProjectRewards = () => {
+const ProjectRewards = ({
+    db,
+    auth,
+    user,
+    reward1,
+    setReward1,
+    reward2,
+    setReward2,
+    reward3,
+    setReward3,
+    pledge1,
+    setPledge1,
+    pledge2,
+    setPledge2,
+    pledge3,
+    setPledge3,
+}) => {
 
     const [isRewardOne, setIsRewardOne] = useState(false);
     const [isRewardTwo, setIsRewardTwo] = useState(false);
@@ -11,6 +28,16 @@ const ProjectRewards = () => {
     const [isPledgeOne, setIsPledgeOne] = useState(false);
     const [isPledgeTwo, setIsPledgeTwo] = useState(false);
     const [isPledgeThree, setIsPledgeThree] = useState(false);
+
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
+    const docRef = doc(db, "projects", sessionStorage.getItem("docId"));
+    const navigate = useNavigate();
+
 
 
     const isFilled = () => {
@@ -26,6 +53,20 @@ const ProjectRewards = () => {
         } else {
             return false;
         }
+    }
+
+    const handleCreateProject = () => {
+        updateDoc(docRef, {
+            reward1: reward1,
+            reward2: reward2,
+            reward3: reward3,
+            pledge1: pledge1,
+            pledge2: pledge2,
+            pledge3: pledge3,
+        })
+            .then(() => {
+                navigate("../congratulations");
+            })
     }
 
 
@@ -56,12 +97,14 @@ const ProjectRewards = () => {
                                 type="text"
                                 className="tier-input-text"
                                 placeholder="Signed limited edition..."
+                                value={reward1}
                                 onChange={(e) => {
                                     if (e.currentTarget.value !== "") {
                                         setIsRewardOne(true);
                                     } else {
                                         setIsRewardOne(false);
                                     }
+                                    setReward1(e.currentTarget.value)
                                 }}
                             />
                         </div>
@@ -73,12 +116,14 @@ const ProjectRewards = () => {
                                 type="text"
                                 className="tier-input"
                                 placeholder="$0"
+                                value={pledge1}
                                 onChange={(e) => {
                                     if (e.currentTarget.value !== "") {
                                         setIsPledgeOne(true);
                                     } else {
                                         setIsPledgeOne(false);
                                     }
+                                    setPledge1(e.currentTarget.value);
                                 }}
                             />
                         </div>
@@ -99,12 +144,14 @@ const ProjectRewards = () => {
                                 type="text"
                                 className="tier-input-text"
                                 placeholder="Signed limited edition..."
+                                value={reward2}
                                 onChange={(e) => {
                                     if (e.currentTarget.value !== "") {
                                         setIsRewardTwo(true);
                                     } else {
                                         setIsRewardTwo(false);
                                     }
+                                    setReward2(e.currentTarget.value)
                                 }}
                             />
                         </div>
@@ -117,12 +164,14 @@ const ProjectRewards = () => {
                                     type="text"
                                     className="tier-input"
                                     placeholder="$0"
+                                    value={pledge2}
                                     onChange={(e) => {
                                         if (e.currentTarget.value !== "") {
                                             setIsPledgeTwo(true);
                                         } else {
                                             setIsPledgeTwo(false);
                                         }
+                                        setPledge2(e.currentTarget.value);
                                     }}
                                 />
                             </div>
@@ -144,6 +193,7 @@ const ProjectRewards = () => {
                                     maxLength={200}
                                     type="text"
                                     className="tier-input-text"
+                                    value={reward3}
                                     placeholder="Signed limited edition..."
                                     onChange={(e) => {
                                         if (e.currentTarget.value !== "") {
@@ -151,6 +201,7 @@ const ProjectRewards = () => {
                                         } else {
                                             setIsRewardThree(false)
                                         }
+                                        setReward3(e.currentTarget.value)
                                     }}
                                 />
                             </div>
@@ -164,12 +215,14 @@ const ProjectRewards = () => {
                                     type="text"
                                     className="tier-input"
                                     placeholder="$0"
+                                    value={pledge3}
                                     onChange={(e) => {
                                         if (e.currentTarget.value !== "") {
                                             setIsPledgeThree(true);
                                         } else {
                                             setIsPledgeThree(false);
                                         }
+                                        setPledge3(e.currentTarget.value);
                                     }}
                                 />
                             </div>
@@ -189,17 +242,17 @@ const ProjectRewards = () => {
                             Create rewards to continue
                         </div>
                 }
-                <Link
+                <input
                     to="/create-project/congratulations"
+                    value="Create Project"
+                    onClick={handleCreateProject}
                     className={
                         isFilled() ?
                             "create-project-btn active"
                             :
                             "create-project-btn"
                     }
-                >
-                    Create Project
-                </Link>
+                />
             </div>
         </div >
     );
