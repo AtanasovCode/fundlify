@@ -18,7 +18,7 @@ const Congratulations = () => {
                 </div>
                 <div className="congratulations-btn-container">
                     <Link
-                        to="/my-project"
+                        to="/current-project"
                         className="congratulations-btn-my-project congrats-btn"
                     >
                         View my project

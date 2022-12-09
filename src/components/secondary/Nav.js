@@ -8,6 +8,7 @@ const Nav = ({
     userLoggedIn,
     auth,
     grow,
+    sticky,
 }) => {
 
     const [navClass, setNavClass] = useState(grow ? "nav-container grow" : "nav-container");
@@ -21,8 +22,11 @@ const Nav = ({
                     setNavClass("nav-container");
                 }
             })
+        }else {
+            if(sticky) {
+                setNavClass("nav-container not-sticky")
+            }
         }
-
     }, [])
 
     return (
@@ -31,9 +35,12 @@ const Nav = ({
                 Fundlify
             </Link>
             <div className="nav-info">
-                <div className="nav-links">
+                <Link 
+                    to="/discover"
+                    className="nav-links"
+                >
                     Discover
-                </div>
+                </Link>
                 <div className="nav-links">
                     How It Works
                 </div>

@@ -17,6 +17,9 @@ import {
     onSnapshot,
     orderBy,
 } from 'firebase/firestore';
+import {
+    getStorage
+} from 'firebase/storage';
 
 import HomePage from "./HomePage";
 import SignIn from "../secondary/SignIn";
@@ -29,9 +32,11 @@ import StartProject from "../secondary/StartProject";
 import ProjectBasics from "../secondary/ProjectBasics";
 import ProjectRewards from "../secondary/ProjectRewards";
 import Congratulations from "../secondary/Congratulations";
+import CurrentProject from "../secondary/CurrentProject";
+import Discover from "./Discover";
 import '../../styles/fundlify.css';
 
-const Fundlify = () => {
+const Fundlify = ({app}) => {
 
     const [user, setUser] = useState({});
     const [userInfo, setUserInfo] = useState([]);
@@ -53,6 +58,7 @@ const Fundlify = () => {
 
     const auth = getAuth();
     const db = getFirestore();
+    const storage = getStorage(app);
 
     const colRef = collection(db, "users");
 
@@ -133,6 +139,7 @@ const Fundlify = () => {
                             <ProjectBasics
                                 db={db}
                                 auth={auth}
+                                storage={storage}
                                 user={user}
                                 projectTitle={projectTitle}
                                 setProjectTitle={setProjectTitle}
@@ -159,6 +166,7 @@ const Fundlify = () => {
                                 setPledge2={setPledge2}
                                 pledge3={pledge3}
                                 setPledge3={setPledge3}
+                                storage={storage}
 
                             />
                         } />
@@ -168,6 +176,22 @@ const Fundlify = () => {
                     </Route>
                     <Route path="/sign-in" element={<SignIn auth={auth} />} />
                     <Route path="/sign-up" element={<SignUp auth={auth} db={db} user={user} userLoggedIn={userLoggedIn} />} />
+                    <Route path="/current-project" element={
+                        <CurrentProject 
+                            user={user} db={db} 
+                            userLoggedIn={userLoggedIn}
+                            db={db}
+                        /> 
+                    } />
+                    <Route path="/discover" element={
+                        <Discover 
+                            auth={auth}
+                            db={db}
+                            storage={storage}
+                            user={user}
+                            userLoggedIn={userLoggedIn}
+                        />
+                    } />
                 </Routes>
             </BrowserRouter>
         </div>

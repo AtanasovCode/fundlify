@@ -1,0 +1,137 @@
+.current-project-full-container {
+    width: 100%;
+    height: 100vh;
+}
+
+.current-project-container {
+    width: 100%;
+    min-height: 100%;
+    height: min-content;
+    margin-top: 75px;
+    padding: 35px;
+    background-color: var(--main-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.current-project-title-container {
+    width: 85%;
+    min-height: 100px;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.current-project-title {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.current-project-description {
+    font-size: 17px;
+    font-weight: 200;
+    text-align: center;
+    opacity: .7;
+}
+
+.current-project-info-container {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.current-project-image-container {
+    min-width: 65%;
+    width: 65%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.current-project-image {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ffffff95;
+}
+
+.current-project-category-container {
+    min-width: 40%;
+    width: min-content;
+    padding: 10px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.current-project-category {
+    min-width: 60px;
+    width: max-content;
+    margin-right: 10px;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 14px;
+    opacity: .7;
+}
+
+.category-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+}
+
+
+
+.current-project-funding-container {
+    width: 50%;
+    height: 100%;
+    padding: 10px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+
+.back-project-btn-container {
+    width: 100%;
+}
+
+.back-project-btn {
+    width: 100%;
+    height: 45px;
+    background-color: lime;
+    color: #000;
+    text-align: center;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.current-project-number-bold {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.current-project-text-sub {
+    opacity: .6;
+}
+
+.money {
+    color: lime;
+}
+
+.money-goal {
+    padding: 0 5px;
+}
+

@@ -5,6 +5,7 @@ import {
     updateDoc,
     addDoc,
     doc,
+    serverTimestamp,
 } from 'firebase/firestore'
 import '../../styles/create-project.css';
 
@@ -29,12 +30,21 @@ const StartProject = ({
     const handleContinue = () => {
         addDoc(colRef, {
             userId: user.uid,
+            createdBy: user.displayName,
             category: categorySelected,
-            subCategory: subCategorySelected
+            subCategory: subCategorySelected,
+            moneyBacked: 0,
+            backers: 0,
+            createdAt: serverTimestamp(),
         })
             .then((docRef) => {
                 sessionStorage.setItem("docId", docRef.id)
-                navigate("../project-location")
+                updateDoc(docRef, {
+                    documentId: docRef.id
+                })
+                    .then(() => {
+                        navigate("../project-location")
+                    })
             })
     }
 

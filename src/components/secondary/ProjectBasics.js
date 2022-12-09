@@ -1,15 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { 
+import {
     doc,
     updateDoc,
 } from 'firebase/firestore';
+import {
+    ref,
+    uploadBytes,
+    getDownloadURL,
+} from 'firebase/storage'
 import '../../styles/project-basics.css';
 
 
 const ProjectBasics = ({
     db,
     auth,
+    storage,
     user,
     projectTitle,
     setProjectTitle,
@@ -23,14 +29,17 @@ const ProjectBasics = ({
     const [isDesc, setIsDesc] = useState(false);
     const [isGoal, setIsGoal] = useState(false);
 
+    const [projectImage, setProjectImage] = useState("");
+
     const docRef = doc(db, "projects", sessionStorage.getItem("docId"));
     const navigate = useNavigate();
+    const imageBucketRef = ref(storage, "/projectImages");
 
-     const { pathname } = useLocation();
+    const { pathname } = useLocation();
 
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, [pathname]);
+    }, [pathname]);
 
     const getBtnClass = () => {
         if (isTitle && isDesc && isGoal) {
@@ -41,6 +50,7 @@ const ProjectBasics = ({
         }
     }
 
+
     const handleContinue = () => {
         updateDoc(docRef, {
             projectTitle: projectTitle,
@@ -48,7 +58,19 @@ const ProjectBasics = ({
             fundingGoal: fundingGoal
         })
             .then(() => {
-                navigate("../project-rewards");
+                const imageRef = ref(storage, `projectPictures/${projectImage + user.uid}`)
+                uploadBytes(imageRef, projectImage)
+                    .then((snapshot) => {
+                        getDownloadURL(snapshot.ref)
+                            .then((url) => {
+                                updateDoc(docRef, {
+                                    projectImageUrl: url
+                                })
+                                    .then(() => {
+                                        navigate("../project-rewards");
+                                    })
+                            })
+                    })
             })
     }
 
@@ -140,7 +162,14 @@ const ProjectBasics = ({
                         <label htmlFor="title" className="project-info-heading">
                             Upload Image
                         </label>
-                        <input />
+                        <input
+                            type="file"
+                            className="project-image-upload"
+                            onChange={(e) => {
+                                setProjectImage(e.currentTarget.files[0]);
+                                console.log(e.currentTarget.files[0]);
+                            }}
+                        />
                     </div>
                 </div>
 
