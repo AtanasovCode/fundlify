@@ -1,7 +1,7 @@
 :root {
     --main-bg: #0F1A15;
     --auth-btn-bg: #00ABE7;
-    --box-step-bg: #012851;
+    --box-step-bg: #07284B; /*012851*/
 }
 
 .app {

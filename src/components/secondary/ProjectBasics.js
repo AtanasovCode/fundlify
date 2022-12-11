@@ -9,6 +9,7 @@ import {
     uploadBytes,
     getDownloadURL,
 } from 'firebase/storage'
+import { v4 } from "uuid";
 import '../../styles/project-basics.css';
 
 
@@ -52,23 +53,19 @@ const ProjectBasics = ({
 
 
     const handleContinue = () => {
-        updateDoc(docRef, {
-            projectTitle: projectTitle,
-            projectDescription: projectDescription,
-            fundingGoal: fundingGoal
-        })
-            .then(() => {
-                const imageRef = ref(storage, `projectPictures/${projectImage + user.uid}`)
-                uploadBytes(imageRef, projectImage)
-                    .then((snapshot) => {
-                        getDownloadURL(snapshot.ref)
-                            .then((url) => {
-                                updateDoc(docRef, {
-                                    projectImageUrl: url
-                                })
-                                    .then(() => {
-                                        navigate("../project-rewards");
-                                    })
+        const imageRef = ref(storage, `projectPictures/${projectImage + v4()}`)
+        uploadBytes(imageRef, projectImage)
+            .then((snapshot) => {
+                getDownloadURL(snapshot.ref)
+                    .then((url) => {
+                        updateDoc(docRef, {
+                            projectTitle: projectTitle,
+                            projectDescription: projectDescription,
+                            fundingGoal: fundingGoal,
+                            projectImageUrl: url
+                        })
+                            .then(() => {
+                                navigate("../project-rewards");
                             })
                     })
             })
@@ -159,7 +156,7 @@ const ProjectBasics = ({
                         </div>
                     </div>
                     <div className="project-input-container">
-                        <label htmlFor="title" className="project-info-heading">
+                        <label htmlFor="image" className="project-info-heading">
                             Upload Image
                         </label>
                         <input
@@ -167,7 +164,6 @@ const ProjectBasics = ({
                             className="project-image-upload"
                             onChange={(e) => {
                                 setProjectImage(e.currentTarget.files[0]);
-                                console.log(e.currentTarget.files[0]);
                             }}
                         />
                     </div>
@@ -244,3 +240,7 @@ const ProjectBasics = ({
 }
 
 export default ProjectBasics;
+
+
+
+

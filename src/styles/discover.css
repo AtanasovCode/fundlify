@@ -11,7 +11,7 @@
 }
 
 .discover-filter-container {
-    width: 78%;
+    width: 55%;
     height: 110px;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@
 .discover-filter {
     display: flex;
     font-size: 18px;
-    width: 28%;
+    width: 45%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -44,7 +44,6 @@
 
 
 .discover-projects-container {
-    border: 1px solid red;
     width: 100%;
     min-height: 20vh;
     height: min-content;
@@ -72,6 +71,10 @@
 
 .displayed-project-image {
     height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .displayed-image {

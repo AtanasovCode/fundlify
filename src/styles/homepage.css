@@ -330,28 +330,9 @@
 .category-image-tint {
     width: 100%;
     height: 100%;
-    border: 1px solid transparent;
-    background-color: rgba(0, 0, 0, .7);
+    border: 1px solid #ffffff80;
+    background-color: var(--main-bg);
     transition: all .7s ease-in-out;
-}
-
-.category-image-tint:hover {
-    background-color: rgba(0, 0, 0, .4);
-    border: 1px solid #fff;
-    cursor: pointer;
-    transition: all .7s ease-in-out;
-}
-
-.games-image {
-    background-image: url("../images/game1.jpg")
-}
-
-.comics-image {
-    background-image: url("../images/comics.jpg");
-}
-
-.tech-image {
-    background-image: url("../images/tech.jpg");
 }
 
 
