@@ -55,6 +55,7 @@ const Fundlify = ({app}) => {
     const [pledge1, setPledge1] = useState("");
     const [pledge2, setPledge2] = useState("");
     const [pledge3, setPledge3] = useState("");
+    const [currentProjectId, setCurrentProjectId] = useState("");
 
     const auth = getAuth();
     const db = getFirestore();
@@ -124,6 +125,7 @@ const Fundlify = ({app}) => {
                                 setCategorySelected={setCategorySelected}
                                 setSubCategorySelected={setSubCategorySelected}
                                 subCategorySelected={subCategorySelected}
+                                setCurrentProjectId={setCurrentProjectId}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
                             />
                         } />
                         <Route path="/create-project/project-location" element={
@@ -167,6 +169,7 @@ const Fundlify = ({app}) => {
                                 pledge3={pledge3}
                                 setPledge3={setPledge3}
                                 storage={storage}
+                                currentProjectId={currentProjectId}
 
                             />
                         } />
@@ -176,11 +179,12 @@ const Fundlify = ({app}) => {
                     </Route>
                     <Route path="/sign-in" element={<SignIn auth={auth} />} />
                     <Route path="/sign-up" element={<SignUp auth={auth} db={db} user={user} userLoggedIn={userLoggedIn} />} />
-                    <Route path="/current-project" element={
+                    <Route path="/projects/:projectId" element={
                         <CurrentProject 
-                            user={user} db={db} 
+                            user={user}
                             userLoggedIn={userLoggedIn}
                             db={db}
+                            currentProjectId={currentProjectId}
                         /> 
                     } />
                     <Route path="/discover" element={
@@ -190,6 +194,7 @@ const Fundlify = ({app}) => {
                             storage={storage}
                             user={user}
                             userLoggedIn={userLoggedIn}
+                            setCurrentProjectId={setCurrentProjectId}
                         />
                     } />
                 </Routes>

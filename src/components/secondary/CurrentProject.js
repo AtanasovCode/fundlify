@@ -18,6 +18,7 @@ const CurrentProject = ({
     db,
     user,
     userLoggedIn,
+    currentProjectId,
 }) => {
 
     const [currentProject, setCurrentProject] = useState([]);
@@ -25,7 +26,7 @@ const CurrentProject = ({
     const [sticky, setSticky] = useState(true);
 
     const colRef = collection(db, "projects");
-    const q = query(colRef, where("documentId", "==", sessionStorage.getItem("docId")));
+    const q = query(colRef, where("documentId", "==", currentProjectId));
 
     useEffect(() => {
         onSnapshot(q, (snapshot) => {

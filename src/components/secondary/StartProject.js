@@ -18,6 +18,7 @@ const StartProject = ({
     setCategorySelected,
     subCategorySelected,
     setSubCategorySelected,
+    setCurrentProjectId,
 }) => {
 
     const navigate = useNavigate();
@@ -39,6 +40,7 @@ const StartProject = ({
         })
             .then((docRef) => {
                 sessionStorage.setItem("docId", docRef.id)
+                setCurrentProjectId(docRef.id);
                 updateDoc(docRef, {
                     documentId: docRef.id
                 })

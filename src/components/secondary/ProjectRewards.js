@@ -19,6 +19,7 @@ const ProjectRewards = ({
     setPledge2,
     pledge3,
     setPledge3,
+    currentProjectId,
 }) => {
 
     const [isRewardOne, setIsRewardOne] = useState(false);
@@ -65,7 +66,7 @@ const ProjectRewards = ({
             pledge3: pledge3,
         })
             .then(() => {
-                navigate("../congratulations");
+                navigate(`/projects/${sessionStorage.getItem("docId")}`);
             })
     }
 

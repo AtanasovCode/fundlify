@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
     onSnapshot,
     collection,
@@ -6,7 +7,6 @@ import {
     orderBy,
     where,
 } from 'firebase/firestore'
-import { v4 } from "uuid";
 import Nav from "../secondary/Nav";
 import '../../styles/discover.css';
 
@@ -16,36 +16,15 @@ const Discover = ({
     storage,
     user,
     userLoggedIn,
+    setCurrentProjectId,
 }) => {
 
     const [grow, setGrow] = useState(true);
     const [projects, setProjects] = useState([]);
     const [filterCategory, setFilterCategory] = useState("null");
-    const [filterBy, setFilterBy] = useState("oldest");
-
+    const [projectCount, setProjectCount] = useState(0);
 
     const colRef = collection(db, "projects");
-
-    const getFilterName = () => {
-        if (filterBy === "newest" || filterBy === "oldest") {
-            return `"createdAt"`;
-        }
-        if (filterBy === "most-funded") {
-            return `"moneyBacked"`;
-        }
-        if (filterBy === "most-backers") {
-            return `"backers"`;
-        }
-    }
-
-    const getFilterOption = () => {
-        if (filterBy === "newest") {
-            return `"asc"`;
-        }
-        else {
-            return `"desc"`
-        }
-    }
 
     useEffect(() => {
         onSnapshot(colRef, (snapshot) => {
@@ -56,6 +35,16 @@ const Discover = ({
             setProjects(project)
         })
     }, [])
+
+    useEffect(() => {
+        if (projects) {
+            let count = 0;
+            projects.map(() => {
+                count++;
+            })
+            setProjectCount(count);
+        }
+    })
 
 
 
@@ -153,14 +142,26 @@ const Discover = ({
                 </div>
             </div>
             <div className="discover-projects-container">
-                <div className="displayed-projects-heading">
-                    Explore 1 projects
-                </div>
+                {
+                    projects.length > 0 ?
+                        <div className="displayed-projects-heading">
+                            Explore {projectCount} projects
+                        </div>
+                        :
+                        <div className="displayed-projects-heading">
+                            Loading...
+                        </div>
+                }
                 {
                     filterCategory === "null" ?
                         projects.map((project) => {
                             return (
-                                <div className="displayed-project-container" key={project.id}>
+                                <Link 
+                                    className="displayed-project-container" 
+                                    key={project.id} 
+                                    onClick={(e) => setCurrentProjectId(project.documentId)}
+                                    to={`/projects/${project.documentId}`}
+                                >
                                     <div className="displayed-project-image">
                                         <img
                                             src={project.projectImageUrl}
@@ -184,7 +185,7 @@ const Discover = ({
                                             {project.subCategory}
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             );
                         })
                         :
