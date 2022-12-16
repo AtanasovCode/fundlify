@@ -46,7 +46,9 @@ const Discover = ({
         }
     })
 
-
+    const formatTextForURL = (text) => {
+        return text == undefined ? '' : text.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
+    }
 
     return (
         <div className="discover-container">
@@ -159,8 +161,8 @@ const Discover = ({
                                 <Link 
                                     className="displayed-project-container" 
                                     key={project.id} 
-                                    onClick={(e) => setCurrentProjectId(project.documentId)}
-                                    to={`/projects/${project.documentId}`}
+                                    onClick={(e) => sessionStorage.setItem("currentProjectId", project.documentId)}
+                                    to={`/projects/${formatTextForURL(project.projectTitle)}`}
                                 >
                                     <div className="displayed-project-image">
                                         <img

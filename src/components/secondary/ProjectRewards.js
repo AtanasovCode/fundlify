@@ -7,20 +7,34 @@ const ProjectRewards = ({
     db,
     auth,
     user,
+
+    tierOneName,
+    setTierOneName,
+    tierTwoName,
+    setTierTwoName,
+    tierThreeName,
+    setTierThreeName,
+
     reward1,
     setReward1,
     reward2,
     setReward2,
     reward3,
     setReward3,
+
     pledge1,
     setPledge1,
     pledge2,
     setPledge2,
     pledge3,
     setPledge3,
+
     currentProjectId,
 }) => {
+
+    const [isTierOne, setIsTierOne] = useState("");
+    const [isTierTwo, setIsTierTwo] = useState("");
+    const [isTierThree, setIsTierThree] = useState("");
 
     const [isRewardOne, setIsRewardOne] = useState(false);
     const [isRewardTwo, setIsRewardTwo] = useState(false);
@@ -43,6 +57,9 @@ const ProjectRewards = ({
 
     const isFilled = () => {
         if (
+            isTierOne &&
+            isTierTwo &&
+            isTierThree &&
             isRewardOne &&
             isRewardTwo &&
             isRewardThree &&
@@ -58,6 +75,9 @@ const ProjectRewards = ({
 
     const handleCreateProject = () => {
         updateDoc(docRef, {
+            tierOne: tierOneName,
+            tierTwo: tierTwoName,
+            tierThree: tierThreeName,
             reward1: reward1,
             reward2: reward2,
             reward3: reward3,
@@ -87,6 +107,38 @@ const ProjectRewards = ({
                 <div className="reward-tier-container">
                     <div className="tier-title">
                         Tier 1 Reward
+                    </div>
+                    <div className="tier-name-container">
+                        <div className="tier-name-info">
+                            <div className="tier-name">
+                                Tier Name
+                            </div>
+                            <div className="tier-name-description">
+                                Give your backers a title based on the teir
+                                they donate to. Short, simple names work best
+                                such as "Helpful Donor", or name the tier based on the
+                                rewards they will recieve like "Hard Copy Tier"
+                            </div>
+                        </div>
+                        <div className="tier-name-input-container">
+                            <div className="tier-name">
+                                Name
+                            </div>
+                            <input
+                                type="text"
+                                className="tier-name-input"
+                                placeholder="Helpful Donor"
+                                value={tierOneName}
+                                onChange={(e) => {
+                                    if (e.currentTarget.value !== "") {
+                                        setIsTierOne(true);
+                                    } else {
+                                        setIsTierOne(false);
+                                    }
+                                    setTierOneName(e.currentTarget.value);
+                                }}
+                            />
+                        </div>
                     </div>
                     <div className="tier-rewards-details-container">
                         <div className="tier-rewards-input-container">
@@ -134,6 +186,38 @@ const ProjectRewards = ({
                 <div className="reward-tier-container">
                     <div className="tier-title">
                         Tier 2 Reward
+                    </div>
+                    <div className="tier-name-container">
+                        <div className="tier-name-info">
+                            <div className="tier-name">
+                                Tier Name
+                            </div>
+                            <div className="tier-name-description">
+                                Give your backers a title based on the teir
+                                they donate to. Short, simple names work best
+                                such as "Helpful Donor", or name the tier based on the
+                                rewards they will recieve like "Hard Copy Tier"
+                            </div>
+                        </div>
+                        <div className="tier-name-input-container">
+                            <div className="tier-name">
+                                Name
+                            </div>
+                            <input
+                                type="text"
+                                className="tier-name-input"
+                                placeholder="Helpful Donor"
+                                value={tierTwoName}
+                                onChange={(e) => {
+                                    if (e.currentTarget.value !== "") {
+                                        setIsTierTwo(true);
+                                    } else {
+                                        setIsTierTwo(false);
+                                    }
+                                    setTierTwoName(e.currentTarget.value);
+                                }}
+                            />
+                        </div>
                     </div>
                     <div className="tier-rewards-details-container">
                         <div className="tier-rewards-input-container">
@@ -183,6 +267,38 @@ const ProjectRewards = ({
                 <div className="reward-tier-container">
                     <div className="tier-title">
                         Tier 3 Reward
+                    </div>
+                    <div className="tier-name-container">
+                        <div className="tier-name-info">
+                            <div className="tier-name">
+                                Tier Name
+                            </div>
+                            <div className="tier-name-description">
+                                Give your backers a title based on the teir
+                                they donate to. Short, simple names work best
+                                such as "Helpful Donor", or name the tier based on the
+                                rewards they will recieve like "Hard Copy Tier"
+                            </div>
+                        </div>
+                        <div className="tier-name-input-container">
+                            <div className="tier-name">
+                                Name
+                            </div>
+                            <input
+                                type="text"
+                                className="tier-name-input"
+                                placeholder="Helpful Donor"
+                                value={tierThreeName}
+                                onChange={(e) => {
+                                    if (e.currentTarget.value !== "") {
+                                        setIsTierThree(true);
+                                    } else {
+                                        setIsTierThree(false);
+                                    }
+                                    setTierThreeName(e.currentTarget.value);
+                                }}
+                            />
+                        </div>
                     </div>
                     <div className="tier-rewards-details-container">
                         <div className="tier-rewards-input-container">

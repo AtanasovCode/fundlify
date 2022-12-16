@@ -104,6 +104,7 @@ const ProjectBasics = ({
                         <input
                             type="text"
                             placeholder="The Community Microscope Kit"
+                            maxLength={50}
                             className="project-info-input"
                             value={projectTitle}
                             onChange={(e) => {

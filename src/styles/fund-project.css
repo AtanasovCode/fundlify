@@ -1,0 +1,334 @@
+.fund-project-full-container {
+    padding-top: 100px;
+    max-width: 100vw;
+    min-height: 100vh;
+    height: min-content;
+    background-color: var(--main-bg);
+}
+
+.fund-project-container {
+    width: 100%;
+    min-width: 100%;
+    height: min-content;
+    background-color: var(--main-bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.fund-project-heading {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fund-project-title {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.fund-project-subtitle {
+    width: 65%;
+    text-align: center;
+    font-size: 17px;
+    opacity: .7;
+}
+
+.fund-rewards-container {
+    padding: 35px;
+    margin-top: 80px;
+    width: 100%;
+    min-height: 100vh;
+    height: max-content;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.rewards-pledge-container {
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.rewards-pledge-heading {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.rewards-pledge-title {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.rewards-pledge-subtitle {
+    font-weight: 300;
+    opacity: .7;
+}
+
+.pledge-no-reward-container {
+    width: 85%;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 25px;
+    border: 1px solid #ffffff40;
+    margin: 50px 0;
+}
+
+.pledge-no-reward-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.pledge-input-full-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+.pledge-input-no-reward-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pledge-no-reward {
+    font-size: 15px;
+    font-weight: 300;
+    opacity: .7;
+}
+
+.pledge-no-reward-input {
+    width: 70%;
+    height: 45px;
+    background-color: var(--main-bg);
+    border: 1px solid #ffffff80;
+    color: #fff;
+    padding-left: 12%;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.btn-pledge {
+    font-size: 16px;
+    font-weight: 500;
+    width: 28%;
+    height: 45px;
+    text-align: center;
+    background-color: lime;
+    border: none;
+    color: #000;
+}
+
+.dollar-sign {
+    opacity: .7;
+    font-size: 19px;
+    position: absolute;
+    top: 33px;
+    left: 20px;
+}
+
+
+.pledge-container {
+    width: 85%;
+    min-height: 300px;
+    height: min-content;
+    border: 1px solid #ffffff40;
+    margin: 50px 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.pledge-amount {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.tier-pledge-name {
+    font-size: 17px;
+    font-weight: 600;
+    opacity: .8;
+}
+
+.tier-description {
+    width: 60%;
+    font-size: 15px;
+    opacity: .8;
+}
+
+.tier-backers-amount {
+    font-size: 15px;
+    opacity: .8;
+}
+
+.pledge-input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.pledge-input-label {
+    font-size: 15px;
+    opacity: .8;
+}
+
+.optional {
+    opacity: .6;
+}
+
+
+.pledge-input {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.pledge-input-amount {
+    width: 60%;
+    height: 40px;
+    background-color: var(--main-bg);
+    border: 1px solid #ffffff70;
+    padding-left: 7px;
+    color: #fff;
+}
+
+.pledge-btn {
+    margin-left: 25px;
+    width: 25%;
+    height: 40px;
+    background-color: var(--main-bg);
+    border: 1px solid #ffffff70;
+    padding-left: 7px;
+    color: #fff;
+}
+
+
+
+
+
+
+
+.rewards-info-full-container {
+    width: 25%;
+    min-height: 50vh;
+    height: min-content;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rewards-info-heading {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 17px;
+    opacity: .8;
+    font-weight: 700;
+}
+
+.rewards-info-title {
+    width: 65%;
+}
+
+.rewards-info-img-container {
+    width: 60px;
+    height: 60px;
+    background-color: #ffffff20;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rewards-info-img {
+    width: 25px;
+    height: 25px;
+}
+
+
+.rewards-info {
+    opacity: .7;
+    font-size: 14px;
+    padding-bottom: 30px;
+}
+
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.faq-title {
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+.faq {
+    width: 100%;
+    position: relative;
+    padding: 4px 0;
+
+}
+
+.faq-q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 15px;
+    padding-bottom: 7px;
+    opacity: .7;
+    cursor: pointer;
+}
+
+.faq-arrow {
+    width: 15px;
+    height: 15px;
+    margin-right: 7px;
+    transform: rotate();
+    transition: all .5s;
+    opacity: .6;
+}
+
+.faq-arrow.show {
+    transform: rotate(90deg);
+    transition: all .5s;
+}
+
+.faq-a {
+    width: 100%;
+    height: 0;
+    padding-left: 20px;
+    opacity: 0;
+    transform: translateY(-150%);
+    transition: all .5s;
+}
+
+.faq-a.show {
+    height: 100%;
+    opacity: .7;
+    transform: translateY(0);
+    transition: all .5s;
+}

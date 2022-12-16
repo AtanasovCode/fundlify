@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
     collection,
     onSnapshot,
@@ -8,6 +9,7 @@ import {
     docs,
 } from "firebase/firestore";
 import Nav from "./Nav";
+import FundProject from "./FundProject";
 import '../../styles/current-project.css';
 import categoryIcon from '../../images/icons/category.png';
 import subCategoryIcon from '../../images/icons/sub-category.png';
@@ -26,9 +28,9 @@ const CurrentProject = ({
     const [sticky, setSticky] = useState(true);
 
     const colRef = collection(db, "projects");
-    const q = query(colRef, where("documentId", "==", currentProjectId));
 
     useEffect(() => {
+        const q = query(colRef, where("documentId", "==", `${sessionStorage.getItem("currentProjectId")}`));
         onSnapshot(q, (snapshot) => {
             let project = [];
             snapshot.docs.forEach((doc) => {
@@ -118,11 +120,12 @@ const CurrentProject = ({
                                         </div>
                                     </div>
                                     <div className="back-project-btn-container">
-                                        <input
-                                            type="button"
-                                            value="Back this project"
+                                        <Link
+                                            to={`/fund-project/${sessionStorage.getItem("currentProjectId")}`}
                                             className="back-project-btn"
-                                        />
+                                        >
+                                            Back this project
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

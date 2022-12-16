@@ -12,6 +12,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 60px;
 }
 
 .project-rewards-title {
@@ -37,19 +38,65 @@
     justify-content: space-between;
 }
 
+
 .reward-tier-container {
     width: 100%;
-    height: 300px;
+    height: 450px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    margin-bottom: 150px;
 }
 
 .tier-title {
     font-size: 24px;
     font-weight: 300;
     text-align: center;
+}
+
+.tier-name-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+}
+
+.tier-name-info {
+    width: 40%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.tier-name-description {
+    width: 70%;
+    padding-top: 7px;
+    font-size: 15px;
+    font-weight: 300;
+    opacity: .7;
+}
+
+.tier-name-input-container {
+    width: 40%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.tier-name-input {
+    width: 80%;
+    height: 50px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    padding: 0 7px;
+    font-size: 17px;
 }
 
 .tier-rewards-details-container {

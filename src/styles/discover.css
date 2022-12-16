@@ -64,10 +64,12 @@
 
 .displayed-project-container {
     width: 350px;
-    height: 550px;
+    height: 650px;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid #ffffff45;
+    color: #fff;
+    text-decoration: none;
 }
 
 .displayed-project-image {
