@@ -63,6 +63,7 @@
 }
 
 .displayed-project-container {
+    cursor: pointer;
     width: 30vw;
     height: 480px;
     border-radius: 20px;
@@ -71,6 +72,13 @@
     color: #fff;
     text-decoration: none;
     position: relative;
+    transition: all .3s ease-in;
+}
+
+.displayed-project-container:hover {
+    z-index: 2;
+    transform: scale(1.04);
+    transition: all .3s ease-in;
 }
 
 .displayed-project-image {

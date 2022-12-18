@@ -7,6 +7,7 @@ import {
     orderBy,
     where,
 } from 'firebase/firestore'
+import DisplayProject from "../secondary/DisplayProject";
 import Nav from "../secondary/Nav";
 import '../../styles/discover.css';
 
@@ -21,13 +22,14 @@ const Discover = ({
 
     const [grow, setGrow] = useState(true);
     const [projects, setProjects] = useState([]);
-    const [filterCategory, setFilterCategory] = useState("null");
+    const [filterCategory, setFilterCategory] = useState("all-categories");
     const [projectCount, setProjectCount] = useState(0);
 
     const colRef = collection(db, "projects");
+    const q = query(colRef, orderBy("moneyBacked", "desc"));
 
     useEffect(() => {
-        onSnapshot(colRef, (snapshot) => {
+        onSnapshot(q, (snapshot) => {
             let project = [];
             snapshot.docs.forEach((doc) => {
                 project.push({ ...doc.data(), id: doc.id });
@@ -62,7 +64,7 @@ const Discover = ({
                         <select
                             className="discover-input-filter"
                             onChange={(e) => setFilterCategory(e.currentTarget.value)}
-                            defaultValue="null"
+                            defaultValue="all-categories"
                         >
                             <option value="null">
                                 All Categories
@@ -83,7 +85,7 @@ const Discover = ({
                     <div className="discover-input-filter-container">
                         <select
                             className="discover-input-filter"
-                            defaultValue="newest"
+                            defaultValue="most-funded"
                             onChange={(e) => {
                                 if (e.currentTarget.value === "newest") {
                                     const q = query(colRef, orderBy("createdAt", "desc"));
@@ -116,7 +118,7 @@ const Discover = ({
                                     })
                                 }
                                 if (e.currentTarget.value === "most-backers") {
-                                    const q = query(colRef, orderBy("backers", "asc"));
+                                    const q = query(colRef, orderBy("backers", "desc"));
                                     onSnapshot(q, (snapshot) => {
                                         let project = [];
                                         snapshot.docs.forEach((doc) => {
@@ -143,86 +145,11 @@ const Discover = ({
                     </div>
                 </div>
             </div>
-            <div className="discover-projects-container">
-                {
-                    projects.length > 0 ?
-                        <div className="displayed-projects-heading">
-                            Explore {projectCount} projects
-                        </div>
-                        :
-                        <div className="displayed-projects-heading">
-                            Loading...
-                        </div>
-                }
-                {
-                    filterCategory === "null" ?
-                        projects.map((project) => {
-                            return (
-                                <Link
-                                    className="displayed-project-container"
-                                    key={project.id}
-                                    onClick={(e) => sessionStorage.setItem("currentProjectId", project.documentId)}
-                                    to={`/projects/${formatTextForURL(project.projectTitle)}`}
-                                >
-                                    <div className="displayed-project-image">
-                                        <img
-                                            src={project.projectImageUrl}
-                                            className="displayed-image"
-                                        />
-                                    </div>
-                                    <div className="displayed-project-info">
-                                        <div className="displayed-project-name">
-                                            {project.projectTitle}
-                                        </div>
-                                        <div className="displayed-project-desc">
-                                            {project.projectDescription}
-                                        </div>
-                                        <div className="displayed-project-info-container">
-                                            <div className="displayed-project-by">
-                                                By: {project.createdBy}
-                                            </div>
-                                            <div className="displayed-project-funded">
-                                                ${project.moneyBacked} pledged
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            );
-                        })
-                        :
-                        projects.map((project) => {
-                            if (project.category === filterCategory) {
-                                return (
-                                    <div className="displayed-project-container" key={project.id}>
-                                        <div className="displayed-project-image">
-                                            <img
-                                                src={project.projectImageUrl}
-                                                className="displayed-image"
-                                            />
-                                        </div>
-                                        <div className="displayed-project-info">
-                                            <div className="displayed-project-name">
-                                                {project.projectTitle}
-                                            </div>
-                                            <div className="displayed-project-desc">
-                                                {project.projectDescription}
-                                            </div>
-                                            <div className="displayed-project-by">
-                                                By: {project.createdBy}
-                                            </div>
-                                            <div className="displayed-project-funded">
-                                                {project.moneyBacked} pledges
-                                            </div>
-                                            <div className="displayed-project-category">
-                                                {project.subCategory}
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            }
-                        })
-                }
-            </div>
+           <DisplayProject 
+                projects={projects} 
+                projectCount={projectCount} 
+                category={filterCategory} 
+            />
         </div>
     );
 
