@@ -163,6 +163,7 @@ const StartProject = ({
                         Select
                     </option>
                     <option value="candles">Candles</option>
+                    <option value="poster">Posters</option>
                     <option value="diy">DIY</option>
                     <option value="glass">Glass</option>
                     <option value="pottery">Pottery</option>

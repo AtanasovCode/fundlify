@@ -35,6 +35,7 @@ import Congratulations from "../secondary/Congratulations";
 import CurrentProject from "../secondary/CurrentProject";
 import Discover from "./Discover";
 import FundProject from "../secondary/FundProject";
+import DonationFinished from "../secondary/DonationFinished";
 import '../../styles/fundlify.css';
 
 const Fundlify = ({ app }) => {
@@ -225,6 +226,7 @@ const Fundlify = ({ app }) => {
                             userLoggedIn={userLoggedIn}
                         />
                     } />
+                    <Route path="donation-finished" element={<DonationFinished />} />
                 </Routes>
             </BrowserRouter>
         </div>

@@ -158,9 +158,9 @@ const Discover = ({
                     filterCategory === "null" ?
                         projects.map((project) => {
                             return (
-                                <Link 
-                                    className="displayed-project-container" 
-                                    key={project.id} 
+                                <Link
+                                    className="displayed-project-container"
+                                    key={project.id}
                                     onClick={(e) => sessionStorage.setItem("currentProjectId", project.documentId)}
                                     to={`/projects/${formatTextForURL(project.projectTitle)}`}
                                 >
@@ -177,14 +177,13 @@ const Discover = ({
                                         <div className="displayed-project-desc">
                                             {project.projectDescription}
                                         </div>
-                                        <div className="displayed-project-by">
-                                            By: {project.createdBy}
-                                        </div>
-                                        <div className="displayed-project-funded">
-                                            {project.moneyBacked} pledges
-                                        </div>
-                                        <div className="displayed-project-category">
-                                            {project.subCategory}
+                                        <div className="displayed-project-info-container">
+                                            <div className="displayed-project-by">
+                                                By: {project.createdBy}
+                                            </div>
+                                            <div className="displayed-project-funded">
+                                                ${project.moneyBacked} pledged
+                                            </div>
                                         </div>
                                     </div>
                                 </Link>

@@ -1,0 +1,59 @@
+.donation-finished-container {
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkmark-icon {
+    width: 200px;
+    height: 200px;
+}
+
+.donation-finished-heading {
+    width: 30%;
+    height: 140px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.donation-finished-title {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.donation-finished-subtitle {
+    font-size: 17px;
+    font-weight: 300;
+    opacity: .8;
+    margin-bottom: 20px;
+}
+
+.donation-finished-btn-container {
+    width: 30%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.donation-finished-btn {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: var(--auth-btn-bg);
+    color: #000;
+    text-decoration: none;
+}

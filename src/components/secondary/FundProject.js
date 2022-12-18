@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     collection,
     query,
@@ -26,6 +27,8 @@ const FundProject = ({
     const [totalPledge, setTotalPledge] = useState();
     const [backersTier, setBackersTier] = useState("");
 
+    const navigate = useNavigate();
+
     const colRef = collection(db, "projects");
     const docRef = doc(db, "projects", `${sessionStorage.getItem("currentProjectId")}`);
     const q = query(colRef, where("documentId", "==", `${sessionStorage.getItem("currentProjectId")}`));
@@ -51,8 +54,8 @@ const FundProject = ({
             [backersTier]: increment(1),
         })
             .then(() => {
-                console.log("Data has been updated");
                 setPledgeAmount("");
+                navigate("../donation-finished");
             })
     }
 
