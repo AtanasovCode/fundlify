@@ -153,6 +153,12 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
+    transition: all .4s ease-in;
+}
+
+.pledge-container:hover {
+    border: 1px solid var(--auth-btn-bg);
+    transition: all .4s ease-in;
 }
 
 .pledge-amount {
@@ -213,10 +219,13 @@
     margin-left: 25px;
     width: 25%;
     height: 40px;
+    font-size: 17px;
     background-color: var(--main-bg);
     border: 1px solid #ffffff70;
     padding-left: 7px;
     color: #fff;
+    background-color: var(--auth-btn-bg);
+    color: #000;
 }
 
 

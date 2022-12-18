@@ -4,6 +4,9 @@ import {
     query,
     where,
     onSnapshot,
+    updateDoc,
+    doc,
+    increment,
 } from 'firebase/firestore';
 import Nav from "./Nav";
 import '../../styles/fund-project.css';
@@ -19,10 +22,12 @@ const FundProject = ({
 
     const [project, setProject] = useState("");
     const [faqClassName, setFaqClassName] = useState("faq-a")
-    const [pledgeAmount, setPledgeAmount] = useState();
-    const [originalPledgeAmount, setOriginalPledgeAmount] = useState();
+    const [pledgeAmount, setPledgeAmount] = useState("");
+    const [totalPledge, setTotalPledge] = useState();
+    const [backersTier, setBackersTier] = useState("");
 
     const colRef = collection(db, "projects");
+    const docRef = doc(db, "projects", `${sessionStorage.getItem("currentProjectId")}`);
     const q = query(colRef, where("documentId", "==", `${sessionStorage.getItem("currentProjectId")}`));
 
     useEffect(() => {
@@ -34,6 +39,22 @@ const FundProject = ({
             setProject(project)
         })
     }, [])
+
+    const handleFundProject = (value, backersTier) => {
+        let totalPledge = value;
+        if(pledgeAmount !== "") {
+            totalPledge = parseInt(pledgeAmount) + parseInt(value);
+        }
+        updateDoc(docRef, {
+            backers: increment(1),
+            moneyBacked: increment(totalPledge),
+            [backersTier]: increment(1),
+        })
+            .then(() => {
+                console.log("Data has been updated");
+                setPledgeAmount("");
+            })
+    }
 
 
     return (
@@ -99,7 +120,7 @@ const FundProject = ({
                                                 {project.reward1}
                                             </div>
                                             <div className="tier-backers-amount">
-                                                {project.backers} backers
+                                                {project.backersTierOne} backers
                                             </div>
                                             <div className="pledge-input-container">
                                                 <div className="pledge-input-label">
@@ -110,25 +131,24 @@ const FundProject = ({
                                                         type="input"
                                                         className="pledge-input-amount"
                                                         placeholder="10"
+                                                        value={pledgeAmount}
                                                         onChange={(e) => {
-                                                            let number = e.currentTarget.value;
-                                                            if (number >= 1) {
-                                                                setPledgeAmount(parseInt(number));
-                                                            }
-                                                            else {
-                                                                setPledgeAmount(0);
-                                                            }
+                                                            setPledgeAmount(parseInt(e.currentTarget.value));
                                                         }}
                                                     />
                                                     <input
                                                         type="button"
                                                         className="pledge-btn"
                                                         value={
-                                                            pledgeAmount >= 1 ?
+                                                            pledgeAmount !== "" ?
                                                                 `Pledge $${parseInt(project.pledge1) + pledgeAmount}`
                                                                 :
                                                                 `Pledge $${parseInt(project.pledge1)}`
                                                         }
+                                                        onClick={() => {
+                                                            let backersTier = "backersTierOne";
+                                                            handleFundProject(project.pledge1, backersTier)
+                                                        }}
                                                     />
                                                 </div>
                                             </div>
@@ -145,7 +165,7 @@ const FundProject = ({
                                                 {project.reward2}
                                             </div>
                                             <div className="tier-backers-amount">
-                                                {project.backers} backers
+                                                {project.backersTierTwo} backers
                                             </div>
                                             <div className="pledge-input-container">
                                                 <div className="pledge-input-label">
@@ -156,25 +176,24 @@ const FundProject = ({
                                                         type="input"
                                                         className="pledge-input-amount"
                                                         placeholder="10"
+                                                        value={pledgeAmount}
                                                         onChange={(e) => {
-                                                            let number = e.currentTarget.value;
-                                                            if (number >= 1) {
-                                                                setPledgeAmount(parseInt(number));
-                                                            }
-                                                            else {
-                                                                setPledgeAmount(0);
-                                                            }
+                                                            setPledgeAmount(parseInt(e.currentTarget.value));
                                                         }}
                                                     />
                                                     <input
                                                         type="button"
                                                         className="pledge-btn"
                                                         value={
-                                                            pledgeAmount >= 1 ?
+                                                            pledgeAmount !== "" ?
                                                                 `Pledge $${parseInt(project.pledge2) + pledgeAmount}`
                                                                 :
                                                                 `Pledge $${parseInt(project.pledge2)}`
                                                         }
+                                                        onClick={() => {
+                                                            let backersTier = "backersTierTwo";
+                                                            handleFundProject(project.pledge2, backersTier)
+                                                        }}
                                                     />
                                                 </div>
                                             </div>
@@ -191,7 +210,7 @@ const FundProject = ({
                                                 {project.reward3}
                                             </div>
                                             <div className="tier-backers-amount">
-                                                {project.backers} backers
+                                                {project.backersTierThree} backers
                                             </div>
                                             <div className="pledge-input-container">
                                                 <div className="pledge-input-label">
@@ -201,26 +220,25 @@ const FundProject = ({
                                                     <input
                                                         type="input"
                                                         className="pledge-input-amount"
+                                                        value={pledgeAmount}
                                                         placeholder="10"
                                                         onChange={(e) => {
-                                                            let number = e.currentTarget.value;
-                                                            if (number >= 1) {
-                                                                setPledgeAmount(parseInt(number));
-                                                            }
-                                                            else {
-                                                                setPledgeAmount(0);
-                                                            }
+                                                            setPledgeAmount(parseInt(e.currentTarget.value));
                                                         }}
                                                     />
                                                     <input
                                                         type="button"
                                                         className="pledge-btn"
                                                         value={
-                                                            pledgeAmount >= 1 ?
+                                                            pledgeAmount !== "" ?
                                                                 `Pledge $${parseInt(project.pledge3) + pledgeAmount}`
                                                                 :
                                                                 `Pledge $${parseInt(project.pledge3)}`
                                                         }
+                                                        onClick={() => {
+                                                            let backersTier = "backersTierThree";
+                                                            handleFundProject(project.pledge3, backersTier);
+                                                        }}
                                                     />
                                                 </div>
                                             </div>

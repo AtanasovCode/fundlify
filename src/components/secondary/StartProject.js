@@ -37,6 +37,9 @@ const StartProject = ({
             moneyBacked: 0,
             backers: 0,
             createdAt: serverTimestamp(),
+            backersTierOne: 0,
+            backersTierTwo: 0,
+            backersTierThree: 0,
         })
             .then((docRef) => {
                 sessionStorage.setItem("docId", docRef.id)
