@@ -23,9 +23,11 @@ const FundProject = ({
 
     const [project, setProject] = useState("");
     const [faqClassName, setFaqClassName] = useState("faq-a")
+    const [fundNoReward, setFundNoReward] = useState("");
     const [pledgeAmount, setPledgeAmount] = useState("");
     const [totalPledge, setTotalPledge] = useState();
     const [backersTier, setBackersTier] = useState("");
+    const [errorClass, setErrorClass] = useState("error");
 
     const navigate = useNavigate();
 
@@ -45,7 +47,7 @@ const FundProject = ({
 
     const handleFundProject = (value, backersTier) => {
         let totalPledge = value;
-        if(pledgeAmount !== "") {
+        if (pledgeAmount !== "") {
             totalPledge = parseInt(pledgeAmount) + parseInt(value);
         }
         updateDoc(docRef, {
@@ -57,6 +59,23 @@ const FundProject = ({
                 setPledgeAmount("");
                 navigate("../donation-finished");
             })
+    }
+
+    const handleFundNoReward = () => {
+        updateDoc(docRef, {
+            backers: increment(1),
+            moneyBacked: increment(parseInt(fundNoReward)),
+        })
+            .then(() => {
+                setFundNoReward("");
+                navigate("../donation-finished", { replace: true });
+            })
+    }
+
+    const preventLetters = (e) => {
+        if (!/[0-9]/.test(e.key)) {
+            e.preventDefault();
+        }
     }
 
 
@@ -99,11 +118,25 @@ const FundProject = ({
                                                         type="text"
                                                         placeholder="10"
                                                         className="pledge-no-reward-input"
+                                                        onChange={(e) => {
+                                                            setErrorClass("error");
+                                                            setFundNoReward(e.currentTarget.value);
+                                                        }}
+                                                        onKeyPress={(e) => preventLetters(e)}
                                                     />
+                                                    <div className={errorClass}>
+                                                        Please enter pledge amount
+                                                    </div>
                                                     <input
                                                         type="button"
                                                         value="Pledge"
                                                         className="btn-pledge"
+                                                        onClick={() => {
+                                                            fundNoReward ? 
+                                                            handleFundNoReward()
+                                                            :
+                                                            setErrorClass("error show")
+                                                        }}
                                                     />
                                                 </div>
                                                 <div className="dollar-sign">
@@ -134,9 +167,9 @@ const FundProject = ({
                                                         type="input"
                                                         className="pledge-input-amount"
                                                         placeholder="10"
-                                                        value={pledgeAmount}
+                                                        onKeyPress={(e) => preventLetters(e)}
                                                         onChange={(e) => {
-                                                            setPledgeAmount(parseInt(e.currentTarget.value));
+                                                            setPledgeAmount(e.currentTarget.value);
                                                         }}
                                                     />
                                                     <input
@@ -144,7 +177,7 @@ const FundProject = ({
                                                         className="pledge-btn"
                                                         value={
                                                             pledgeAmount !== "" ?
-                                                                `Pledge $${parseInt(project.pledge1) + pledgeAmount}`
+                                                                `Pledge $${parseInt(project.pledge1) + parseInt(pledgeAmount)}`
                                                                 :
                                                                 `Pledge $${parseInt(project.pledge1)}`
                                                         }
@@ -179,9 +212,9 @@ const FundProject = ({
                                                         type="input"
                                                         className="pledge-input-amount"
                                                         placeholder="10"
-                                                        value={pledgeAmount}
+                                                        onKeyPress={(e) => preventLetters(e)}
                                                         onChange={(e) => {
-                                                            setPledgeAmount(parseInt(e.currentTarget.value));
+                                                            setPledgeAmount(e.currentTarget.value);
                                                         }}
                                                     />
                                                     <input
@@ -189,7 +222,7 @@ const FundProject = ({
                                                         className="pledge-btn"
                                                         value={
                                                             pledgeAmount !== "" ?
-                                                                `Pledge $${parseInt(project.pledge2) + pledgeAmount}`
+                                                                `Pledge $${parseInt(project.pledge2) + parseInt(pledgeAmount)}`
                                                                 :
                                                                 `Pledge $${parseInt(project.pledge2)}`
                                                         }
@@ -223,10 +256,10 @@ const FundProject = ({
                                                     <input
                                                         type="input"
                                                         className="pledge-input-amount"
-                                                        value={pledgeAmount}
                                                         placeholder="10"
+                                                        onKeyPress={(e) => preventLetters(e)}
                                                         onChange={(e) => {
-                                                            setPledgeAmount(parseInt(e.currentTarget.value));
+                                                            setPledgeAmount(e.currentTarget.value);
                                                         }}
                                                     />
                                                     <input
@@ -234,7 +267,7 @@ const FundProject = ({
                                                         className="pledge-btn"
                                                         value={
                                                             pledgeAmount !== "" ?
-                                                                `Pledge $${parseInt(project.pledge3) + pledgeAmount}`
+                                                                `Pledge $${parseInt(project.pledge3) + parseInt(pledgeAmount)}`
                                                                 :
                                                                 `Pledge $${parseInt(project.pledge3)}`
                                                         }

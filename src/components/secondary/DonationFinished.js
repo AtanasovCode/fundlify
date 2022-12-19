@@ -1,16 +1,13 @@
 import { Link } from 'react-router-dom';
 import '../../styles/donation-finished.css';
-import check1 from '../../images/icons/tick.png';
-import check2 from '../../images/icons/checkmark.png';
-import check3 from '../../images/icons/verified.png';
-
+import check from '../../images/icons/checkmark.png';
 
 const DonationFinished = () => {
     return (
         <div className="donation-finished-container">
             <div className="donation-finished-icon-container">
                 <img
-                    src={check2}
+                    src={check}
                     alt="checkmark icon"
                     className="checkmark-icon"
                 />
@@ -28,6 +25,8 @@ const DonationFinished = () => {
                 <Link
                     type="button"
                     className="donation-finished-btn"
+                    to={`/projects/${sessionStorage.getItem("currentDocumentId")}`}
+                    replace={true}
                 >
                     Continue
                 </Link>

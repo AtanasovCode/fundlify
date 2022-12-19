@@ -48,13 +48,30 @@ const Discover = ({
         }
     })
 
+    useEffect(() => {
+        if (filterCategory === "all-categories") return;
+
+        const q = query(colRef, where("category", "==", filterCategory));
+        onSnapshot(q, (snapshot) => {
+            let project = [];
+            snapshot.docs.forEach((doc) => {
+                project.push({ ...doc.data(), id: doc.id });
+            })
+            setProjects(project)
+        })
+    }, [])
+
+    const formatNumber = (number) => {
+        return parseInt(number).toLocaleString('en-US');
+    }
+
     const formatTextForURL = (text) => {
         return text == undefined ? '' : text.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
     }
 
     return (
         <div className="discover-container">
-            <Nav grow={grow} />
+            <Nav grow={grow} sticky={true} />
             <div className="discover-filter-container">
                 <div className="discover-category-filter discover-filter">
                     <div className="discover-filter-text">
@@ -145,10 +162,11 @@ const Discover = ({
                     </div>
                 </div>
             </div>
-           <DisplayProject 
-                projects={projects} 
-                projectCount={projectCount} 
-                category={filterCategory} 
+            <DisplayProject
+                projects={projects}
+                projectCount={projectCount}
+                category={filterCategory}
+                formatNumber={formatNumber}
             />
         </div>
     );

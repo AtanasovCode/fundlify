@@ -49,6 +49,18 @@ const CurrentProject = ({
         return parseInt(number).toLocaleString('en-US');
     }
 
+    const calculateProgress = (total, raised) => {
+        let percent = 0;
+        let progress = raised / total;
+        if (progress > 0) {
+            percent = progress * 100;
+        } else {
+            percent = 0;
+        }
+        return parseInt(Math.floor(percent));
+    }
+
+
     return (
         <div className="current-project-full-container">
             <Nav
@@ -60,7 +72,7 @@ const CurrentProject = ({
             {
                 currentProject.map((project) => {
                     return (
-                        <div className="current-project-container">
+                        <div className="current-project-container" key={project.documentId}>
                             <div className="current-project-title-container">
                                 <div className="current-project-title">
                                     {project.projectTitle}
@@ -101,6 +113,11 @@ const CurrentProject = ({
                                     </div>
                                 </div>
                                 <div className="current-project-funding-container">
+                                    <div className="progress-bar">
+                                        <div className="progress" style={{
+                                            width: `${calculateProgress(project.fundingGoal, project.moneyBacked)}%`
+                                        }}></div>
+                                    </div>
                                     <div className="current-project-funds-raised-container">
                                         <div className="current-project-number-bold money">
                                             ${formatNumber(project.moneyBacked)}

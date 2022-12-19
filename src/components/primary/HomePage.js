@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import {
+    onSnapshot,
+    collection,
+} from 'firebase/firestore';
 import Nav from '../secondary/Nav';
 import '../../styles/homepage.css';
 import illustration from '../../images/icons/illustration.svg';
@@ -9,15 +13,53 @@ import arrow from '../../images/icons/arrow.png';
 const HomePage = ({
     userLoggedIn,
     auth,
+    db,
 }) => {
 
     const [navClass, setNavClass] = useState("nav-container");
+    const [projects, setProjects] = useState([]);
+    const [totalProjects, setTotalProjects] = useState(0);
+    const [totalFundsRaised, setTotalFundsRaised] = useState();
+    const [backers, setBackers] = useState(0);
+
+    const colRef = collection(db, "projects");
+
+    useEffect(() => {
+        onSnapshot(colRef, (snapshot) => {
+            let project = [];
+            snapshot.docs.forEach((doc) => {
+                project.push({ ...doc.data(), id: doc.id });
+            })
+            setProjects(project)
+        })
+    }, [])
+
+    useEffect(() => {
+        if (projects) {
+            let total = 0;
+            let backers = 0;
+            let totalFunds = 0;
+            projects.map((project) => {
+                total++;
+                if (project.backers) {
+                    backers += project.backers;
+                }
+                if(project.moneyBacked) {
+                    totalFunds += project.moneyBacked;
+                }
+            })
+            setTotalFundsRaised(totalFunds);
+            setTotalProjects(total);
+            setBackers(backers);
+        }
+    })
+
 
     return (
         <div className="home-page-container">
             <div className="home-nav-container">
-                <Nav 
-                    userLoggedIn={userLoggedIn} 
+                <Nav
+                    userLoggedIn={userLoggedIn}
                     auth={auth}
                 />
                 <div className="home-nav-img-container">
@@ -47,15 +89,15 @@ const HomePage = ({
                 <div className="funds-raised-container">
                     <div className="line"></div>
                     <div className="fund-stats-container">
-                        <div className="fund-number">24000000</div>
+                        <div className="fund-number">{totalProjects}</div>
                         <div className="fund-text">Projects Funded</div>
                     </div>
                     <div className="money-raised-container">
-                        <div className="money-raised"><h1>123742</h1></div>
+                        <div className="money-raised"><h1>{totalFundsRaised}</h1></div>
                         <div className="fund-desc">Funds Raised</div>
                     </div>
                     <div className="fund-stats-container">
-                        <div className="fund-number">5000000</div>
+                        <div className="fund-number">{backers}</div>
                         <div className="fund-text">Pledges Made</div>
                     </div>
                     <div className="line"></div>

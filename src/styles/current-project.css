@@ -95,11 +95,29 @@
 .current-project-funding-container {
     width: 50%;
     height: 100%;
-    padding: 10px 40px;
+    padding: 10px;
+    margin-left: 40px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-evenly;
+    position: relative;
+}
+
+.progress-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 8px;
+    border-radius: 20px;
+    background-color: rgb(52, 49, 49);
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--auth-btn-bg);
+    border-radius: 20px;
 }
 
 

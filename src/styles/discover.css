@@ -78,6 +78,7 @@
 .displayed-project-container:hover {
     z-index: 2;
     transform: scale(1.04);
+    border: 1px solid #ffffff80;
     transition: all .3s ease-in;
 }
 
@@ -107,7 +108,7 @@
     padding: 15px;
     display: flex;
     z-index: 10;
-    background-color: #00000090;
+    background-color: rgba(0, 0, 0, .7);
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;

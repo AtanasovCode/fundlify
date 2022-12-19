@@ -1,11 +1,12 @@
+import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../../styles/discover.css';
 
 const DisplayProject = ({
     projects,
     category,
-    filterBy,
     projectCount,
+    formatNumber,
 }) => {
 
     const navigate = useNavigate();
@@ -51,7 +52,7 @@ const DisplayProject = ({
                                         By: {project.createdBy}
                                     </div>
                                     <div className="displayed-project-funded">
-                                        {project.moneyBacked} pledges
+                                        ${formatNumber(project.moneyBacked)} pledged
                                     </div>
                                 </div>
                             </div>

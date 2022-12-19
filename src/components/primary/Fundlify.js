@@ -102,6 +102,7 @@ const Fundlify = ({ app }) => {
                     <Route path="/" element={<HomePage
                         userLoggedIn={userLoggedIn}
                         auth={auth}
+                        db={db}
                     />} />
                     <Route path="/profile" element={<Profile
                         user={user}
