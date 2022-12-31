@@ -1,9 +1,10 @@
 .home-page-container {
     max-width: 100vw;
-    min-height: 100vh;
+    min-height: 100%;
     height: min-content;
     background-color: var(--main-bg);
     color: #fff;
+    box-sizing: border-box;
 }
 
 .home-nav-container {
@@ -164,7 +165,7 @@ close-icon:hover {
 .funds-raised-full-container {
     height: min-content;
     width: 100%;
-    margin-top: 10px;
+    padding-top: 10px;
     background-color: var(--main-bg);
     padding: 40px;
     display: flex;
@@ -277,7 +278,7 @@ close-icon:hover {
 }
 
 .steps-full-container {
-    margin-top: 40px;
+    padding-top: 40px;
     width: 100%;
     height: 50vh;
     display: flex;
@@ -329,14 +330,13 @@ close-icon:hover {
 
 
 .get-started-container {
+    border: 1px solid #fff;
     width: 100%;
-    min-height: 50vh;
-    height: min-content;
+    height: 30vh;
     padding: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--main-bg);
 }
 
 .get-started-text-container {
@@ -347,14 +347,14 @@ close-icon:hover {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    margin-right: 50px;
+    padding-right: 50px;
 }
 
 .get-started-heading {
     width: 80%;
     font-size: 30px;
     font-weight: 700;
-    margin-bottom: 30px;
+    padding-bottom: 30px;
 }
 
 .get-started-btn {
@@ -402,9 +402,12 @@ close-icon:hover {
 
 
 .most-popular-container {
-    margin-top: 60px;
+    padding-top: 50px;
     width: 100%;
     height: 85vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #fff;
 }
 
 .most-popular-title {
@@ -469,7 +472,7 @@ close-icon:hover {
 .main-project-name {
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     height: 15%;
 }
 
@@ -492,10 +495,9 @@ close-icon:hover {
 
 
 .side-projects-container {
-    margin-left: 50px;
+    padding-left: 50px;
     width: 60%;
     height: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -645,7 +647,7 @@ close-icon:hover {
 
     .popular-projects-container {
         height: 100%;
-        margin-top: 20px;
+        padding-top: 20px;
         display: flex;
         flex-direction: column;
         padding: 20px 10px;
@@ -653,16 +655,16 @@ close-icon:hover {
 
     .main-project-container {
         width: 85%;
-        margin-bottom: 45px;
+        padding-bottom: 45px;
     }
 
     .side-projects-container {
-        margin-left: 0;
+        padding-left: 0;
         width: 85%;
     }
 
     .side-project {
-        margin-bottom: 25px;
+        padding-bottom: 25px;
     }
     .get-started-container {
         width: 100%;
@@ -694,7 +696,7 @@ close-icon:hover {
     }
     .started-btn {
         width: 220px;
-        margin-bottom: 12px;
+        padding-bottom: 12px;
     }
     .get-started-icon-container {
         width: 100%;
@@ -716,7 +718,7 @@ close-icon:hover {
     }
 
     .funds-raised-container {
-        margin: 35px 0;
+        padding: 35px 0;
         height: 50vh;
         display: flex;
         flex-direction: column;
@@ -734,7 +736,7 @@ close-icon:hover {
     .step-container {
         width: 65%;
         height: 33%;
-        margin-bottom: 15px;
+        padding-bottom: 15px;
     }
 
     .main-project-container {
@@ -746,7 +748,7 @@ close-icon:hover {
     }
 
     .main-project-name {
-        margin-bottom: 5px;
+        padding-bottom: 5px;
     }
 
     .side-projects-container {
@@ -756,7 +758,7 @@ close-icon:hover {
 
     .side-project {
         height: 50%;
-        margin-bottom: 10px;
+        padding-bottom: 10px;
     }
 
     .side-project-img-container {
@@ -782,7 +784,7 @@ close-icon:hover {
     }
 
     .steps-full-container {
-        margin-top: 10px;
+        padding-top: 10px;
         height: 100vh;
         display: flex;
         flex-direction: column;

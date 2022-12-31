@@ -3,6 +3,7 @@ import '../../styles/nav.css';
 import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import pfp from '../../images/icons/pfp.avif';
+import menu from '../../images/icons/menu.png';
 
 const Nav = ({
     userLoggedIn,
@@ -36,6 +37,10 @@ const Nav = ({
 
     return (
         <nav className={navClass}>
+            <img
+                src={menu}
+                className="menu-icon"
+            />
             <Link className="nav-logo" to="/">
                 Fundlify
             </Link>
