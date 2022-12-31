@@ -1,19 +1,27 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
     onSnapshot,
     collection,
+    query,
+    orderBy,
 } from 'firebase/firestore';
 import Nav from '../secondary/Nav';
 import '../../styles/homepage.css';
 import illustration from '../../images/icons/illustration.svg';
+import categoryIcon from '../../images/icons/category.png';
+import subCategoryIcon from '../../images/icons/sub-category.png';
 import group from '../../images/icons/group.png';
 import arrow from '../../images/icons/arrow.png';
+import close from '../../images/icons/close.png';
 
 const HomePage = ({
     userLoggedIn,
     auth,
     db,
+    userInfo,
+    user,
+    formatNumber,
 }) => {
 
     const [navClass, setNavClass] = useState("nav-container");
@@ -21,8 +29,13 @@ const HomePage = ({
     const [totalProjects, setTotalProjects] = useState(0);
     const [totalFundsRaised, setTotalFundsRaised] = useState();
     const [backers, setBackers] = useState(0);
+    const [username, setUsername] = useState("");
+    const [loginBox, setLoginBox] = useState(false);
+    const [popularProjects, setPopularProjects] = useState([]);
 
     const colRef = collection(db, "projects");
+    const q = query(colRef, orderBy("moneyBacked", "desc"));
+    const navigate = useNavigate();
 
     useEffect(() => {
         onSnapshot(colRef, (snapshot) => {
@@ -30,30 +43,61 @@ const HomePage = ({
             snapshot.docs.forEach((doc) => {
                 project.push({ ...doc.data(), id: doc.id });
             })
-            setProjects(project)
+            setProjects(project);
         })
     }, [])
 
     useEffect(() => {
+        onSnapshot(q, (snapshot) => {
+            let project = [];
+            snapshot.docs.forEach((doc) => {
+                project.push({ ...doc.data(), id: doc.id });
+            })
+            setPopularProjects(project);
+
+        })
+    }, [])
+
+    const formatString = (string) => {
+        string = string.replace(/-/g, ' ');
+        return string.replace(/\b\w/g, l => l.toUpperCase())
+    }
+
+    let total = 0;
+    let totalBackers = 0;
+    let totalFunds = 0;
+
+    useEffect(() => {
         if (projects) {
-            let total = 0;
-            let backers = 0;
-            let totalFunds = 0;
             projects.map((project) => {
                 total++;
-                if (project.backers) {
-                    backers += project.backers;
-                }
-                if(project.moneyBacked) {
-                    totalFunds += project.moneyBacked;
-                }
+                totalBackers += project.backers;
+                totalFunds += project.moneyBacked;
             })
             setTotalFundsRaised(totalFunds);
             setTotalProjects(total);
-            setBackers(backers);
+            setBackers(totalBackers);
         }
-    })
+    }, [projects])
 
+    const handleAddProject = () => {
+        if (userLoggedIn) {
+            navigate("/create-project/start");
+        } else {
+            setLoginBox(true);
+        }
+    }
+
+    const calculateProgress = (total, raised) => {
+        let percent = 0;
+        let progress = raised / total;
+        if (progress > 0) {
+            percent = progress * 100;
+        } else {
+            percent = 0;
+        }
+        return parseInt(Math.floor(percent));
+    }
 
     return (
         <div className="home-page-container">
@@ -61,14 +105,49 @@ const HomePage = ({
                 <Nav
                     userLoggedIn={userLoggedIn}
                     auth={auth}
+                    user={user}
                 />
                 <div className="home-nav-img-container">
                     {/*Image Goes Here*/}
                 </div>
-                <div className="add-project-btn-container">
-                    <Link to="/create-project/start" className="add-project-text">
+                <div className={loginBox ? "login-box show" : "login-box"}>
+                    <img
+                        className="close-icon"
+                        src={close}
+                        alt="close icon"
+                        onClick={() => {
+                            setLoginBox(false);
+                        }}
+                    />
+                    <div className="login-box-img">{/*image goes here*/}</div>
+                    <div className="login-box-info">
+                        <div className="login-box-heading">
+                            <div className="login-box-title">
+                                Join Us!
+                            </div>
+                            <div className="login-box-subtitle">
+                                Join hundreds of others today and
+                                turn your dream project into
+                                a reality.
+                            </div>
+                        </div>
+                        <div className="login-box-join-container">
+                            <Link
+                                to="/sign-up"
+                                className="login-box-btn"
+                            >
+                                Sign Up
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    className="add-project-btn-container"
+                    onClick={handleAddProject}
+                >
+                    <div className="add-project-text">
                         Add Fundlify Project
-                    </Link>
+                    </div>
                     <img
                         src={group}
                         className="group-icon"
@@ -81,26 +160,33 @@ const HomePage = ({
                     <div className="title">
                         Bring A
                         <span className="creative">
-                            Creative</span>
+                            creative
+                        </span>
                         Project To Life!
                     </div>
-                    <div className="subtitle">On Fundlify:</div>
+                    <div className="subtitle">
+                        On Fundlify:
+                    </div>
                 </div>
                 <div className="funds-raised-container">
-                    <div className="line"></div>
                     <div className="fund-stats-container">
-                        <div className="fund-number">{totalProjects}</div>
+                        <div className="fund-number">
+                            {formatNumber(totalProjects)}
+                        </div>
                         <div className="fund-text">Projects Funded</div>
                     </div>
-                    <div className="money-raised-container">
-                        <div className="money-raised"><h1>{totalFundsRaised}</h1></div>
-                        <div className="fund-desc">Funds Raised</div>
+                    <div className="fund-stats-container">
+                        <div className="fund-number">
+                            ${formatNumber(totalFundsRaised)}
+                        </div>
+                        <div className="fund-text">Funds Raised</div>
                     </div>
                     <div className="fund-stats-container">
-                        <div className="fund-number">{backers}</div>
+                        <div className="fund-number">
+                            {formatNumber(backers)}
+                        </div>
                         <div className="fund-text">Pledges Made</div>
                     </div>
-                    <div className="line"></div>
                 </div>
             </div>
             <div className="fund-steps-container">
@@ -153,94 +239,117 @@ const HomePage = ({
                     </div>
                 </div>
             </div>
-            <div className="explore-full-container">
-                <div className="explore-info-container">
-                    <div className="explore-subtitle">
-                        Make an impact
-                    </div>
-                    <div className="explore-title">
-                        Fundraise for...
-                    </div>
+            <div className="most-popular-container">
+                <div className="most-popular-title">
+                    Discover popular projects
                 </div>
-                <div className="explore-category-container">
-                    <div className="category-image-container games-image">
-                        <div className="category-image-tint"></div>
+                <div className="popular-projects-container">
+                    <div className="main-project-container">
+                        {
+                            popularProjects.map((project, i) => {
+                                if (i === 0) {
+                                    return (
+                                        <div
+                                            className="main-project"
+                                            onClick={() => {
+                                                sessionStorage.setItem("currentProjectId", project.documentId);
+                                                navigate(`/projects/${project.documentId}`);
+                                            }}
+                                        >
+                                            <div className="main-project-img-container">
+                                                <img
+                                                    src={project.projectImageUrl}
+                                                    className="main-project-img"
+                                                />
+                                            </div>
+                                            <div className="main-project-info">
+                                                <div className="main-project-heading">
+                                                    <div className="main-project-name">
+                                                        {project.projectTitle}
+                                                    </div>
+                                                    <div className="main-project-desc">
+                                                        {project.projectDescription}
+                                                    </div>
+                                                </div>
+                                                <div className="main-project-made-by">
+                                                    By: {project.createdBy}
+                                                </div>
+                                                <div className="percent-funded">
+                                                    {calculateProgress(project.fundingGoal, project.moneyBacked)}%
+                                                    funded
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                            })
+                        }
                     </div>
-                    <div className="category-info">
-                        <div className="category-name">
-                            Games
-                        </div>
-                        <div className="category-icon-container">
-                            <img
-                                src={arrow}
-                                alt="arrow point"
-                                className="arrow-point"
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div className="explore-category-container">
-                    <div className="category-image-container comics-image">
-                        <div className="category-image-tint"></div>
-                    </div>
-                    <div className="category-info">
-                        <div className="category-name">
-                            Comics
-                        </div>
-                        <div className="category-icon-container">
-                            <img
-                                src={arrow}
-                                alt="arrow point"
-                                className="arrow-point"
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div className="explore-category-container">
-                    <div className="category-image-container tech-image">
-                        <div className="category-image-tint"></div>
-                    </div>
-                    <div className="category-info">
-                        <div className="category-name">
-                            Technology
-                        </div>
-                        <div className="category-icon-container">
-                            <img
-                                src={arrow}
-                                alt="arrow point"
-                                className="arrow-point"
-                            />
-                        </div>
+                    <div className="side-projects-container">
+                        {
+                            popularProjects.map((project, i) => {
+                                if (i <= 3) {
+                                    return (
+                                        <div
+                                            className="side-project"
+                                            onClick={() => {
+                                                sessionStorage.setItem("currentProjectId", project.documentId);
+                                                navigate(`/projects/${project.documentId}`);
+                                            }}
+                                        >
+                                            <div className="side-project-img-container">
+                                                <img
+                                                    src={project.projectImageUrl}
+                                                    className="side-project-img"
+                                                />
+                                            </div>
+                                            <div className="side-project-info">
+                                                <div className="side-project-heading">
+                                                    <div className="side-project-name">
+                                                        {project.projectTitle}
+                                                    </div>
+                                                    <div className="side-project-made-by">
+                                                        By: {project.createdBy}
+                                                    </div>
+                                                </div>
+                                                <div className="side-project-percent">
+                                                    {calculateProgress(project.fundingGoal, project.moneyBacked)}%
+                                                    funded
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                            })
+                        }
                     </div>
                 </div>
             </div>
-            <div className="get-started-full-container">
-                <div className="get-started-container">
-                    <div className="get-started-text-container">
-                        <div className="get-started-heading">
-                            Ready to get started?
-                            Join thousands of others today!
-                        </div>
-                        <div className="get-started-btn">
-                            <input
-                                type="button"
-                                value="Created Fundlify Account"
-                                className="create-acc-btn started-btn"
-                            />
-                            <input
-                                type="button"
-                                value="How it works"
-                                className="how-it-works-btn started-btn"
-                            />
-                        </div>
+            <div className="get-started-container">
+                <div className="get-started-text-container">
+                    <div className="get-started-heading">
+                        Ready to get started?
+                        Join thousands of others today!
                     </div>
-                    <div className="get-started-icon-container">
-                        <img
-                            src={illustration}
-                            alt="illustration"
-                            className="illustration-icon"
+                    <div className="get-started-btn">
+                        <input
+                            type="button"
+                            value="Created Fundlify Account"
+                            className="create-acc-btn started-btn"
+                        />
+                        <input
+                            type="button"
+                            value="How it works"
+                            className="how-it-works-btn started-btn"
                         />
                     </div>
+                </div>
+                <div className="get-started-icon-container">
+                    <img
+                        src={illustration}
+                        alt="illustration"
+                        className="illustration-icon"
+                    />
                 </div>
             </div>
         </div>

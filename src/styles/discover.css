@@ -77,7 +77,7 @@
 
 .displayed-project-container:hover {
     z-index: 2;
-    transform: scale(1.04);
+    transform: scale(1.01);
     border: 1px solid #ffffff80;
     transition: all .3s ease-in;
 }
@@ -131,4 +131,19 @@
     justify-content: space-between;
     font-synthesis: 15px;
     opacity: .8;
+    position: relative;
+}
+
+.percent-pledged {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: .8;
+    position: absolute;
+    top: -20px;
+    right: 0;
+}
+
+.percent-number {
+    color: rgb(141, 255, 141);
+    padding-right: 5px;
 }

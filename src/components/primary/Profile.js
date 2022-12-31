@@ -39,9 +39,13 @@ const Profile = ({
 
     useEffect(() => {
         userInfo.forEach((info) => {
-            setUpdateId(info.id);
+            sessionStorage.setItem("updateId", info.id)
         })
     }, [])
+
+    const formatTextForURL = (text) => {
+        return text == undefined ? '' : text.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
+    }
 
     return (
         <div className="profile-container">
@@ -63,7 +67,7 @@ const Profile = ({
                                     className="pfp"
                                 />
                                 <Link
-                                    to="/edit-profile"
+                                    to={`/edit-profile/${formatTextForURL(sessionStorage.getItem("username"))}`}
                                     className="edit-profile"
                                 >
                                     Edit Profile

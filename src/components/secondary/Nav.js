@@ -9,9 +9,14 @@ const Nav = ({
     auth,
     grow,
     sticky,
+    user,
 }) => {
 
     const [navClass, setNavClass] = useState(grow ? "nav-container grow" : "nav-container");
+
+    const formatTextForURL = (text) => {
+        return text == undefined ? '' : text.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
+    }
 
     useEffect(() => {
         if (grow !== true) {
@@ -22,8 +27,8 @@ const Nav = ({
                     setNavClass("nav-container");
                 }
             })
-        }else {
-            if(sticky) {
+        } else {
+            if (sticky) {
                 setNavClass("nav-container not-sticky")
             }
         }
@@ -35,18 +40,18 @@ const Nav = ({
                 Fundlify
             </Link>
             <div className="nav-info">
-                <Link 
+                <Link
                     to="/discover"
                     className="nav-links"
                 >
                     Discover
                 </Link>
-                <div className="nav-links">
+                <Link to="/how-it-works" className="nav-links">
                     How It Works
-                </div>
+                </Link>
                 {
                     userLoggedIn ?
-                        <Link to="/profile" className="profile-icon">
+                        <Link to={`/users/${formatTextForURL(sessionStorage.getItem("username"))}`} className="profile-icon">
                             <img
                                 src={pfp}
                                 alt="profile icon"

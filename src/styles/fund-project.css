@@ -120,6 +120,15 @@
     padding-left: 12%;
     font-size: 17px;
     font-weight: 500;
+    border-radius: 10px;
+}
+
+.pledge-no-reward-input:focus {
+    outline: none;
+}
+
+.pledge-no-reward-input.error-input {
+    border: 1px solid red;
 }
 
 .error {
@@ -144,6 +153,8 @@
     background-color: lime;
     border: none;
     color: #000;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
 .dollar-sign {
@@ -239,6 +250,7 @@
     color: #fff;
     background-color: var(--auth-btn-bg);
     color: #000;
+    cursor: pointer;
 }
 
 

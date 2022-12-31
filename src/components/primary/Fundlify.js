@@ -36,6 +36,7 @@ import CurrentProject from "../secondary/CurrentProject";
 import Discover from "./Discover";
 import FundProject from "../secondary/FundProject";
 import DonationFinished from "../secondary/DonationFinished";
+import HowItWorks from "./HowItWorks";
 import '../../styles/fundlify.css';
 
 const Fundlify = ({ app }) => {
@@ -94,6 +95,17 @@ const Fundlify = ({ app }) => {
         })
     }, [])
 
+    useEffect(() => {
+        if (userLoggedIn) {
+            sessionStorage.setItem("username", user.displayName);
+        }
+    }, [userLoggedIn])
+
+    const formatNumber = (number) => {
+        return parseInt(number).toLocaleString('en-US');
+    }
+
+
 
     return (
         <div className="app">
@@ -103,8 +115,10 @@ const Fundlify = ({ app }) => {
                         userLoggedIn={userLoggedIn}
                         auth={auth}
                         db={db}
+                        userInfo={userInfo}
+                        formatNumber={formatNumber}
                     />} />
-                    <Route path="/profile" element={<Profile
+                    <Route path="/users/:username" element={<Profile
                         user={user}
                         setUser={setUser}
                         userInfo={userInfo}
@@ -113,7 +127,7 @@ const Fundlify = ({ app }) => {
                         setUpdateId={setUpdateId}
                         db={db}
                     />} />
-                    <Route path="/edit-profile" element={<EditProfile
+                    <Route path="/edit-profile/:profileName" element={<EditProfile
                         userLoggedIn={userLoggedIn}
                         auth={auth}
                         user={user}
@@ -227,7 +241,8 @@ const Fundlify = ({ app }) => {
                             userLoggedIn={userLoggedIn}
                         />
                     } />
-                    <Route path="donation-finished" element={<DonationFinished />} />
+                    <Route path="/donation-finished" element={<DonationFinished />} />
+                    <Route path="/how-it-works" element={<HowItWorks userLoggedIn={userLoggedIn} />} />
                 </Routes>
             </BrowserRouter>
         </div>

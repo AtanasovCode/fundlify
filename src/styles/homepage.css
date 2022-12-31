@@ -1,13 +1,14 @@
 .home-page-container {
     max-width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: min-content;
     background-color: var(--main-bg);
     color: #fff;
 }
 
 .home-nav-container {
     width: 100%;
-    height: 90%;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,6 +24,104 @@
     background-size: cover;
 }
 
+.login-box {
+    position: fixed;
+    top: 17%;
+    left: calc(55% % 2);
+    width: 0;
+    height: 0;
+    background-color: var(--main-bg);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    user-select: none;
+    opacity: 0;
+    z-index: 0;
+}
+
+.login-box.show {
+    min-width: 45%;
+    height: 450px;
+    opacity: 1;
+    user-select: all;
+    z-index: 5;
+}
+
+.close-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+}
+
+close-icon:hover {
+    border: 3px solid red;
+}
+
+.login-box-img {
+    width: 35%;
+    height: 100%;
+    background-image: url("../images/image/abstract.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.login-box-info {
+    width: 65%;
+    height: 100%;
+    padding: 20px 30px;
+}
+
+.login-box-heading {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.login-box-title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.login-box-subtitle {
+    width: 85%;
+    font-size: 16px;
+    font-weight: 300;
+    color: darkgray;
+}
+
+.login-box-join-container {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.login-box-btn {
+    width: 60%;
+    height: 50px;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    background-color: #5c64eb;
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.login-box-btn:hover {
+    cursor: pointer;
+    background-color: #373c9f;
+}
 
 .add-project-btn-container {
     z-index: 2;
@@ -84,62 +183,30 @@
 .title {
     font-size: 28px;
     font-weight: 600;
+    text-align: center;
 }
 
 .creative {
     padding: 0 10px;
     font-weight: 600;
-    font-size: 43px;
+    font-size: 38px;
     font-family: 'Dancing Script', cursive;
-    font-family: 'Rubik Microbe', cursive;
-    color: royalblue;
+    color: rgb(97, 136, 255);
 }
 
 .subtitle {
     font-size: 22px;
     font-weight: 300;
-    opacity: .8;
+    color: darkgray;
 }
 
 .funds-raised-container {
     width: 85%;
-    height: 40vh;
+    height: 30vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
-
-
-.money-raised-container {
-    z-index: 2;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100px;
-}
-
-.money-raised h1 {
-    width: 100%;
-    height: min-content;
-    font-size: 72px;
-    font-weight: 700;
-    text-align: left;
-    text-align: center;
-}
-
-.fund-desc {
-    margin-top: -20px;
-    font-size: 16px;
-    font-weight: 300;
-    text-align: center;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-
 
 .sub-info-container {
     width: 40%;
@@ -159,11 +226,12 @@
 }
 
 .fund-number {
-    font-size: 22px;
+    font-size: 26px;
 }
 
 .fund-text {
-    font-size: 15px;
+    font-size: 18px;
+    color: darkgray;
 }
 
 .line {
@@ -172,6 +240,8 @@
     background-color: #fff;
     border-radius: 10px;
 }
+
+
 
 
 
@@ -203,7 +273,7 @@
 }
 
 .fund-steps-sub-text {
-    opacity: .6;
+    color: darkgray;
 }
 
 .steps-full-container {
@@ -255,103 +325,13 @@
 
 
 
-.explore-full-container {
-    width: 100%;
-    height: 70vh;
-    background-color: var(--main-bg);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 50px;
-}
-
-.explore-info-container {
-    width: 15%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-
-.explore-subtitle {
-    font-size: 17px;
-    font-weight: 400;
-    opacity: .6;
-    margin-bottom: 20px;
-}
-
-.explore-title {
-    font-size: 28px;
-    font-weight: 600;
-}
 
 
-.explore-category-container {
-    height: 100%;
-    width: 23%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    overflow: hidden;
-    position: relative;
-}
-
-.category-info {
-    height: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    z-index: 2;
-}
-
-.category-name {
-    font-size: 22px;
-    font-weight: 600;
-}
-
-.arrow-point {
-    width: 30px;
-    height: 30px;
-}
-
-.category-image-container {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
-
-.category-image-tint {
-    width: 100%;
-    height: 100%;
-    border: 1px solid #ffffff80;
-    background-color: var(--main-bg);
-    transition: all .7s ease-in-out;
-}
-
-
-
-
-
-.get-started-full-container {
-    width: 100%;
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--main-bg);
-    color: #fff;
-}
 
 .get-started-container {
-    width: 85%;
-    height: 85%;
+    width: 100%;
+    min-height: 50vh;
+    height: min-content;
     padding: 30px;
     display: flex;
     align-items: center;
@@ -361,7 +341,8 @@
 
 .get-started-text-container {
     height: 100%;
-    width: 100%;
+    width: 60%;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -370,8 +351,8 @@
 }
 
 .get-started-heading {
-    width: 100%;
-    font-size: 34px;
+    width: 80%;
+    font-size: 30px;
     font-weight: 700;
     margin-bottom: 30px;
 }
@@ -396,13 +377,13 @@
 }
 
 .how-it-works-btn {
-    background-color: #222;
+    background-color: rgb(62, 49, 49);
     color: #fff;
 }
 
 .get-started-icon-container {
     height: 100%;
-    width: 100%;
+    width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -411,4 +392,416 @@
 .illustration-icon {
     width: 80%;
     height: 80%;
+}
+
+
+
+
+
+
+
+
+.most-popular-container {
+    margin-top: 60px;
+    width: 100%;
+    height: 85vh;
+}
+
+.most-popular-title {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 24px;
+    font-weight: 500;
+    padding-left: 20px;
+}
+
+.popular-projects-container {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 25px 55px;
+}
+
+.main-project-container {
+    border: 1px solid #ffffff40;
+    width: 48%;
+    height: 100%;
+    position: relative;
+}
+
+.main-project {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-project-img-container {
+    width: 100%;
+    height: 70%;
+}
+
+.main-project-img {
+    width: 100%;
+    height: 100%;
+}
+
+.main-project-info {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.main-project-heading {
+    height: 65%;
+}
+
+.main-project-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    height: 15%;
+}
+
+.main-project-desc {
+    font-size: 15px;
+    font-weight: 400;
+    color: darkgray;
+}
+
+.percent-funded {
+    font-size: 15px;
+    color: lime;
+}
+
+.main-project-made-by {
+    font-size: 14px;
+    color: darkgray;
+}
+
+
+
+.side-projects-container {
+    margin-left: 50px;
+    width: 60%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.side-project {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 28%;
+    border: 1px solid #ffffff40;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.side-project-img-container {
+    min-width: 150px;
+    width: 150px;
+    height: 100%;
+}
+
+.side-project-img {
+    width: 100%;
+    height: 100%;
+}
+
+.side-project-info {
+    width: 70%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.side-project-name {
+    font-size: 17px;
+    font-weight: 600;
+    padding-bottom: 7px;
+}
+
+.side-project-made-by {
+    font-size: 14px;
+    font-weight: 300;
+    color: darkgray;
+}
+
+.side-project-img {
+    width: 100%;
+    height: 100%;
+}
+
+.side-project-percent {
+    color: lime;
+}
+
+
+@media only screen and (max-width: 975px) {
+    .get-started-heading {
+        font-size: 27px;
+    }
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .fund-steps-desc {
+        width: 65%;
+    }
+
+    .fund-steps-heading {
+        font-size: 26px;
+    }
+
+    .step-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .steps-container {
+        width: 26%;
+    }
+
+    .step-desc-title {
+        font-size: 18px;
+    }
+
+    .step-desc-sub-title {
+        font-size: 15px;
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+    .funds-raised-container {
+        width: 100%;
+    }
+
+    .steps-full-container {
+        width: 100%;
+        height: 75vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .fund-steps-desc {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .fund-steps-heading {
+        width: 60%;
+        text-align: center;
+    }
+
+    .step-container {
+        width: 45%;
+        height: 33%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .step-desc {
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        text-align: center;
+    }
+
+    .most-popular-container {
+        min-height: 100vh;
+        height: min-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .popular-projects-container {
+        height: 100%;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px 10px;
+    }
+
+    .main-project-container {
+        width: 85%;
+        margin-bottom: 45px;
+    }
+
+    .side-projects-container {
+        margin-left: 0;
+        width: 85%;
+    }
+
+    .side-project {
+        margin-bottom: 25px;
+    }
+    .get-started-container {
+        width: 100%;
+        min-height: 40vh;
+        height: min-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .get-started-text-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .get-started-heading {
+        font-size: 24px;
+    }
+    .get-started-icon-container {
+        width: 60%;
+        height: 40vh;
+    }
+    .get-started-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .started-btn {
+        width: 220px;
+        margin-bottom: 12px;
+    }
+    .get-started-icon-container {
+        width: 100%;
+    }
+    .illustration-icon {
+        width: 60%;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .title {
+        font-size: 18px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+        padding-top: 12px;
+    }
+
+    .funds-raised-container {
+        margin: 35px 0;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .fund-stats-container {
+        width: 75%;
+    }
+
+    .fund-steps-heading {
+        width: 85%;
+        font-size: 22px;
+    }
+
+    .step-container {
+        width: 65%;
+        height: 33%;
+        margin-bottom: 15px;
+    }
+
+    .main-project-container {
+        width: 100%;
+    }
+
+    .main-project-info {
+        height: 30vh;
+    }
+
+    .main-project-name {
+        margin-bottom: 5px;
+    }
+
+    .side-projects-container {
+        width: 100%;
+        height: 60vh;
+    }
+
+    .side-project {
+        height: 50%;
+        margin-bottom: 10px;
+    }
+
+    .side-project-img-container {
+        min-width: 175px;
+        width: 175px;
+    }
+
+    .side-project-name {
+        font-size: 15px;
+    }
+
+    .side-project-percent {
+        font-size: 14px;
+    }
+    .illustration-icon {
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .funds-raised-full-container {
+        padding: 20px;
+    }
+
+    .steps-full-container {
+        margin-top: 10px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .step-container {
+        height: 30%;
+    }
+
+    .side-project-name {
+        font-size: 14px;
+    }
+
+    .side-project-percent {
+        font-size: 13px;
+    }
+    .illustration-icon {
+        width: 90%;
+    }
 }

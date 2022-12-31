@@ -80,10 +80,12 @@ const Discover = ({
                     <div className="discover-input-filter-container">
                         <select
                             className="discover-input-filter"
-                            onChange={(e) => setFilterCategory(e.currentTarget.value)}
+                            onChange={(e) => {
+                                setFilterCategory(e.currentTarget.value)
+                            }}
                             defaultValue="all-categories"
                         >
-                            <option value="null">
+                            <option value="all-categories">
                                 All Categories
                             </option>
                             <option value="comics">Comics</option>

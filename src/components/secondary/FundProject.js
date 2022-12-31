@@ -28,6 +28,7 @@ const FundProject = ({
     const [totalPledge, setTotalPledge] = useState();
     const [backersTier, setBackersTier] = useState("");
     const [errorClass, setErrorClass] = useState("error");
+    const [inputClass, setInputClass] = useState("pledge-no-reward-input");
 
     const navigate = useNavigate();
 
@@ -57,19 +58,25 @@ const FundProject = ({
         })
             .then(() => {
                 setPledgeAmount("");
-                navigate("../donation-finished");
+                navigate("../donation-finished", { replace: true });
             })
     }
 
     const handleFundNoReward = () => {
-        updateDoc(docRef, {
-            backers: increment(1),
-            moneyBacked: increment(parseInt(fundNoReward)),
-        })
-            .then(() => {
-                setFundNoReward("");
-                navigate("../donation-finished", { replace: true });
+        if (fundNoReward) {
+            updateDoc(docRef, {
+                backers: increment(1),
+                moneyBacked: increment(parseInt(fundNoReward)),
             })
+                .then(() => {
+                    setFundNoReward("");
+                    navigate("../donation-finished", { replace: true });
+                })
+        }else {
+            setInputClass("pledge-no-reward-input error-input")
+            setErrorClass("error show")
+        }
+
     }
 
     const preventLetters = (e) => {
@@ -117,9 +124,11 @@ const FundProject = ({
                                                     <input
                                                         type="text"
                                                         placeholder="10"
-                                                        className="pledge-no-reward-input"
+                                                        className={inputClass}
+                                                        value={fundNoReward}
                                                         onChange={(e) => {
                                                             setErrorClass("error");
+                                                            setInputClass("pledge-no-reward-input")
                                                             setFundNoReward(e.currentTarget.value);
                                                         }}
                                                         onKeyPress={(e) => preventLetters(e)}
@@ -131,12 +140,7 @@ const FundProject = ({
                                                         type="button"
                                                         value="Pledge"
                                                         className="btn-pledge"
-                                                        onClick={() => {
-                                                            fundNoReward ? 
-                                                            handleFundNoReward()
-                                                            :
-                                                            setErrorClass("error show")
-                                                        }}
+                                                        onClick={() => handleFundNoReward()}
                                                     />
                                                 </div>
                                                 <div className="dollar-sign">
