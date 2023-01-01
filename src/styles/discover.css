@@ -11,24 +11,25 @@
 }
 
 .discover-filter-container {
-    width: 55%;
+    width: 100%;
     height: 110px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .discover-filter {
     display: flex;
+    margin-right: 25px;
     font-size: 18px;
-    width: 45%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .discover-input-filter-container {
-    width: 60%;
+    width: 200px;
+    margin-left: 10px;
 }
 
 .discover-input-filter {
@@ -51,7 +52,7 @@
     grid-template-columns: repeat(3, auto);
     grid-gap: 15px;
     place-content: center;
-    padding: 120px 40px;
+    padding: 120px 20px 60px 20px;
     position: relative;
 }
 
@@ -146,4 +147,77 @@
 .percent-number {
     color: rgb(141, 255, 141);
     padding-right: 5px;
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+    .discover-projects-container {
+        grid-template-columns: repeat(2, auto);
+        grid-column-gap: 5%;
+        grid-row-gap: 5%;;
+    }
+    .displayed-project-container  {
+        width: 45vw;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .discover-projects-container {
+        grid-template-columns: repeat(2, auto);
+        grid-column-gap: 2%;
+        grid-row-gap: 5%;;
+    }
+    .displayed-project-container  {
+        width: 45vw;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .discover-projects-container {
+        grid-template-columns: repeat(1, auto);
+        grid-row-gap: 2%;
+    }
+    .displayed-project-container  {
+        width: 85vw;
+    }
+    .discover-filter-container {
+        height: 20vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .discover-filter {
+        width: 60%;
+    }
+    .discover-filter-container {
+        width: 100%;
+    }
+    .discover-filter {
+        width: 90%;
+    }
+    .discover-input-filter {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .discover-projects-container {
+        grid-template-columns: repeat(1, auto);
+        grid-row-gap: 2%;
+    }
+    .displayed-project-container  {
+        width: 95vw;
+    }
+    .discover-filter-container {
+        height: 30vh;
+    }
+    .discover-filter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 50%;
+    }
 }
