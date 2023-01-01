@@ -332,16 +332,18 @@ const HomePage = ({
                         Join thousands of others today!
                     </div>
                     <div className="get-started-btn">
-                        <input
-                            type="button"
-                            value="Created Fundlify Account"
+                        <Link
+                            to="/sign-up"
                             className="create-acc-btn started-btn"
-                        />
-                        <input
-                            type="button"
-                            value="How it works"
+                        >
+                            Get Started
+                        </Link>
+                        <Link
+                            to="/how-it-works"
                             className="how-it-works-btn started-btn"
-                        />
+                        >
+                            How it works
+                        </Link>
                     </div>
                 </div>
                 <div className="get-started-icon-container">

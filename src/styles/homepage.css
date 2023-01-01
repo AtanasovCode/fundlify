@@ -27,7 +27,7 @@
 
 .login-box {
     position: fixed;
-    top: 17%;
+    top: 15%;
     left: calc(55% % 2);
     width: 0;
     height: 0;
@@ -41,8 +41,8 @@
 }
 
 .login-box.show {
-    min-width: 45%;
-    height: 450px;
+    width: 60%;
+    height: 70%;
     opacity: 1;
     user-select: all;
     z-index: 5;
@@ -57,10 +57,6 @@
     cursor: pointer;
 }
 
-close-icon:hover {
-    border: 3px solid red;
-}
-
 .login-box-img {
     width: 35%;
     height: 100%;
@@ -71,9 +67,13 @@ close-icon:hover {
 }
 
 .login-box-info {
-    width: 65%;
+    width: 75%;
     height: 100%;
-    padding: 20px 30px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .login-box-heading {
@@ -86,7 +86,7 @@ close-icon:hover {
 }
 
 .login-box-title {
-    font-size: 32px;
+    font-size: 26px;
     font-weight: 700;
 }
 
@@ -99,11 +99,10 @@ close-icon:hover {
 
 .login-box-join-container {
     width: 100%;
-    height: 60%;
+    height: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 
 .login-box-btn {
@@ -330,29 +329,27 @@ close-icon:hover {
 
 
 .get-started-container {
-    border: 1px solid #fff;
+    margin-top: 20px;
     width: 100%;
-    height: 30vh;
-    padding: 30px;
+    height: 45vh;
+    padding: 45px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .get-started-text-container {
     height: 100%;
-    width: 60%;
-    padding: 25px;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding-right: 50px;
 }
 
 .get-started-heading {
-    width: 80%;
-    font-size: 30px;
+    width: 85%;
+    font-size: 24px;
     font-weight: 700;
     padding-bottom: 30px;
 }
@@ -368,11 +365,16 @@ close-icon:hover {
     width: 45%;
     height: 50px;
     border-radius: 20px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .create-acc-btn {
+    color: #000;
     background-color: var(--auth-btn-bg);
 }
 
@@ -390,8 +392,7 @@ close-icon:hover {
 }
 
 .illustration-icon {
-    width: 80%;
-    height: 80%;
+    height: 100%;
 }
 
 
@@ -404,10 +405,9 @@ close-icon:hover {
 .most-popular-container {
     padding-top: 50px;
     width: 100%;
-    height: 85vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
-    border: 1px solid #fff;
 }
 
 .most-popular-title {
@@ -558,12 +558,6 @@ close-icon:hover {
 }
 
 
-@media only screen and (max-width: 975px) {
-    .get-started-heading {
-        font-size: 27px;
-    }
-}
-
 
 @media only screen and (max-width: 1000px) {
     .fund-steps-desc {
@@ -647,7 +641,6 @@ close-icon:hover {
 
     .popular-projects-container {
         height: 100%;
-        padding-top: 20px;
         display: flex;
         flex-direction: column;
         padding: 20px 10px;
@@ -666,43 +659,78 @@ close-icon:hover {
     .side-project {
         padding-bottom: 25px;
     }
+
     .get-started-container {
         width: 100%;
-        min-height: 40vh;
+            min-height: 75vh;
         height: min-content;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
     }
+
     .get-started-text-container {
         width: 100%;
+        text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
     }
+
     .get-started-heading {
+        width: 100%;
         font-size: 24px;
     }
+
     .get-started-icon-container {
         width: 60%;
         height: 40vh;
     }
+
     .get-started-btn {
         display: flex;
-        flex-direction: column;
         align-items: center;
+        justify-content: space-evenly;
     }
+
     .started-btn {
-        width: 220px;
-        padding-bottom: 12px;
+        width: 40%;
     }
+
     .get-started-icon-container {
         width: 100%;
     }
+
     .illustration-icon {
         width: 60%;
+    }
+    .login-box {
+        top: 20%;
+    }
+    .login-box.show {
+        height: 60%;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+    }
+    .login-box-img {
+        width: 100%;
+        height: 25%;
+    }
+    .close-icon {
+        background-color: #222;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+    .close-icon:hover {
+        background-color: #333;
+    }
+    .login-box-info {
+        width: 100%;
+        height: 85%;
+        justify-content: space-evenly;
     }
 }
 
@@ -773,10 +801,40 @@ close-icon:hover {
     .side-project-percent {
         font-size: 14px;
     }
-    .illustration-icon {
+    .get-started-text-container {
+        width: 100%;
+    }
+    .get-started-heading {
+        width: 100%;
+        padding-left: 0;
+        font-size: 20px;
+    }
+
+    .get-started-btn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .started-btn {
         width: 75%;
+        margin-bottom: 16px;
+    }
+    .login-box.show {
+        width: 80%;
+    }
+    .login-box-title {
+        font-size: 25px;
+    }
+    .login-box-subtitle {
+        text-align: center;
+        font-size: 15px;
     }
 }
+
+.illustration-icon {
+    height: 70%;
+}
+
 
 @media only screen and (max-width: 420px) {
     .funds-raised-full-container {
@@ -795,13 +853,18 @@ close-icon:hover {
     .step-container {
         height: 30%;
     }
-
     .side-project-name {
         font-size: 14px;
     }
-
+    .side-project-img-container {
+        min-width: 130px;
+        width: 130px;
+    }
     .side-project-percent {
         font-size: 13px;
+    }
+    .get-started-text-container {
+        width: 100%;
     }
     .illustration-icon {
         width: 90%;

@@ -14,24 +14,30 @@ const Nav = ({
 }) => {
 
     const [navClass, setNavClass] = useState(grow ? "nav-container grow" : "nav-container");
+    const [navResponsive, setNavResponsive] = useState(false);
 
     const formatTextForURL = (text) => {
         return text == undefined ? '' : text.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
     }
 
+    const handleResponsiveNav = () => {
+        setNavResponsive(!navResponsive);
+    }
+
     useEffect(() => {
         if (grow !== true) {
             window.addEventListener("scroll", () => {
-                setNavClass("nav-container grow");
+                if ((window.innerWidth > 800 || document.documentElement.clientWidth > 800)) {
+                    setNavClass("nav-container grow")
+                }
 
                 if (window.scrollY === 0) {
-                    setNavClass("nav-container");
+                    setNavClass("nav-container")
                 }
             })
-        } else {
-            if (sticky) {
-                setNavClass("nav-container not-sticky")
-            }
+        }
+        if (sticky) {
+            setNavClass("nav-container not-sticky");
         }
     }, [])
 
@@ -40,11 +46,12 @@ const Nav = ({
             <img
                 src={menu}
                 className="menu-icon"
+                onClick={handleResponsiveNav}
             />
             <Link className="nav-logo" to="/">
                 Fundlify
             </Link>
-            <div className="nav-info">
+            <div className={navResponsive ? "nav-info show" : "nav-info"}>
                 <Link
                     to="/discover"
                     className="nav-links"
