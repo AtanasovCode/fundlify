@@ -38,6 +38,9 @@ const Nav = ({
         }
         if (sticky) {
             setNavClass("nav-container not-sticky");
+            window.addEventListener("scroll", () => {
+                setNavResponsive(false);
+            })
         }
     }, [])
 

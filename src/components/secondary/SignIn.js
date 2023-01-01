@@ -27,7 +27,12 @@ const SignIn = ({ auth }) => {
     return (
         <div className="auth-container">
             <div className="auth-nav-container">
-                <div className="auth-logo">Fundlify</div>
+                <Link
+                    className="auth-logo"
+                    to="/"
+                >
+                    Fundlify
+                </Link>
             </div>
             <div className="auth-form-container sign-in-form">
                 <div className="auth-heading">Sign In</div>
