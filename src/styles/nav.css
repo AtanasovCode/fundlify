@@ -23,7 +23,6 @@
     top: 0;
     left: 0;
     border-radius: 0;
-    transform: translateZ(0);
 }
 
 .nav-container.not-sticky {
@@ -99,6 +98,9 @@
     .nav-container {
         width: 100%;
         height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: fixed;
         top: 0;
         left: 0;
@@ -109,11 +111,13 @@
         width: 0;
         height: 0;
         opacity: 0;
+        transform: translateY(-500px);
+        cursor:auto;
     }
     .nav-logo {
-        width: 100%;
         text-align: center;
-        font-size: 28px;
+        font-size: 30px;
+        padding: 0;
     }
     .menu-icon {
         width: 23px;
@@ -128,10 +132,11 @@
         z-index: 10;
         padding: 0;
         width: 35%;
-        min-width: 170px;
+        min-width: 200px;
         height: calc(100% - 80px);
         opacity: 1;
         background-color: var(--main-bg);
+        transform: translateY(0);
         position: fixed;
         top: 80px;
         right:  0;

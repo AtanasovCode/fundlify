@@ -71,7 +71,7 @@ const Discover = ({
 
     return (
         <div className="discover-container">
-            <Nav grow={grow} sticky={true} />
+            <Nav grow={grow} sticky={true} userLoggedIn={userLoggedIn} />
             <div className="discover-filter-container">
                 <div className="discover-category-filter discover-filter">
                     <div className="discover-filter-text">

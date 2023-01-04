@@ -118,22 +118,24 @@ const CurrentProject = ({
                                             width: `${calculateProgress(project.fundingGoal, project.moneyBacked)}%`
                                         }}></div>
                                     </div>
-                                    <div className="current-project-funds-raised-container">
-                                        <div className="current-project-number-bold money">
-                                            ${formatNumber(project.moneyBacked)}
+                                    <div className="backers-info-container">
+                                        <div className="current-project-funds-raised-container">
+                                            <div className="current-project-number-bold money">
+                                                ${formatNumber(project.moneyBacked)}
+                                            </div>
+                                            <div className="current-project-text-sub">
+                                                out of
+                                                <span className="money-goal">${formatNumber(project.fundingGoal)}</span>
+                                                goal
+                                            </div>
                                         </div>
-                                        <div className="current-project-text-sub">
-                                            out of
-                                            <span className="money-goal">${formatNumber(project.fundingGoal)}</span>
-                                            goal
-                                        </div>
-                                    </div>
-                                    <div className="current-project-backers-container">
-                                        <div className="current-project-number-bold">
-                                            {project.backers}
-                                        </div>
-                                        <div className="current-project-text-sub">
-                                            backers
+                                        <div className="current-project-backers-container">
+                                            <div className="current-project-number-bold">
+                                                {project.backers}
+                                            </div>
+                                            <div className="current-project-text-sub">
+                                                backers
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="back-project-btn-container">

@@ -1,42 +1,52 @@
-.donation-finished-container {
+.donation-finished-full-container {
     width: 100%;
     height: 100%;
     background-color: var(--main-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.donation-finished-container {
+    width: 500px;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.checkmark-icon {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 35px;
+}
+
+.donation-finished-heading {
+    width: 90%;
+    height: 25vh;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.checkmark-icon {
-    width: 200px;
-    height: 200px;
-}
-
-.donation-finished-heading {
-    width: 30%;
-    height: 140px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .donation-finished-title {
     font-size: 28px;
     font-weight: 700;
+    margin-bottom: 20px;
 }
 
 .donation-finished-subtitle {
     font-size: 17px;
     font-weight: 300;
-    opacity: .8;
+    color: darkgray;
     margin-bottom: 20px;
 }
 
 .donation-finished-btn-container {
-    width: 30%;
+    width: 100%;
     height: 80px;
     display: flex;
     align-items: center;
@@ -44,8 +54,8 @@
 }
 
 .donation-finished-btn {
-    width: 100%;
-    height: 40px;
+    width: 70%;
+    height: 50px;
     border: none;
     border-radius: 10px;
     display: flex;
@@ -56,4 +66,20 @@
     background-color: var(--auth-btn-bg);
     color: #000;
     text-decoration: none;
+}
+
+
+
+@media only screen and (max-width: 450px) {
+    .checkmark-icon {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 0;
+    }
+    .donation-finished-title {
+        font-size: 22px;
+    }
+    .donation-finished-subtitle {
+        font-size: 15px;
+    }
 }

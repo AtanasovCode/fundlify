@@ -1,14 +1,15 @@
 .current-project-full-container {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    height: min-content;
 }
 
 .current-project-container {
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
     height: min-content;
-    margin-top: 75px;
     padding: 35px;
+    padding-top: 80px;
     background-color: var(--main-bg);
     display: flex;
     flex-direction: column;
@@ -18,18 +19,19 @@
 
 .current-project-title-container {
     width: 70%;
-    min-height: 100px;
+    min-height: 110px;
     height: min-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     margin-bottom: 30px;
 }
 
 .current-project-title {
     font-size: 28px;
     font-weight: 600;
+    text-align: center;
 }
 
 .current-project-description {
@@ -62,6 +64,8 @@
     width: 100%;
     height: 100%;
     border: 1px solid #ffffff95;
+    object-fit: cover;
+    aspect-ratio: 3/4;
 }
 
 .current-project-category-container {
@@ -97,12 +101,11 @@
 .current-project-funding-container {
     width: 50%;
     height: 100%;
-    padding: 10px;
     margin-left: 40px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: flex-s;
     position: relative;
 }
 
@@ -123,15 +126,26 @@
     border-radius: 20px;
 }
 
+.backers-info-container {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
 
 .back-project-btn-container {
     width: 100%;
-    height: 40px;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .back-project-btn {
     width: 100%;
-    height: 45px;
+    height: 40%;
     background-color: var(--auth-btn-bg);
     color: #000;
     text-align: center;
@@ -163,3 +177,96 @@
     padding: 0 5px;
 }
 
+
+@media only screen and (max-width: 950px) {
+    .current-project-title-container {
+        width: 100%;
+        height: 250px;
+        padding: 5px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .current-project-title {
+        padding-bottom: 20px;
+    }
+    .current-project-info-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin-top: 40px;
+    }
+    .current-project-image-container {
+        width: 100%;
+        height: 70vh;
+        margin-bottom: 30px;
+    }
+    .current-project-funding-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        margin: 0;
+        align-items: center;
+        justify-content: center;
+    }
+    .backers-info-container {
+        width: 100%;
+        height: 20vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .back-project-btn-container {
+        width: 100%;
+        height: 20vh;
+    }
+    .back-project-btn {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .current-project-image-container {
+        height: 60vh;
+    }
+    .current-project-title-container {
+        height: 30vh;
+    }
+    .current-project-title  {
+        font-size: 26px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .current-project-image-container {
+        height: 50vh;
+    }
+    .current-project-title-container {
+        height: 40vh;
+        margin-bottom: 0;
+        padding: 10px;
+    }
+    .current-project-title  {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .current-project-image-container {
+        height: 40vh;
+    }
+    .current-project-title-container {
+        margin-top: 20px;
+    }
+    .current-project-title  {
+        font-size: 20px;
+    }
+    .current-project-description {
+        font-size: 15px;
+    }
+    .back-project-btn {
+        width: 90%;
+    }
+}

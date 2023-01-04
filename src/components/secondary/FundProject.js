@@ -72,7 +72,7 @@ const FundProject = ({
                     setFundNoReward("");
                     navigate("../donation-finished", { replace: true });
                 })
-        }else {
+        } else {
             setInputClass("pledge-no-reward-input error-input")
             setErrorClass("error show")
         }
@@ -139,12 +139,9 @@ const FundProject = ({
                                                     <input
                                                         type="button"
                                                         value="Pledge"
-                                                        className="btn-pledge"
+                                                        className="btn-pledge-no-reward"
                                                         onClick={() => handleFundNoReward()}
                                                     />
-                                                </div>
-                                                <div className="dollar-sign">
-                                                    $
                                                 </div>
                                             </div>
                                         </div>
