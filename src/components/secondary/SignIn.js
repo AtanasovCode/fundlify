@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/auth-page.css';
 import {
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithRedirect,
+    signInWithPopup,
 } from 'firebase/auth';
 
 const SignIn = ({ auth }) => {
@@ -11,9 +14,22 @@ const SignIn = ({ auth }) => {
     const [password, setPassword] = useState("");
 
     let navigate = useNavigate();
+    const provider = new GoogleAuthProvider();
 
     const handleSignIn = () => {
         signInWithEmailAndPassword(auth, mail, password)
+            .then(() => {
+                setMail("");
+                setPassword("");
+                navigate("../", { replace: true });
+            })
+            .catch((err) => {
+                alert(err.message);
+            })
+    }
+
+    const handleSignInWithGoogle = () => {
+        signInWithPopup(auth, provider)
             .then(() => {
                 setMail("");
                 setPassword("");
@@ -60,7 +76,7 @@ const SignIn = ({ auth }) => {
                 />
                 <div className="other-options-container">
                     or
-                    <div className="sign-up-google">
+                    <div className="sign-up-google" onClick={handleSignInWithGoogle}>
                         Continue with Google
                     </div>
                 </div>
