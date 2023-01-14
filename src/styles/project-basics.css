@@ -2,6 +2,7 @@
     padding-top: 100px;
     width: 100%;
     height: 100%;
+    background-color: var(--main-bg);
     display: flex;
     flex-direction: column;
     padding-bottom: 50px;
@@ -14,6 +15,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .project-basics-title {
@@ -24,10 +26,12 @@
 .project-basics-subtitle {
     font-size: 17px;
     font-weight: 300;
-    opacity: .6;
+    color: darkgray;
 }
 
 .project-basics-details {
+    height: 100%;
+    background-color: var(--main-bg);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -99,6 +103,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    padding-right: 50px;
 }
 
 .btn-info {
@@ -116,4 +121,47 @@
     color: #fff;
     background-color: lime;
     opacity: .4;
+}
+
+
+
+@media only screen and (max-width: 960px) {
+    .project-basics-title {
+        font-size: 25px;
+    }
+    .project-basics-subtitle {
+        font-size: 16px;
+    }
+    .project-set-info-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+        margin-bottom: 50px;
+        padding: 0 20px;
+    }
+    .project-info {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        text-align: center;
+    }
+    .project-input-container {
+        width: 70%;
+    }
+}
+
+
+@media only screen and (max-width: 650px) {
+    .project-set-info-container {
+        padding: 0 5px;
+    }
+    .project-info {
+        width: 90%;
+    }
+    .project-input-container {
+        width: 90%;
+    }
 }

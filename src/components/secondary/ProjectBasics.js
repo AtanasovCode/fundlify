@@ -32,7 +32,6 @@ const ProjectBasics = ({
 
     const [projectImage, setProjectImage] = useState("");
 
-    const docRef = doc(db, "projects", sessionStorage.getItem("docId"));
     const navigate = useNavigate();
     const imageBucketRef = ref(storage, "/projectImages");
 
@@ -51,6 +50,7 @@ const ProjectBasics = ({
         }
     }
 
+    
 
     const handleContinue = () => {
         const imageRef = ref(storage, `projectPictures/${projectImage + v4()}`)
@@ -58,15 +58,11 @@ const ProjectBasics = ({
             .then((snapshot) => {
                 getDownloadURL(snapshot.ref)
                     .then((url) => {
-                        updateDoc(docRef, {
-                            projectTitle: projectTitle,
-                            projectDescription: projectDescription,
-                            fundingGoal: fundingGoal,
-                            projectImageUrl: url
-                        })
-                            .then(() => {
-                                navigate("../project-rewards");
-                            })
+                        sessionStorage.setItem("projectImageUrl", url);
+                        sessionStorage.setItem("projectTitle", projectTitle);
+                        sessionStorage.setItem("projectDescription", projectDescription);
+                        sessionStorage.setItem("fundingGoal", fundingGoal);
+                        navigate("../project-rewards");
                     })
             })
     }

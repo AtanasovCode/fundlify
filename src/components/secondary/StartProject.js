@@ -29,28 +29,11 @@ const StartProject = ({
     const colRef = collection(db, "projects");
 
     const handleContinue = () => {
-        addDoc(colRef, {
-            userId: user.uid,
-            createdBy: user.displayName,
-            category: categorySelected,
-            subCategory: subCategorySelected,
-            moneyBacked: 0,
-            backers: 0,
-            createdAt: serverTimestamp(),
-            backersTierOne: 0,
-            backersTierTwo: 0,
-            backersTierThree: 0,
-        })
-            .then((docRef) => {
-                sessionStorage.setItem("docId", docRef.id)
-                setCurrentProjectId(docRef.id);
-                updateDoc(docRef, {
-                    documentId: docRef.id
-                })
-                    .then(() => {
-                        navigate("../project-location")
-                    })
-            })
+        sessionStorage.setItem("userId", user.uid);
+        sessionStorage.setItem("createdBy", user.displayName);
+        sessionStorage.setItem("category", categorySelected);
+        sessionStorage.setItem("subCategory", subCategorySelected);
+        navigate("../project-location");
     }
 
 
@@ -196,8 +179,7 @@ const StartProject = ({
                     First, let's get you set up.
                 </div>
                 <div className="project-start-sub">
-                    Select a primary category amd a subcategory
-                    for your new project.
+                    Select a primary category and a subcategory.
                 </div>
                 <div className="project-start-explanation">
                     Try to select a category that best describes your product.
@@ -234,15 +216,16 @@ const StartProject = ({
                         <div className="sub-category-disabled">Select</div>
                 }
             </div>
-            <div className="project-start-btn-container">
+            <div className="project-start-btn-container-start">
                 <input
                     type="button"
-                    value="->"
+                    value="Continue"
                     onClick={handleContinue}
-                    className={isSubCategorySelected ? 
-                        "continue-btn active" 
-                        : 
-                        "continue-btn"}
+                    className={isSubCategorySelected ?
+                        "continue-btn-start active"
+                        :
+                        "continue-btn-start"
+                    }
                 />
             </div>
         </div>

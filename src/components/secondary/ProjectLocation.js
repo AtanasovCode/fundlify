@@ -17,20 +17,13 @@ const ProjectLocation = ({
     const [isLocationSelected, setIsLocationSelected] = useState(false);
     const [docId, setDocId] = useState("");
 
-    const docRef = doc(db, "projects", sessionStorage.getItem("docId"));
-
 
     const navigate = useNavigate();
 
     const handleContinue = (e) => {
         e.preventDefault();
-
-        updateDoc(docRef, {
-            location: locationSelected,
-        })
-            .then(() => {
-                navigate("../project-basics");
-            })
+        sessionStorage.setItem("location", locationSelected);
+        navigate("../project-basics");
     }
 
     return (
@@ -52,11 +45,11 @@ const ProjectLocation = ({
                         setIsLocationSelected(true)
                         setLocationSelected(e.currentTarget.value)
                     }}
+                    defaultValue="Select"
                 >
                     <option
-                        value=""
+                        value="Select"
                         disabled
-                        selected
                     >
                         Select
                     </option>
@@ -314,12 +307,12 @@ const ProjectLocation = ({
                     <option value="Zimbabwe">Zimbabwe</option>
                 </select>
             </div>
-            <div className="project-start-btn-container">
+            <div className="location-btn-container">
                 <input
                     className={isLocationSelected ?
-                        "continue-btn active"
+                        "location-btn active"
                         :
-                        "continue-btn"
+                        "location-btn"
                     }
                     onClick={handleContinue}
                 />

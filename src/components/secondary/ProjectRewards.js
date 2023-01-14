@@ -1,4 +1,4 @@
-import { updateDoc, doc } from "firebase/firestore";
+import { updateDoc, doc, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import '../../styles/project-rewards.css';
@@ -46,6 +46,8 @@ const ProjectRewards = ({
 
     const { pathname } = useLocation();
 
+    const colRef = collection(db, "projects");
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
@@ -74,19 +76,44 @@ const ProjectRewards = ({
     }
 
     const handleCreateProject = () => {
-        updateDoc(docRef, {
-            tierOne: tierOneName,
-            tierTwo: tierTwoName,
-            tierThree: tierThreeName,
-            reward1: reward1,
-            reward2: reward2,
-            reward3: reward3,
-            pledge1: pledge1,
-            pledge2: pledge2,
-            pledge3: pledge3,
+        sessionStorage.setItem("tier1", tierOneName);
+        sessionStorage.setItem("tier2", tierTwoName);
+        sessionStorage.setItem("tier3", tierThreeName);
+        sessionStorage.setItem("reward1", reward1);
+        sessionStorage.setItem("reward2", reward2);
+        sessionStorage.setItem("reward3", reward3);
+        sessionStorage.setItem("pledge1", pledge1);
+        sessionStorage.setItem("pledge2", pledge2);
+        sessionStorage.setItem("pledge3", pledge3);
+        addDoc(colRef, {
+            moneyBacked: 0,
+            backers: 0,
+            createdAt: serverTimestamp(),
+            backersTierOne: 0,
+            backersTierTwo: 0,
+            backersTierThree: 0,
+            userId: sessionStorage.getItem("userId"),
+            createdBy: sessionStorage.getItem("createdBy"),
+            category: sessionStorage.getItem("category"),
+            subCategory: sessionStorage.getItem("subCategory"),
+            location: sessionStorage.getItem("location"),
+            projectTitle: sessionStorage.getItem("projectTitle"),
+            projectDescription: sessionStorage.getItem("projectLocation"),
+            fundingGoal: sessionStorage.getItem("fundingGoal"),
+            projectImageUrl: sessionStorage.getItem("projectImageUrl"),
+            tierOne: sessionStorage.getItem("tier1"),
+            tierTwo: sessionStorage.getItem("tier2"),
+            tierThree: sessionStorage.getItem("tier3"),
+            reward1: sessionStorage.getItem("reward1"),
+            reward2: sessionStorage.getItem("reward2"),
+            reward3: sessionStorage.getItem("reward3"),
+            pledge1: sessionStorage.getItem("pledge1"),
+            pledge2: sessionStorage.getItem("pledge2"),
+            pledge3: sessionStorage.getItem("pledge3"),
         })
-            .then(() => {
-                navigate(`/projects/${sessionStorage.getItem("docId")}`);
+            .then((docRef) => {
+                sessionStorage.setItem("docId", docRef);
+                navigate("./create-project/congratulations");
             })
     }
 

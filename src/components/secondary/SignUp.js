@@ -1,13 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import '../../styles/sign-up.css';
 import {
     createUserWithEmailAndPassword,
     updateProfile,
+    GoogleAuthProvider,
+    signInWithRedirect,
+    signInWithPopup,
 } from 'firebase/auth';
 import {
     collection,
     addDoc,
+    setDoc,
     serverTimestamp,
     updateDoc,
     doc,
@@ -26,17 +30,17 @@ const SignUp = ({
 
     let navigate = useNavigate();
     const colRef = collection(db, "users");
+    const provider = new GoogleAuthProvider();
 
     const handleSignUp = (e) => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, regMail, regPassword)
             .then((currentUser) => {
-                console.log(currentUser);
                 updateProfile(auth.currentUser, {
                     displayName: name,
                     userId: currentUser.uid,
                 })
-                addDoc(colRef, {
+                setDoc(doc(db, "users", `${currentUser.user.uid}`), {
                     username: name,
                     userId: currentUser.user.uid,
                     bio: "I am a mysterious person that has not yet updated their bio.",
@@ -55,10 +59,53 @@ const SignUp = ({
             })
     }
 
+    const handleSignUpWithGoogle = () => {
+        if ((window.innerWidth > 800 || document.documentElement.clientWidth > 800)) {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const credential = GoogleAuthProvider.credentialFromResult(result);
+                    const token = credential.accessToken;
+                    //The sign in user info
+                    const user = result.user;
+
+                    updateProfile(user, {
+                        displayName: user.email.split('@')[0],
+                        userId: user.uid,
+                    })
+                        .catch((err) => {
+                            alert(err.message);
+                        })
+                    setDoc(doc(db, "users", `${user.uid}`), {
+                        username: user.email.split('@')[0],
+                        userId: user.uid,
+                        bio: "I am a mysterious person that has not yet updated their bio.",
+                        location: false,
+                        projectsBacked: false,
+                        createdAt: serverTimestamp(),
+                    })
+                        .then(() => {
+                            setRegMail("");
+                            setRegPassword("");
+                            setName("");
+                            navigate("../", { replace: true });
+                        })
+                })
+                .catch((err) => {
+                    //Handle Error
+                    const errorCode = err.code;
+                    const errorMessage = err.message;
+                    //The email of the user account used
+                    const email = err.customData.email;
+
+                    alert("Error with account" + " " + email + "\n" + "Error code:" + errorCode + "\n" + "Error Message:" + " " + errorMessage);
+                })
+        }
+    }
+
     return (
         <div className="auth-container">
             <div className="auth-nav-container">
-                <Link 
+                <Link
                     to="/"
                     className="auth-logo"
                 >
@@ -113,7 +160,7 @@ const SignUp = ({
                 </div>
                 <div className="other-options-container">
                     <div>or</div>
-                    <div className="sign-up-google">
+                    <div className="sign-up-google" onClick={handleSignUpWithGoogle}>
                         Sign Up With Google
                     </div>
                 </div>
