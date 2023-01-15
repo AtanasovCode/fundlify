@@ -85,6 +85,10 @@ const FundProject = ({
         }
     }
 
+    const formatNumber = (number) => {
+        return parseInt(number).toLocaleString('en-US');
+    }
+
 
     return (
         <div className="fund-project-full-container">
@@ -126,7 +130,9 @@ const FundProject = ({
                                                         placeholder="10"
                                                         className={inputClass}
                                                         value={fundNoReward}
+                                                        maxLength={4}
                                                         onChange={(e) => {
+                                                            preventLetters();
                                                             setErrorClass("error");
                                                             setInputClass("pledge-no-reward-input")
                                                             setFundNoReward(e.currentTarget.value);
@@ -168,6 +174,7 @@ const FundProject = ({
                                                         type="input"
                                                         className="pledge-input-amount"
                                                         placeholder="10"
+                                                        maxLength={4}
                                                         onKeyPress={(e) => preventLetters(e)}
                                                         onChange={(e) => {
                                                             setPledgeAmount(e.currentTarget.value);
@@ -178,9 +185,9 @@ const FundProject = ({
                                                         className="pledge-btn"
                                                         value={
                                                             pledgeAmount !== "" ?
-                                                                `Pledge $${parseInt(project.pledge1) + parseInt(pledgeAmount)}`
+                                                                `Pledge $${formatNumber(parseInt(project.pledge1) + parseInt(pledgeAmount))}`
                                                                 :
-                                                                `Pledge $${parseInt(project.pledge1)}`
+                                                                `Pledge $${formatNumber(parseInt(project.pledge1))}`
                                                         }
                                                         onClick={() => {
                                                             let backersTier = "backersTierOne";
@@ -213,6 +220,7 @@ const FundProject = ({
                                                         type="input"
                                                         className="pledge-input-amount"
                                                         placeholder="10"
+                                                        maxLength={4}
                                                         onKeyPress={(e) => preventLetters(e)}
                                                         onChange={(e) => {
                                                             setPledgeAmount(e.currentTarget.value);
@@ -223,9 +231,9 @@ const FundProject = ({
                                                         className="pledge-btn"
                                                         value={
                                                             pledgeAmount !== "" ?
-                                                                `Pledge $${parseInt(project.pledge2) + parseInt(pledgeAmount)}`
+                                                                `Pledge $${formatNumber(parseInt(project.pledge2) + parseInt(pledgeAmount))}`
                                                                 :
-                                                                `Pledge $${parseInt(project.pledge2)}`
+                                                                `Pledge $${parseInt(formatNumber(project.pledge2))}`
                                                         }
                                                         onClick={() => {
                                                             let backersTier = "backersTierTwo";
@@ -258,6 +266,7 @@ const FundProject = ({
                                                         type="input"
                                                         className="pledge-input-amount"
                                                         placeholder="10"
+                                                        maxLength={4}
                                                         onKeyPress={(e) => preventLetters(e)}
                                                         onChange={(e) => {
                                                             setPledgeAmount(e.currentTarget.value);
@@ -268,7 +277,7 @@ const FundProject = ({
                                                         className="pledge-btn"
                                                         value={
                                                             pledgeAmount !== "" ?
-                                                                `Pledge $${parseInt(project.pledge3) + parseInt(pledgeAmount)}`
+                                                                `Pledge $${formatNumber(parseInt(project.pledge3) + parseInt(pledgeAmount))}`
                                                                 :
                                                                 `Pledge $${parseInt(project.pledge3)}`
                                                         }

@@ -106,6 +106,18 @@ const Fundlify = ({ app }) => {
         return parseInt(number).toLocaleString('en-US');
     }
 
+    const preventNumbers = (e) => {
+        if (/[0-9]/.test(e.key)) {
+            e.preventDefault();
+        }
+    }
+
+    const preventLetters = (e) => {
+        if (!/[0-9]/.test(e.key)) {
+            e.preventDefault();
+        }
+    }
+
 
 
     return (
@@ -170,12 +182,16 @@ const Fundlify = ({ app }) => {
                                 auth={auth}
                                 storage={storage}
                                 user={user}
+
                                 projectTitle={projectTitle}
                                 setProjectTitle={setProjectTitle}
                                 projectDescription={projectDescription}
                                 setProjectDescription={setProjectDescription}
                                 fundingGoal={fundingGoal}
                                 setFundingGoal={setFundingGoal}
+
+                                preventLetters={preventLetters}
+                                preventNumbers={preventNumbers}
                             />
                         } />
                         <Route path="/create-project/project-rewards" element={
@@ -184,6 +200,9 @@ const Fundlify = ({ app }) => {
                                 auth={auth}
                                 user={user}
                                 storage={storage}
+
+                                preventLetters={preventLetters}
+                                preventNumbers={preventNumbers}
 
                                 tierOneName={tierOneName}
                                 setTierOneName={setTierOneName}
@@ -241,6 +260,8 @@ const Fundlify = ({ app }) => {
                             db={db}
                             auth={auth}
                             userLoggedIn={userLoggedIn}
+                            preventLetters={preventLetters}
+                            preventNumbers={preventNumbers}
                         />
                     } />
                     <Route path="/donation-finished" element={<DonationFinished />} />

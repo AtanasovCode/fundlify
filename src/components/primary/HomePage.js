@@ -289,7 +289,7 @@ const HomePage = ({
                     <div className="side-projects-container">
                         {
                             popularProjects.map((project, i) => {
-                                if (i <= 2) {
+                                if (i > 0 && i <= 3) {
                                     return (
                                         <div
                                             className="side-project"

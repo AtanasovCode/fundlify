@@ -25,6 +25,8 @@ const ProjectBasics = ({
     setProjectDescription,
     fundingGoal,
     setFundingGoal,
+    preventNumber,
+    preventLetters,
 }) => {
 
     const [isTitle, setIsTitle] = useState(false);
@@ -63,23 +65,26 @@ const ProjectBasics = ({
             .then((snapshot) => {
                 getDownloadURL(snapshot.ref)
                     .then((url) => {
-                        setDoc(docRef, {
-                            projectImageUrl: url,
-                            documentId: sessionStorage.getItem("userId"),
-                        })
-                            .then((docRef) => {
-                                setProjectTitle("");
-                                setProjectDescription("");
-                                setFundingGoal("");
-                                setProjectImage("");
-                                navigate("../project-rewards");
-                            })
+                        sessionStorage.setItem("imageURL", url);
+                        setProjectTitle("");
+                        setProjectDescription("");
+                        setFundingGoal("");
+                        setProjectImage("");
+                        navigate("../project-rewards");
+
+                    })
+                    .catch((err) => {
+                        console.log(err.message);
                     })
             })
             .catch((err) => {
                 alert(err.message);
             })
 
+    }
+
+    const formatNumber = (number) => {
+        return parseInt(number).toLocaleString('en-US');
     }
 
 
@@ -208,6 +213,8 @@ const ProjectBasics = ({
                             placeholder="$0"
                             className="project-info-input"
                             value={fundingGoal}
+                            onKeyPress={(e) => preventLetters(e)}
+                            maxLength={7}
                             onChange={(e) => {
                                 setIsGoal(true);
                                 setFundingGoal(e.currentTarget.value)
