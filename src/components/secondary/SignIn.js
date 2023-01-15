@@ -30,7 +30,7 @@ const SignIn = ({ auth }) => {
 
     const handleSignInWithGoogle = () => {
         signInWithPopup(auth, provider)
-            .then(() => {
+            .then((currentUser) => {
                 setMail("");
                 setPassword("");
                 navigate("../", { replace: true });

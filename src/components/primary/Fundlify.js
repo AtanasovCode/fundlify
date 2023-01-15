@@ -79,6 +79,7 @@ const Fundlify = ({ app }) => {
         onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
                 const q = query(colRef, where("userId", "==", currentUser.uid))
+                sessionStorage.setItem("userId", currentUser.uid);
                 onSnapshot(q, (snapshot) => {
                     let getUser = [];
                     snapshot.docs.forEach((doc) => {
@@ -182,6 +183,7 @@ const Fundlify = ({ app }) => {
                                 db={db}
                                 auth={auth}
                                 user={user}
+                                storage={storage}
 
                                 tierOneName={tierOneName}
                                 setTierOneName={setTierOneName}

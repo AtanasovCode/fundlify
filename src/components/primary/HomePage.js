@@ -251,6 +251,7 @@ const HomePage = ({
                                     return (
                                         <div
                                             className="main-project"
+                                            key={project.documentId}
                                             onClick={() => {
                                                 sessionStorage.setItem("currentProjectId", project.documentId);
                                                 navigate(`/projects/${project.documentId}`);
@@ -292,6 +293,7 @@ const HomePage = ({
                                     return (
                                         <div
                                             className="side-project"
+                                            key={project.documentId}
                                             onClick={() => {
                                                 sessionStorage.setItem("currentProjectId", project.documentId);
                                                 navigate(`/projects/${project.documentId}`);

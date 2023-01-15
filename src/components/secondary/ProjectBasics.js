@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
     doc,
+    setDoc,
     updateDoc,
 } from 'firebase/firestore';
 import {
@@ -34,6 +35,7 @@ const ProjectBasics = ({
 
     const navigate = useNavigate();
     const imageBucketRef = ref(storage, "/projectImages");
+    const docRef = doc(db, "projects", sessionStorage.getItem("userId"));
 
     const { pathname } = useLocation();
 
@@ -50,21 +52,34 @@ const ProjectBasics = ({
         }
     }
 
-    
 
     const handleContinue = () => {
-        const imageRef = ref(storage, `projectPictures/${projectImage + v4()}`)
+        sessionStorage.setItem("projectTitle", projectTitle);
+        sessionStorage.setItem("projectDescription", projectDescription);
+        sessionStorage.setItem("fundingGoal", fundingGoal);
+
+        const imageRef = ref(storage, `projectPictures/${sessionStorage.getItem("userId")}`)
         uploadBytes(imageRef, projectImage)
             .then((snapshot) => {
                 getDownloadURL(snapshot.ref)
                     .then((url) => {
-                        sessionStorage.setItem("projectImageUrl", url);
-                        sessionStorage.setItem("projectTitle", projectTitle);
-                        sessionStorage.setItem("projectDescription", projectDescription);
-                        sessionStorage.setItem("fundingGoal", fundingGoal);
-                        navigate("../project-rewards");
+                        setDoc(docRef, {
+                            projectImageUrl: url,
+                            documentId: sessionStorage.getItem("userId"),
+                        })
+                            .then((docRef) => {
+                                setProjectTitle("");
+                                setProjectDescription("");
+                                setFundingGoal("");
+                                setProjectImage("");
+                                navigate("../project-rewards");
+                            })
                     })
             })
+            .catch((err) => {
+                alert(err.message);
+            })
+
     }
 
 

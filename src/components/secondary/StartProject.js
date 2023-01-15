@@ -29,7 +29,6 @@ const StartProject = ({
     const colRef = collection(db, "projects");
 
     const handleContinue = () => {
-        sessionStorage.setItem("userId", user.uid);
         sessionStorage.setItem("createdBy", user.displayName);
         sessionStorage.setItem("category", categorySelected);
         sessionStorage.setItem("subCategory", subCategorySelected);
@@ -46,11 +45,11 @@ const StartProject = ({
                         setIsSubCategorySelected(true);
                         setSubCategorySelected(e.currentTarget.value)
                     }}
+                    defaultValue=""
                 >
                     <option
                         value=""
                         disabled
-                        selected
                     >
                         Select
                     </option>
@@ -69,11 +68,11 @@ const StartProject = ({
                         setIsSubCategorySelected(true);
                         setSubCategorySelected(e.currentTarget.value)
                     }}
+                    defaultValue=""
                 >
                     <option
                         value=""
                         disabled
-                        selected
                     >
                         Select
                     </option>
@@ -91,11 +90,11 @@ const StartProject = ({
                         setIsSubCategorySelected(true);
                         setSubCategorySelected(e.currentTarget.value)
                     }}
+                    defaultValue=""
                 >
                     <option
                         value=""
                         disabled
-                        selected
                     >
                         Select
                     </option>
@@ -114,11 +113,11 @@ const StartProject = ({
                         setIsSubCategorySelected(true);
                         setSubCategorySelected(e.currentTarget.value)
                     }}
+                    defaultValue=""
                 >
                     <option
                         value=""
                         disabled
-                        selected
                     >
                         Select
                     </option>
@@ -137,11 +136,11 @@ const StartProject = ({
                         setIsSubCategorySelected(true);
                         setSubCategorySelected(e.currentTarget.value)
                     }}
+                    defaultValue=""
                 >
                     <option
                         value=""
                         disabled
-                        selected
                     >
                         Select
                     </option>
@@ -161,6 +160,7 @@ const StartProject = ({
                         setIsSubCategorySelected(true);
                         setSubCategorySelected(e.currentTarget.value)
                     }}
+                    defaultValue=""
                 >
                     <option value="candles">Candles</option>
                     <option value="diy">DIY</option>
@@ -194,11 +194,11 @@ const StartProject = ({
                         setIsCategorySelected(true);
                         setCategorySelected(e.currentTarget.value)
                     }}
+                    defaultValue=""
                 >
                     <option
                         value=""
                         disabled
-                        selected
                     >
                         Select
                     </option>
