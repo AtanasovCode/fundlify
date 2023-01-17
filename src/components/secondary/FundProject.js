@@ -337,9 +337,9 @@ const FundProject = ({
                                                 </div>
                                                 <div className={faqClassName}>
                                                     Enter your pledge amount and
-                                                    select a reward. Then, enter your
-                                                    payment information to complete
-                                                    the checkout process.
+                                                    select a reward. Do not enter 
+                                                    any type of payment information. 
+                                                    This is not a real funding website.
                                                 </div>
                                             </div>
                                             <div
@@ -359,10 +359,12 @@ const FundProject = ({
                                                         src={Arrow}
                                                         className="faq-arrow"
                                                     />
-                                                    What is my card charged?
+                                                    Whan is my card charged?
                                                 </div>
                                                 <div className={faqClassName}>
-                                                    How do I pledge?
+                                                    This is not a real funding website,
+                                                    you do not have to upload card details
+                                                    and your card will never be charged.
                                                 </div>
                                             </div>
                                             <div
@@ -385,7 +387,8 @@ const FundProject = ({
                                                     So I am only charged when funding is complete?
                                                 </div>
                                                 <div className={faqClassName}>
-                                                    How do I pledge?
+                                                    You will never get charged, this is not 
+                                                    a real funding website.
                                                 </div>
                                             </div>
                                             <div
@@ -408,7 +411,10 @@ const FundProject = ({
                                                     What can others see about my pledge?
                                                 </div>
                                                 <div className={faqClassName}>
-                                                    How do I pledge?
+                                                    Every project you pledge to 
+                                                    will be visible on your profile page. 
+                                                    However, other users cannot access 
+                                                    your profile page.
                                                 </div>
                                             </div>
                                             <div
@@ -431,7 +437,8 @@ const FundProject = ({
                                                     What if I want to change my pledge?
                                                 </div>
                                                 <div className={faqClassName}>
-                                                    How do I pledge?
+                                                    You cannot change your pledge once you make it.
+                                                    You are only allowed one pledge per account. 
                                                 </div>
                                             </div>
                                             <div
@@ -454,7 +461,8 @@ const FundProject = ({
                                                     If this project is funded, how do I get my reward?
                                                 </div>
                                                 <div className={faqClassName}>
-                                                    How do I pledge?
+                                                    Rewards are all made up and not real. 
+                                                    You will not be getting any rewards.
                                                 </div>
                                             </div>
                                         </div>

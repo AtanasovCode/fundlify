@@ -67,6 +67,9 @@ const Fundlify = ({ app }) => {
     const [pledge2, setPledge2] = useState("");
     const [pledge3, setPledge3] = useState("");
 
+    const [projects, setProjects] = useState([]);
+    const [userHasProject, setUserHasProject] = useState(false);
+
     const [currentProjectId, setCurrentProjectId] = useState("");
 
     const auth = getAuth();
@@ -75,6 +78,10 @@ const Fundlify = ({ app }) => {
 
     const colRef = collection(db, "users");
 
+
+
+    //Handle what happens when 
+    //A user is logged in.
     useEffect(() => {
         onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
@@ -95,6 +102,39 @@ const Fundlify = ({ app }) => {
             }
         })
     }, [])
+
+
+    //Get all the projects from the database to check if
+    //The user currently logged in has a project made
+    useEffect(() => {
+        onSnapshot((collection(db, "projects")), (snapshot) => {
+            let project = [];
+            snapshot.docs.forEach((doc) => {
+                project.push({ ...doc.data(), id: doc.id });
+            })
+            setProjects(project)
+        })
+    }, [])
+
+    //Map through all the projects and check to see if 
+    //The currently logged in user's uid matches the userId of any of the projects
+    //If it does, update the user's document.
+    useEffect(() => {
+        projects.map((project) => {
+            if (project.userId === sessionStorage.getItem("userId")) {
+                updateDoc((doc(db, "users", `${sessionStorage.getItem("userId")}`)), {
+                    IsProjectOwner: true,
+                })
+                    .then(() => {
+                        console.log("profile updated");
+                    })
+                    .catch((err) => {
+                        console.log(err.message);
+                    })
+            }
+        })
+    }, [projects])
+
 
     useEffect(() => {
         if (userLoggedIn) {

@@ -136,7 +136,7 @@ const ProjectRewards = ({
                 navigate("../create-project/congratulations", { replace: true });
             })
             .catch((err) => {
-                alert(err.message);
+                console.log(err.message);
             })
     }
 
@@ -220,7 +220,6 @@ const ProjectRewards = ({
                                 onKeyPress={(e) => preventLetters(e)}
                                 value={pledge1}
                                 onChange={(e) => {
-                                    preventLetters();
                                     if (e.currentTarget.value !== "") {
                                         setIsPledgeOne(true);
                                     } else {

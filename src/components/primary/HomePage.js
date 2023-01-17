@@ -82,8 +82,16 @@ const HomePage = ({
 
     const handleAddProject = () => {
         if (userLoggedIn) {
-            navigate("/create-project/start");
-        } else {
+            if(userInfo) {
+                userInfo.map((user) => {
+                    if(user.IsProjectOwner) {
+                        alert("You are only allowed one project per account!")
+                    }else {
+                        navigate("/create-project/start");
+                    }
+                })
+            }
+        } else  {
             setLoginBox(true);
         }
     }
