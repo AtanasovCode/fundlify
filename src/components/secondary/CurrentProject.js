@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, } from "react-router-dom";
 import {
     collection,
     onSnapshot,
@@ -20,14 +20,19 @@ const CurrentProject = ({
     db,
     user,
     userLoggedIn,
+    userInfo,
     currentProjectId,
 }) => {
 
     const [currentProject, setCurrentProject] = useState([]);
+    const [currentUser, setCurrentUser] = useState([]);
     const [grow, setGrow] = useState(true);
     const [sticky, setSticky] = useState(true);
+    const [hasDonatedToProject, setHasDonatedToProject] = useState(false);
 
     const colRef = collection(db, "projects");
+    const userRef = collection(db, "users");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const q = query(colRef, where("documentId", "==", `${sessionStorage.getItem("currentProjectId")}`));
@@ -39,6 +44,29 @@ const CurrentProject = ({
             setCurrentProject(project)
         })
     }, [])
+
+    useEffect(() => {
+        const userQ = query(userRef, where("userId", "==", `${sessionStorage.getItem("userId")}`));
+        onSnapshot(userQ, (snapshot) => {
+            let user = [];
+            snapshot.docs.forEach((doc) => {
+                user.push({ ...doc.data(), id: doc.id });
+            })
+            setCurrentUser(user);
+        })
+    }, [])
+
+    useEffect(() => {
+        if (currentUser) {
+            currentUser.map((user) => {
+                user.projectsDonatedTo.map((projectId) => {
+                    if (projectId === sessionStorage.getItem("currentProjectId")) {
+                        setHasDonatedToProject(true);
+                    }
+                })
+            })
+        }
+    }, [currentUser])
 
     const formatString = (string) => {
         string = string.replace(/-/g, ' ');
@@ -58,6 +86,14 @@ const CurrentProject = ({
             percent = 0;
         }
         return parseInt(Math.floor(percent));
+    }
+
+    const handleDonateToProject = () => {
+        if (hasDonatedToProject === false) {
+            navigate(`../fund-project/${sessionStorage.getItem("currentProjectId")}`)
+        } else {
+            alert("You have already donated to this project")
+        }
     }
 
 
@@ -139,12 +175,12 @@ const CurrentProject = ({
                                         </div>
                                     </div>
                                     <div className="back-project-btn-container">
-                                        <Link
-                                            to={`/fund-project/${sessionStorage.getItem("currentProjectId")}`}
+                                        <div
                                             className="back-project-btn"
+                                            onClick={handleDonateToProject}
                                         >
                                             Back this project
-                                        </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

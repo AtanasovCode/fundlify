@@ -280,6 +280,7 @@ const Fundlify = ({ app }) => {
                         <CurrentProject
                             user={user}
                             userLoggedIn={userLoggedIn}
+                            userInfo={userInfo}
                             db={db}
                             currentProjectId={currentProjectId}
                         />
