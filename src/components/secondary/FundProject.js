@@ -7,6 +7,8 @@ import {
     onSnapshot,
     updateDoc,
     doc,
+    arrayUnion,
+    setDoc,
     increment,
 } from 'firebase/firestore';
 import Nav from "./Nav";
@@ -69,8 +71,21 @@ const FundProject = ({
                 moneyBacked: increment(parseInt(fundNoReward)),
             })
                 .then(() => {
-                    setFundNoReward("");
-                    navigate("../donation-finished", { replace: true });
+                    updateDoc(doc(db, "users", `${sessionStorage.getItem("userId")}`), {
+                        projectsDonatedTo: arrayUnion(sessionStorage.getItem("currentProjectId")),
+                    })
+                        .then(() => {
+                            setFundNoReward("");
+                            console.log("user updated");
+                            navigate("../donation-finished", { replace: true });
+                        })
+                        .catch((err) => {
+                            console.log(err.message);
+                        })
+
+                })
+                .catch((err) => {
+                    console.log(err.message);
                 })
         } else {
             setInputClass("pledge-no-reward-input error-input")
@@ -131,8 +146,8 @@ const FundProject = ({
                                                         className={inputClass}
                                                         value={fundNoReward}
                                                         maxLength={4}
+                                                        onKeyPress={(e) => preventLetters(e)}
                                                         onChange={(e) => {
-                                                            preventLetters();
                                                             setErrorClass("error");
                                                             setInputClass("pledge-no-reward-input")
                                                             setFundNoReward(e.currentTarget.value);
@@ -337,8 +352,8 @@ const FundProject = ({
                                                 </div>
                                                 <div className={faqClassName}>
                                                     Enter your pledge amount and
-                                                    select a reward. Do not enter 
-                                                    any type of payment information. 
+                                                    select a reward. Do not enter
+                                                    any type of payment information.
                                                     This is not a real funding website.
                                                 </div>
                                             </div>
@@ -387,7 +402,7 @@ const FundProject = ({
                                                     So I am only charged when funding is complete?
                                                 </div>
                                                 <div className={faqClassName}>
-                                                    You will never get charged, this is not 
+                                                    You will never get charged, this is not
                                                     a real funding website.
                                                 </div>
                                             </div>
@@ -411,9 +426,9 @@ const FundProject = ({
                                                     What can others see about my pledge?
                                                 </div>
                                                 <div className={faqClassName}>
-                                                    Every project you pledge to 
-                                                    will be visible on your profile page. 
-                                                    However, other users cannot access 
+                                                    Every project you pledge to
+                                                    will be visible on your profile page.
+                                                    However, other users cannot access
                                                     your profile page.
                                                 </div>
                                             </div>
@@ -438,7 +453,7 @@ const FundProject = ({
                                                 </div>
                                                 <div className={faqClassName}>
                                                     You cannot change your pledge once you make it.
-                                                    You are only allowed one pledge per account. 
+                                                    You are only allowed one pledge per account.
                                                 </div>
                                             </div>
                                             <div
@@ -461,7 +476,7 @@ const FundProject = ({
                                                     If this project is funded, how do I get my reward?
                                                 </div>
                                                 <div className={faqClassName}>
-                                                    Rewards are all made up and not real. 
+                                                    Rewards are all made up and not real.
                                                     You will not be getting any rewards.
                                                 </div>
                                             </div>
@@ -481,5 +496,3 @@ const FundProject = ({
 }
 
 export default FundProject;
-
-
