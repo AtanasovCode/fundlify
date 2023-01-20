@@ -35,7 +35,6 @@ const Discover = ({
                 project.push({ ...doc.data(), id: doc.id });
             })
             setProjects(project)
-            console.log("hello from discover.js");
         })
     }, [])
 

@@ -1,0 +1,131 @@
+.no-permission-container {
+    width: 0;
+    height: 0;   
+    background-color: var(--main-bg);
+    opacity: 1;
+    z-index: 0;
+    position: absolute;
+    transform: translateX(-1000px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transform: all .2s ease-in;
+}
+
+.no-permission-container.show {
+    width: 500px;
+    height: 60%;   
+    z-index: 9;
+    position: fixed;
+    top: 20%;
+    transform: translateX(0);
+    right: calc(50vw - 250px);
+    transform: all .2s ease-in;
+}
+
+.no-permission-img-container {
+    width: 100%;
+    height: 25%;
+    position: relative;
+}
+
+.permission-img {
+    width: 100%;
+    height: 100%;
+}
+
+.permission-close-icon {
+    width: 35px;
+    height: 35px;
+    padding: 10px;
+    background-color: var(--main-bg);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.no-permission-info-container {
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.permission-heading-container {
+    width: 90%;
+    padding-top: 20px;
+}
+
+.permission-title {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.permission-subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    color: darkgray;
+    text-align: center;
+}
+
+.permission-btn-container {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.permission-btn {
+    width: 50%;
+    height: 45px;
+    border: none;
+    border-radius: 12px;
+    background-color: orange;
+    cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    .no-permission-container.show {
+        width: 70vw;
+        right: 15vw;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    .no-permission-container.show {
+        width: 80vw;
+        height: 70%;
+        right: 10vw;
+        top: 15%;
+    }
+    .permission-title {
+        font-size: 20px;
+    }
+    .permission-btn {
+        width: 70%;
+    }
+}
+
+
+@media only screen and (max-width: 350px) {
+    .no-permission-container.show {
+        width: 90vw;
+        right: 5vw;
+    }
+    .permission-title {
+        font-size: 18px;
+    }
+    .permission-btn {
+        width: 80%;
+    }
+}

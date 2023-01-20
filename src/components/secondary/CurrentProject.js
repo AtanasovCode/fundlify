@@ -9,6 +9,7 @@ import {
     docs,
 } from "firebase/firestore";
 import Nav from "./Nav";
+import NoPermission from "./NoPermission";
 import FundProject from "./FundProject";
 import '../../styles/current-project.css';
 import categoryIcon from '../../images/icons/category.png';
@@ -29,10 +30,20 @@ const CurrentProject = ({
     const [grow, setGrow] = useState(true);
     const [sticky, setSticky] = useState(true);
     const [hasDonatedToProject, setHasDonatedToProject] = useState(false);
+    const [showPopUp, setShowPopUp] = useState(false);
 
     const colRef = collection(db, "projects");
     const userRef = collection(db, "users");
     const navigate = useNavigate();
+
+
+    const handleShowPopUp = () => {
+        setShowPopUp(true);
+    }
+
+    const handleClosePopUp = () => {
+        setShowPopUp(false);
+    }
 
     useEffect(() => {
         const q = query(colRef, where("documentId", "==", `${sessionStorage.getItem("currentProjectId")}`));
@@ -73,6 +84,8 @@ const CurrentProject = ({
         return string.replace(/\b\w/g, l => l.toUpperCase())
     }
 
+
+
     const formatNumber = (number) => {
         return parseInt(number).toLocaleString('en-US');
     }
@@ -92,7 +105,7 @@ const CurrentProject = ({
         if (hasDonatedToProject === false) {
             navigate(`../fund-project/${sessionStorage.getItem("currentProjectId")}`)
         } else {
-            alert("You have already donated to this project")
+            handleShowPopUp()
         }
     }
 
@@ -109,6 +122,11 @@ const CurrentProject = ({
                 currentProject.map((project) => {
                     return (
                         <div className="current-project-container" key={project.documentId}>
+                            <NoPermission
+                                permissionType="donation"
+                                showPopUp={showPopUp}
+                                handleClosePopUp={handleClosePopUp}
+                            />
                             <div className="current-project-title-container">
                                 <div className="current-project-title">
                                     {project.projectTitle}

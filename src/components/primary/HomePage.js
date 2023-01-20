@@ -7,6 +7,7 @@ import {
     orderBy,
 } from 'firebase/firestore';
 import Nav from '../secondary/Nav';
+import NoPermission from '../secondary/NoPermission';
 import '../../styles/homepage.css';
 import illustration from '../../images/icons/illustration.svg';
 import categoryIcon from '../../images/icons/category.png';
@@ -32,10 +33,20 @@ const HomePage = ({
     const [username, setUsername] = useState("");
     const [loginBox, setLoginBox] = useState(false);
     const [popularProjects, setPopularProjects] = useState([]);
+    const [showPopUp, setShowPopUp] = useState(false);
 
     const colRef = collection(db, "projects");
     const q = query(colRef, orderBy("moneyBacked", "desc"));
     const navigate = useNavigate();
+
+    const handleShowPopUp = () => {
+        setShowPopUp(true);
+    }
+
+    const handleClosePopUp = () => {
+        setShowPopUp(false);
+    }
+
 
     useEffect(() => {
         onSnapshot(colRef, (snapshot) => {
@@ -85,7 +96,7 @@ const HomePage = ({
             if(userInfo) {
                 userInfo.map((user) => {
                     if(user.IsProjectOwner) {
-                        alert("You are only allowed one project per account!")
+                        handleShowPopUp();
                     }else {
                         navigate("/create-project/start");
                     }
@@ -149,6 +160,11 @@ const HomePage = ({
                         </div>
                     </div>
                 </div>
+                <NoPermission 
+                    permissionType="project" 
+                    showPopUp={showPopUp} 
+                    handleClosePopUp={handleClosePopUp} 
+                />
                 <div
                     className="add-project-btn-container"
                     onClick={handleAddProject}
