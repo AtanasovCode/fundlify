@@ -175,6 +175,7 @@ const Fundlify = ({ app }) => {
                         user={user}
                         setUser={setUser}
                         userInfo={userInfo}
+                        projects={projects}
                         auth={auth}
                         userLoggedIn={userLoggedIn}
                         setUpdateId={setUpdateId}
