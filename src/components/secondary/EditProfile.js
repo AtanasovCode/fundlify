@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import '../../styles/edit-profile.css';
 import { useNavigate } from 'react-router-dom';
-import { updateProfile } from 'firebase/auth';
+import { updateProfile, signOut } from 'firebase/auth';
 import {
     updateDoc,
     doc,
@@ -10,6 +10,7 @@ import Nav from './Nav';
 
 const EditProfile = ({
     user,
+    setUser,
     auth,
     db,
     query,
@@ -31,7 +32,7 @@ const EditProfile = ({
             setBio(info.bio);
             console.log(info.bio);
         })
-        if(userLoggedIn) {
+        if (userLoggedIn) {
             setName(user.displayName);
         }
     }, [userInfo])
@@ -40,6 +41,15 @@ const EditProfile = ({
 
     const formatTextForURL = (text) => {
         return text == undefined ? '' : text.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
+    }
+
+    //Signs the user out
+    const handleSignOut = () => {
+        signOut(auth)
+            .then(() => {
+                setUser({});
+                navigate("../", { replace: true })
+            })
     }
 
 
@@ -90,16 +100,6 @@ const EditProfile = ({
                     </div>
                 </div>
                 <div className="edit-container">
-                    <div className="edit-property">Avatar</div>
-                        <input
-                            type="file"
-                            className="input-file"
-                        />
-                    <div className="edit-property-desc">
-                        JPEG. PNG, WEBP - 5MB Limit
-                    </div>
-                </div>
-                <div className="edit-container">
                     <div className="edit-property">Biograpghy</div>
                     <textarea
                         className="input-bio"
@@ -132,6 +132,14 @@ const EditProfile = ({
                         value="Update Profile"
                         className="edit-profile-btn"
                         onClick={handleUpdateProfile}
+                    />
+                </div>
+                <div className="edit-container">
+                    <input
+                        type="button"
+                        value="Sign Out"
+                        className="edit-profile-sign-out"
+                        onClick={handleSignOut}
                     />
                 </div>
             </div>

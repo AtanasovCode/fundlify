@@ -19,6 +19,7 @@
 }
 
 .edit-profile-info {
+    position: relative;
     border: 1px solid #ffffff60;
     width: 600px;
     min-height: 500px;
@@ -79,9 +80,33 @@
 
 .edit-profile-btn {
     width: 100%;
-    height: 50px;
+    height: 35px;
     text-align: center;
+    border: none;
+    cursor: pointer;
     font-size: 17px;
     font-weight: 500;
     background-color: var(--auth-btn-bg);
+}
+
+.edit-profile-sign-out {
+    width: 50%;
+    height: 40px;
+    border: 1px solid rgb(250, 65, 65);;;
+    background-color: transparent;
+    color: rgb(250, 65, 65);
+    font-size: 17px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 20px;
+    right: 25%;
+    transition: all .3s;
+}
+
+.edit-profile-sign-out:hover {
+    background-color: rgb(25, 24, 24);
+    color: rgb(253, 84, 84);
+    cursor: pointer;
+    border: none;
+    transition: all .3s;
 }

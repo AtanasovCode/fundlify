@@ -34,14 +34,6 @@ const Profile = ({
     const projectRef = collection(db, "projects");
 
 
-    const handleSignOut = () => {
-        signOut(auth)
-            .then(() => {
-                setUser({});
-                navigate("../", { replace: true })
-            })
-    }
-
     useEffect(() => {
         userInfo.forEach((info) => {
             sessionStorage.setItem("updateId", info.id)
@@ -59,10 +51,12 @@ const Profile = ({
     useEffect(() => {
         let projectsDonated = [];
         userInfo.map((user, i) => {
-            user.projectsDonatedTo.map((projectId) => {
-                let temp = projects.find(element => element.documentId === projectId);
-                projectsDonated.push(temp);
-            })
+            if (user.projectsDonatedTo.length > 0) {
+                user.projectsDonatedTo.map((projectId) => {
+                    let temp = projects.find(element => element.documentId === projectId);
+                    projectsDonated.push(temp);
+                })
+            }
         })
         setProjectsDonatedTo(projectsDonated)
     }, [userInfo, projects])
@@ -83,10 +77,6 @@ const Profile = ({
         })
     }, [userInfo])
 
-
-    useEffect(() => {
-        console.log(userProject);
-    }, [userProject])
 
 
     const formatNumber = (number) => {
@@ -163,62 +153,78 @@ const Profile = ({
                         My Project
                     </div>
                 </div>
-                <div className="projects-backed">
+                <div className={categorySelected === "backed" ? "projects-backed" : "projects-backed user-project"}>
                     {
                         categorySelected === "backed" ?
-                            projectsDonatedTo.map((project) => {
-                                return (
-                                    <div
-                                        className="project-donated-container"
-                                        key={project.documentId}
-                                        onClick={() => {
-                                            sessionStorage.setItem("currentProjectId", project.documentId);
-                                            handleProjectClick();
-                                        }}
-                                    >
-                                        <div className="project-donated-img-container">
-                                            <img
-                                                src={project.projectImageUrl}
-                                            />
-                                        </div>
-                                        <div className="project-donated-info">
-                                            <div className="project-donated-heading">
-                                                {project.projectTitle}
+                            projectsDonatedTo.length > 0 ?
+                                projectsDonatedTo.map((project) => {
+                                    return (
+                                        <div
+                                            className="project-donated-container"
+                                            key={project.documentId}
+                                            onClick={() => {
+                                                sessionStorage.setItem("currentProjectId", project.documentId);
+                                                handleProjectClick();
+                                            }}
+                                        >
+                                            <div className="project-donated-img-container">
+                                                <img
+                                                    src={project.projectImageUrl}
+                                                />
                                             </div>
-                                            <div className="project-donated-funding">
-                                                <span className="donated-money">${formatNumber(project.moneyBacked)}</span> Raised
+                                            <div className="project-donated-info">
+                                                <div className="project-donated-heading">
+                                                    {project.projectTitle}
+                                                </div>
+                                                <div className="project-donated-funding">
+                                                    <span className="donated-money">${formatNumber(project.moneyBacked)}</span> Raised
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })
+                                    );
+                                })
+                                :
+                                <div className="no-projects-container">
+                                    No projects found,
+                                    <Link className="no-projects-link" to="/discover">
+                                        explore projects?
+                                    </Link>
+                                </div>
                             :
-                            userProject.map((project) => {
-                                return (
-                                    <div
-                                        className="project-donated-container"
-                                        key={project.documentId}
-                                        onClick={() => {
-                                            sessionStorage.setItem("currentProjectId", project.documentId);
-                                            handleProjectClick();
-                                        }}
-                                    >
-                                        <div className="project-donated-img-container">
-                                            <img
-                                                src={project.projectImageUrl}
-                                            />
-                                        </div>
-                                        <div className="project-donated-info">
-                                            <div className="project-donated-heading">
-                                                {project.projectTitle}
+                            userProject.length > 0 ?
+                                userProject.map((project) => {
+                                    return (
+                                        <div
+                                            className="project-donated-container user-project"
+                                            key={project.documentId}
+                                            onClick={() => {
+                                                sessionStorage.setItem("currentProjectId", project.documentId);
+                                                handleProjectClick();
+                                            }}
+                                        >
+                                            <div className="project-donated-img-container">
+                                                <img
+                                                    src={project.projectImageUrl}
+                                                />
                                             </div>
-                                            <div className="project-donated-funding">
-                                                <span className="donated-money">${formatNumber(project.moneyBacked)}</span> Raised
+                                            <div className="project-donated-info">
+                                                <div className="project-donated-heading">
+                                                    {project.projectTitle}
+                                                </div>
+                                                <div className="project-donated-funding">
+                                                    <span className="donated-money">${formatNumber(project.moneyBacked)}</span> Raised
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })
+                                    );
+                                })
+                                :
+                                <div className="no-projects-container">
+                                    No project found,
+                                    <Link className="no-projects-link" to="/create-project/start">
+                                        crate a new project?
+                                    </Link>
+                                </div>
                     }
                 </div>
             </div>

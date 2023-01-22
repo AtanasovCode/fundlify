@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import {
     getAuth,
     onAuthStateChanged,
+    signOut,
 } from 'firebase/auth';
 import {
     getFirestore,
@@ -185,6 +186,7 @@ const Fundlify = ({ app }) => {
                         userLoggedIn={userLoggedIn}
                         auth={auth}
                         user={user}
+                        setUser={setUser}
                         userInfo={userInfo}
                         setUpdateId={setUpdateId}
                         updateId={updateId}

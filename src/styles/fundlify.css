@@ -1,13 +1,12 @@
 :root {
-    --main-bg: #1a2d24;
-    --auth-btn-bg: #00ABE7;
-    --box-step-bg: #07284B; /*012851*/
+    --main-bg: rgb(26, 45, 36);
+    --auth-btn-bg: rgb(0, 171, 231);
+    --box-step-bg: #073f7a; /*012851 #07284B */
 }
 
 .app {
     max-width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
+    height: 10vh;
     color: #fff;
     background-color: var(--main-bg);
     font-family: 'Poppins', sans-serif;
