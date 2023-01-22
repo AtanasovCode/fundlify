@@ -17,6 +17,7 @@
     width: 500px;
     height: 60%;   
     z-index: 9;
+    opacity: 1;
     position: fixed;
     top: 20%;
     right: calc(50vw - 250px);

@@ -39,7 +39,6 @@ const CurrentProject = ({
 
     const handleShowPopUp = () => {
         setShowPopUp(true);
-        console.log("pop up");
     }
 
     const handleClosePopUp = () => {
