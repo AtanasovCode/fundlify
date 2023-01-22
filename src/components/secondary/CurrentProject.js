@@ -39,6 +39,7 @@ const CurrentProject = ({
 
     const handleShowPopUp = () => {
         setShowPopUp(true);
+        console.log("pop up");
     }
 
     const handleClosePopUp = () => {
@@ -130,9 +131,6 @@ const CurrentProject = ({
                             <div className="current-project-title-container">
                                 <div className="current-project-title">
                                     {project.projectTitle}
-                                </div>
-                                <div className="current-project-description">
-                                    {project.projectDescription}
                                 </div>
                             </div>
                             <div className="current-project-info-container">
