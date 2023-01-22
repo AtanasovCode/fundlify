@@ -124,7 +124,7 @@ const Profile = ({
                                     </div>
                                 </div>
                                 <div className="projects-backed-container">
-                                    Projects Backed {user.projectsBacked ? user.projectsBacked : 0}
+                                    Projects Backed {user.projectsBacked}
                                 </div>
                             </div>
                         </div>

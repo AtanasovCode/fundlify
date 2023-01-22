@@ -73,6 +73,7 @@ const FundProject = ({
                 .then(() => {
                     updateDoc(doc(db, "users", `${sessionStorage.getItem("userId")}`), {
                         projectsDonatedTo: arrayUnion(sessionStorage.getItem("currentProjectId")),
+                        projectsBacked: increment(1),
                     })
                         .then(() => {
                             setFundNoReward("");
