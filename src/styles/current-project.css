@@ -228,7 +228,7 @@
         padding: 10px;
     }
     .current-project-image-container {
-        height: 50vh;
+        height: 75vh;
         width: 100%;
     }
     .current-project-title-container {
@@ -238,26 +238,25 @@
         font-size: 22px;
         font-weight: 500;
     }
-}
-
-@media only screen and (max-width: 500px) {
     .current-project-category-container {
         width: 100%;
-        height: 200px;
-        margin-top: 20px;
+        min-height: 25vh;
+        height: min-content;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        position: relative;
     }
     .current-project-category {
-        min-width: 120px;
+        font-size: 13px;
     }
 }
 
+
 @media only screen and (max-width: 420px) {
     .current-project-image-container {
-        height: 40vh;
+        height: 70vh;
     }
     .current-project-title-container {
         margin-top: 80px;
@@ -270,5 +269,8 @@
     }
     .back-project-btn {
         width: 90%;
+    }
+    .current-project-category {
+        width: 35%;
     }
 }
