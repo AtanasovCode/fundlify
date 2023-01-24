@@ -160,12 +160,14 @@
     justify-content: center;
     background-color: lime;
     opacity: .3;
-    cursor: not-allowed
+    cursor: not-allowed;
+    transition: all .3s;
 }
 
 .location-btn.active {
     opacity: 1;
     cursor: pointer;
+    transition: all .3s;
 }
 
 

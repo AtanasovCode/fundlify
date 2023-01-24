@@ -406,9 +406,7 @@ const ProjectRewards = ({
                             Create rewards to continue
                         </div>
                 }
-                <input
-                    to="/create-project/congratulations"
-                    value="Create Project"
+                <div
                     onClick={handleCreateProject}
                     className={
                         isFilled() ?
@@ -416,7 +414,9 @@ const ProjectRewards = ({
                             :
                             "create-project-btn"
                     }
-                />
+                >
+                    Create Project
+                </div>
             </div>
         </div >
     );

@@ -91,7 +91,7 @@
 
 .tier-name-input {
     width: 80%;
-    height: 50px;
+    height: 100px;
     border: 1px solid #fff;
     background-color: transparent;
     color: #fff;
@@ -145,12 +145,15 @@
 .create-project-btn {
     width: 200px;
     height: 50px;
+    border: none;
     background-color: lime;
     color: #000;
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    cursor: pointer;
     margin-left: 15px;
     opacity: .3;
     transition: all .5s ease-in;

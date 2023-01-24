@@ -8,6 +8,7 @@ import {
     serverTimestamp,
 } from 'firebase/firestore'
 import '../../styles/create-project.css';
+import arrow from '../../images/icons/arrow-black.png';
 
 
 const StartProject = ({
@@ -217,16 +218,19 @@ const StartProject = ({
                 }
             </div>
             <div className="project-start-btn-container-start">
-                <input
-                    type="button"
-                    value="Continue"
+                <div
                     onClick={handleContinue}
                     className={isSubCategorySelected ?
                         "continue-btn-start active"
                         :
                         "continue-btn-start"
                     }
-                />
+                >
+                    <img 
+                        src={arrow}
+                        style={{"width": "25px", "height": "25px"}}
+                    />
+                </div>
             </div>
         </div>
     );

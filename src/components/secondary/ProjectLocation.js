@@ -5,6 +5,7 @@ import {
     collection,
     doc,
 } from "firebase/firestore";
+import arrow from '../../images/icons/arrow-black.png';
 
 const ProjectLocation = ({
     locationSelected,
@@ -308,14 +309,19 @@ const ProjectLocation = ({
                 </select>
             </div>
             <div className="location-btn-container">
-                <input
+                <div
                     className={isLocationSelected ?
                         "location-btn active"
                         :
                         "location-btn"
                     }
                     onClick={handleContinue}
-                />
+                >
+                    <img
+                        src={arrow}
+                        style={{ "width": "25px", "height": "25px" }}
+                    />
+                </div>
             </div>
         </div>
     );

@@ -116,13 +116,19 @@
     height: 60px;
     border-radius: 50%;
     display: flex;
+    cursor: pointer;
     align-items: center;
     justify-content: center;
     color: #fff;
     background-color: lime;
     opacity: .4;
+    transition: all .3s;
 }
 
+.continue-btn.active {
+    opacity: 1;
+    transition: all .3s;
+}
 
 
 @media only screen and (max-width: 960px) {

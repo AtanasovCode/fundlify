@@ -12,6 +12,7 @@ import {
 } from 'firebase/storage'
 import { v4 } from "uuid";
 import '../../styles/project-basics.css';
+import arrow from '../../images/icons/arrow-black.png';
 
 
 const ProjectBasics = ({
@@ -32,6 +33,7 @@ const ProjectBasics = ({
     const [isTitle, setIsTitle] = useState(false);
     const [isDesc, setIsDesc] = useState(false);
     const [isGoal, setIsGoal] = useState(false);
+    const [isImg, setIsImg] = useState(false);
 
     const [projectImage, setProjectImage] = useState("");
 
@@ -87,6 +89,19 @@ const ProjectBasics = ({
         return parseInt(number).toLocaleString('en-US');
     }
 
+    const isFilled = () => {
+        if (
+            isTitle &&
+            isDesc &&
+            isGoal &&
+            isImg
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 
     return (
@@ -124,7 +139,7 @@ const ProjectBasics = ({
                             className="project-info-input"
                             value={projectTitle}
                             onChange={(e) => {
-                                setIsTitle(true);
+                                e.currentTarget.value === "" ? setIsTitle(false) : setIsTitle(true);
                                 setProjectTitle(e.currentTarget.value)
                             }}
                         />
@@ -153,7 +168,7 @@ const ProjectBasics = ({
                             maxLength={200}
                             value={projectDescription}
                             onChange={(e) => {
-                                setIsDesc(true);
+                                e.currentTarget.value === "" ? setIsDesc(false) : setIsDesc(true);
                                 setProjectDescription(e.currentTarget.value)
                             }}
                         />
@@ -181,6 +196,7 @@ const ProjectBasics = ({
                             className="project-image-upload"
                             onChange={(e) => {
                                 setProjectImage(e.currentTarget.files[0]);
+                                e.currentTarget.files[0] ? setIsImg(true) : setIsImg(false);
                             }}
                         />
                     </div>
@@ -216,8 +232,8 @@ const ProjectBasics = ({
                             onKeyPress={(e) => preventLetters(e)}
                             maxLength={7}
                             onChange={(e) => {
-                                setIsGoal(true);
                                 setFundingGoal(e.currentTarget.value)
+                                e.currentTarget.value ? setIsGoal(true) : setIsGoal(false)
                             }}
                         />
                     </div>
@@ -225,33 +241,27 @@ const ProjectBasics = ({
                 <div className="project-start-btn-container">
                     <div className="btn-info">
                         {
-                            isTitle ?
-                                isDesc ?
-                                    isGoal ?
-                                        "Continue"
-                                        :
-                                        "Fill inputs to continue"
-                                    :
-                                    "Fill inputs to continue"
+                            isFilled() ?
+                                "Continue"
                                 :
                                 "Fill inputs to continue"
+
                         }
                     </div>
-                    <input
+                    <div
                         onClick={handleContinue}
                         className={
-                            isTitle ?
-                                isDesc ?
-                                    isGoal ?
-                                        "continue-btn active"
-                                        :
-                                        "continue-btn"
-                                    :
-                                    "continue-btn"
+                            isFilled() ?
+                                "continue-btn active"
                                 :
                                 "continue-btn"
                         }
-                    />
+                    >
+                        <img
+                            src={arrow}
+                            style={{ "width": "20px", "height": "20px" }}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
