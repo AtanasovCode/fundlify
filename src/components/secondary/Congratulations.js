@@ -18,7 +18,7 @@ const Congratulations = () => {
                 </div>
                 <div className="congratulations-btn-container">
                     <Link
-                        to="/current-project"
+                        to={`/projects/${sessionStorage.getItem("currentProjectId")}`}
                         className="congratulations-btn-my-project congrats-btn"
                     >
                         View my project

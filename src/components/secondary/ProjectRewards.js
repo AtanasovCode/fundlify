@@ -111,7 +111,8 @@ const ProjectRewards = ({
             pledge2: pledge2,
             pledge3: pledge3,
         })
-            .then(() => {
+            .then((docRef) => {
+                sessionStorage.setItem("currentProjectId", sessionStorage.getItem("userId"));
                 setReward1("");
                 setReward2("");
                 setReward3("");
