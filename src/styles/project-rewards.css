@@ -46,7 +46,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 150px;
+    margin-bottom: 130px;
 }
 
 .tier-title {
@@ -167,4 +167,91 @@
 .create-project-btn-desc {
     opacity: .7;
     font-weight: 200;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .project-rewards-heading {
+        text-align: center;
+        padding: 5px 40px;
+        height: min-content;
+    }
+    .project-rewards-subtitle {
+        width: 100%;
+        padding-top: 20px;
+    }
+    .reward-tier-container  {
+        margin-bottom: 50px;
+    }
+    .tier-name-container  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 43%;
+    }
+    .tier-name-info {
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .tier-name-input-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 80px;
+    }
+    .tier-name-input {
+        width: 90%;
+    }
+    .tier-rewards-details-container {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .tier-rewards-input-container {
+        width: 100%;
+        text-align: center;
+    }
+    .tier-input, .tier-input-text {
+        width: 90%;
+    }
+}
+
+
+@media only screen and (max-width: 450px) {
+    .project-rewards-heading {
+        padding: 5px 15px;
+        height: min-content;
+    }
+    .project-rewards-title {
+        font-size: 20px;
+    }
+    .project-rewards-subtitle {
+        width: 100%;
+        padding-top: 20px;
+    }
+    .tier-info {
+        width: 95%;
+    }
+    .tier-name-input-container {
+        width: 100%;
+    }
+    .create-project-btn-container {
+        width: 100%;
+        padding: 0;
+        height: min-content;
+        display: flex;
+        flex-direction: column;
+    }
+    .create-project-btn {
+        margin: 10px 0;
+    }
 }

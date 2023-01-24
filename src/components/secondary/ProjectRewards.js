@@ -84,18 +84,6 @@ const ProjectRewards = ({
     }
 
     const handleCreateProject = () => {
-        console.log("process started")
-        sessionStorage.setItem("tier1", tierOneName);
-        sessionStorage.setItem("tier2", tierTwoName);
-        sessionStorage.setItem("tier3", tierThreeName);
-        sessionStorage.setItem("reward1", reward1);
-        sessionStorage.setItem("reward2", reward2);
-        sessionStorage.setItem("reward3", reward3);
-        sessionStorage.setItem("pledge1", pledge1);
-        sessionStorage.setItem("pledge2", pledge2);
-        sessionStorage.setItem("pledge3", pledge3);
-
-
         setDoc(docRef, {
             moneyBacked: 0,
             backers: 0,
@@ -113,15 +101,15 @@ const ProjectRewards = ({
             fundingGoal: sessionStorage.getItem("fundingGoal"),
             projectImageUrl: sessionStorage.getItem("imageURL"),
             documentId: sessionStorage.getItem("userId"),
-            tierOne: sessionStorage.getItem("tier1"),
-            tierTwo: sessionStorage.getItem("tier2"),
-            tierThree: sessionStorage.getItem("tier3"),
-            reward1: sessionStorage.getItem("reward1"),
-            reward2: sessionStorage.getItem("reward2"),
-            reward3: sessionStorage.getItem("reward3"),
-            pledge1: sessionStorage.getItem("pledge1"),
-            pledge2: sessionStorage.getItem("pledge2"),
-            pledge3: sessionStorage.getItem("pledge3"),
+            tierOne: tierOneName,
+            tierTwo: tierTwoName,
+            tierThree: tierThreeName,
+            reward1: reward1,
+            reward2: reward2,
+            reward3: reward3,
+            pledge1: pledge1,
+            pledge2: pledge2,
+            pledge3: pledge3,
         })
             .then(() => {
                 setReward1("");
@@ -133,7 +121,7 @@ const ProjectRewards = ({
                 setTierOneName("");
                 setTierTwoName();
                 setTierThreeName("");
-                navigate("../create-project/congratulations", { replace: true });
+                navigate("../congratulations", { replace: true });
             })
             .catch((err) => {
                 console.log(err.message);

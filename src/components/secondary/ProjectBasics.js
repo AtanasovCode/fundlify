@@ -72,7 +72,7 @@ const ProjectBasics = ({
                         setProjectDescription("");
                         setFundingGoal("");
                         setProjectImage("");
-                        navigate("../project-rewards");
+                        navigate("../project-rewards", {replace: true});
 
                     })
                     .catch((err) => {
@@ -259,7 +259,7 @@ const ProjectBasics = ({
                     >
                         <img
                             src={arrow}
-                            style={{ "width": "20px", "height": "20px" }}
+                            style={{ "width": "15px", "height": "15px" }}
                         />
                     </div>
                 </div>

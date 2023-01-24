@@ -45,6 +45,7 @@ const SignUp = ({
                     userId: currentUser.user.uid,
                     bio: "I am a mysterious person that has not yet updated their bio.",
                     location: false,
+                    createdAt: serverTimestamp(),
                     projectsBacked: 0,
                     projectsDonatedTo: [],
                 })
@@ -81,8 +82,9 @@ const SignUp = ({
                         userId: user.uid,
                         bio: "I am a mysterious person that has not yet updated their bio.",
                         location: false,
-                        projectsBacked: false,
                         createdAt: serverTimestamp(),
+                        projectsBacked: 0,
+                        projectsDonatedTo: [],
                     })
                         .then(() => {
                             setRegMail("");
