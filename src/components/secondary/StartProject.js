@@ -228,7 +228,7 @@ const StartProject = ({
                 >
                     <img 
                         src={arrow}
-                        style={{"width": "25px", "height": "25px"}}
+                        style={{"width": "15px", "height": "15px"}}
                     />
                 </div>
             </div>

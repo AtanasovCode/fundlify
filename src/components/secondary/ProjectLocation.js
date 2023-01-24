@@ -308,18 +308,18 @@ const ProjectLocation = ({
                     <option value="Zimbabwe">Zimbabwe</option>
                 </select>
             </div>
-            <div className="location-btn-container">
+            <div className="project-start-btn-container-start">
                 <div
                     className={isLocationSelected ?
-                        "location-btn active"
+                        "continue-btn-start active"
                         :
-                        "location-btn"
+                        "continue-btn-start"
                     }
                     onClick={handleContinue}
                 >
                     <img
                         src={arrow}
-                        style={{ "width": "25px", "height": "25px" }}
+                        style={{ "width": "15px", "height": "15px" }}
                     />
                 </div>
             </div>
