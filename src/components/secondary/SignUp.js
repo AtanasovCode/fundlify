@@ -121,6 +121,7 @@ const SignUp = ({
                     className="auth-input"
                     name="name"
                     value={name}
+                    maxLength={35}
                     onChange={(e) => setName(e.currentTarget.value)}
                 />
                 <input
@@ -128,6 +129,7 @@ const SignUp = ({
                     placeholder="Email"
                     className="auth-input"
                     name="mail"
+                    maxLength={40}
                     value={regMail}
                     onChange={(e) => setRegMail(e.currentTarget.value)}
                 />
@@ -135,6 +137,7 @@ const SignUp = ({
                     type="password"
                     placeholder="Password"
                     className="auth-input"
+                    maxLength={35}
                     value={regPassword}
                     onChange={(e) => setRegPassword(e.currentTarget.value)}
                 />

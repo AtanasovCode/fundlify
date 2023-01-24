@@ -89,6 +89,7 @@ const EditProfile = ({
                     <input
                         type="text"
                         value={name}
+                        maxLength={35}
                         name="name"
                         className="edit-profile-input"
                         onChange={(e) => setName(e.currentTarget.value)}
@@ -122,6 +123,7 @@ const EditProfile = ({
                         placeholder="Eg. London, UK"
                         name="location"
                         value={location}
+                        maxLength35
                         className="edit-profile-input"
                         onChange={(e) => setLocation(e.currentTarget.value)}
                     />

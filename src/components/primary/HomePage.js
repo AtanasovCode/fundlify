@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
     onSnapshot,
@@ -38,6 +38,12 @@ const HomePage = ({
     const colRef = collection(db, "projects");
     const q = query(colRef, orderBy("moneyBacked", "desc"));
     const navigate = useNavigate();
+
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
 
     const handleShowPopUp = () => {
         setShowPopUp(true);

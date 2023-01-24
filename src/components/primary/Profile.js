@@ -122,10 +122,11 @@ const Profile = ({
                                     <div className="profile-location">
                                         {user.location ? user.location : ""}
                                     </div>
+                                    <div className="projects-backed-container">
+                                        Projects Backed {user.projectsBacked}
+                                    </div>
                                 </div>
-                                <div className="projects-backed-container">
-                                    Projects Backed {user.projectsBacked}
-                                </div>
+
                             </div>
                         </div>
                         <div className="profile-desc">
@@ -170,6 +171,7 @@ const Profile = ({
                                             <div className="project-donated-img-container">
                                                 <img
                                                     src={project.projectImageUrl}
+                                                    className="project-donated-img"
                                                 />
                                             </div>
                                             <div className="project-donated-info">

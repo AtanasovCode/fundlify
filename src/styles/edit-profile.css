@@ -110,3 +110,24 @@
     border: none;
     transition: all .3s;
 }
+
+
+@media only screen and (max-width: 800px) {
+    .edit-profile-info {
+        width: 80%;
+        padding: 35px;
+    }
+    .edit-profile-heading {
+        font-size: 33px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .edit-profile-info {
+        width: 90%;
+        padding: 20px;
+    }
+    .edit-profile-heading {
+        font-size: 26px;
+    }
+}
