@@ -135,6 +135,7 @@
     min-height: 20vh;
     height: min-content;
     display: grid;
+    padding-top: 30px;
     grid-template-columns: repeat(3, 33%);
     grid-row-gap: 35px;
     place-items: center;
@@ -144,9 +145,7 @@
 
 .projects-backed.user-project {
     display: grid;
-    grid-template-columns: 55%;
-    place-items: center;
-    place-content: center;
+    grid-template-columns: 40%;
 }
 
 .project-donated-container {
@@ -178,6 +177,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    aspect-ratio: 3/4;
 }
 
 .project-donated-info {

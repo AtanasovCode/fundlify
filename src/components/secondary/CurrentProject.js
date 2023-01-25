@@ -26,7 +26,7 @@ const CurrentProject = ({
     userLoggedIn,
     userInfo,
     currentProjectId,
-    formatTextForUrl,
+    formatTextForURL,
 }) => {
 
     const [currentProject, setCurrentProject] = useState([]);
@@ -84,6 +84,7 @@ const CurrentProject = ({
     }, [currentUser])
 
 
+
     //Formats the string 
     //For the category names
     const formatString = (string) => {
@@ -126,12 +127,12 @@ const CurrentProject = ({
                 updateDoc(doc(db, "users", sessionStorage.getItem("userId")), {
                     isProjectOwner: false,
                 })
-                .then(() => {
-                    navigate(`../users/(${formatTextForUrl(sessionStorage.getItem("username"))}`, {replace: true});
-                })
-                .catch((err) => {
-                    console.log(err.message);
-                })
+                    .then(() => {
+                        navigate(`../users/(${formatTextForURL(sessionStorage.getItem("username"))}`, {replace: true});
+                    })
+                    .catch((err) => {
+                        console.log(err.message);
+                    })
             })
             .catch((err) => {
                 console.log(err.message);

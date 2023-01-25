@@ -207,6 +207,7 @@ const Profile = ({
                                             <div className="project-donated-img-container">
                                                 <img
                                                     src={project.projectImageUrl}
+                                                    className="project-donated-img"
                                                 />
                                             </div>
                                             <div className="project-donated-info">
