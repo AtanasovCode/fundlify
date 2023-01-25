@@ -150,14 +150,21 @@
 }
 
 
+.loader {
+    position: absolute;
+    top: 30%;
+}
+
 
 @media only screen and (max-width: 1200px) {
     .discover-projects-container {
         grid-template-columns: repeat(2, auto);
         grid-column-gap: 5%;
-        grid-row-gap: 5%;;
+        grid-row-gap: 5%;
+        ;
     }
-    .displayed-project-container  {
+
+    .displayed-project-container {
         width: 45vw;
     }
 }
@@ -166,9 +173,11 @@
     .discover-projects-container {
         grid-template-columns: repeat(2, auto);
         grid-column-gap: 2%;
-        grid-row-gap: 5%;;
+        grid-row-gap: 5%;
+        ;
     }
-    .displayed-project-container  {
+
+    .displayed-project-container {
         width: 45vw;
     }
 }
@@ -178,9 +187,11 @@
         grid-template-columns: repeat(1, auto);
         grid-row-gap: 2%;
     }
-    .displayed-project-container  {
+
+    .displayed-project-container {
         width: 85vw;
     }
+
     .discover-filter-container {
         height: 20vh;
         display: flex;
@@ -188,15 +199,19 @@
         align-items: center;
         justify-content: space-evenly;
     }
+
     .discover-filter {
         width: 60%;
     }
+
     .discover-filter-container {
         width: 100%;
     }
+
     .discover-filter {
         width: 90%;
     }
+
     .discover-input-filter {
         width: 100%;
     }
@@ -207,12 +222,15 @@
         grid-template-columns: repeat(1, auto);
         grid-row-gap: 2%;
     }
-    .displayed-project-container  {
+
+    .displayed-project-container {
         width: 95vw;
     }
+
     .discover-filter-container {
         height: 30vh;
     }
+
     .discover-filter {
         display: flex;
         flex-direction: column;

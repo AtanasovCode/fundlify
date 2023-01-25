@@ -27,14 +27,9 @@ const DisplayProject = ({
     return (
         <div className="discover-projects-container">
             {
-                projects.length > 0 ?
-                    <div className="displayed-projects-heading">
-                        Explore {projectCount} projects
-                    </div>
-                    :
-                    <div className="displayed-projects-loading">
-                        <Loading />
-                    </div>
+                <div className="displayed-projects-heading">
+                    Explore {projectCount} projects
+                </div>
             }
             {
                 category === "all-categories" ?

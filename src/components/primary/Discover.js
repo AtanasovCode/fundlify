@@ -9,7 +9,9 @@ import {
 } from 'firebase/firestore'
 import DisplayProject from "../secondary/DisplayProject";
 import Nav from "../secondary/Nav";
+import Loading from "../secondary/Loading";
 import '../../styles/discover.css';
+
 
 const Discover = ({
     auth,
@@ -25,6 +27,7 @@ const Discover = ({
     const [projects, setProjects] = useState([]);
     const [filterCategory, setFilterCategory] = useState("all-categories");
     const [projectCount, setProjectCount] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
     const colRef = collection(db, "projects");
     const q = query(colRef, orderBy("moneyBacked", "desc"));
@@ -40,6 +43,10 @@ const Discover = ({
     }, [])
 
     useEffect(() => {
+        if (projects.length !== 0) setIsLoading(false);
+    }, [projects])
+
+    useEffect(() => {
         if (projects) {
             let count = 0;
             projects.map(() => {
@@ -47,7 +54,7 @@ const Discover = ({
             })
             setProjectCount(count);
         }
-    })
+    }, [projects])
 
     useEffect(() => {
         if (filterCategory === "all-categories") return;
@@ -68,6 +75,7 @@ const Discover = ({
 
     return (
         <div className="discover-container">
+            {isLoading ? <div className="loading-container"><Loading /></div> : <span></span>}
             <Nav grow={grow} sticky={true} userLoggedIn={userLoggedIn} />
             <div className="discover-filter-container">
                 <div className="discover-category-filter discover-filter">

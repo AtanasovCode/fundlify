@@ -105,7 +105,7 @@ const Profile = ({
             </div>
             {
                 isLoading ?
-                    <div className="profile-loading-container">
+                    <div className="loading-container">
                         <Loading />
                     </div>
                     :
