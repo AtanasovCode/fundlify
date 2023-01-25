@@ -7,6 +7,9 @@ import {
     query,
     where,
     docs,
+    doc,
+    deleteDoc,
+    updateDoc,
 } from "firebase/firestore";
 import Nav from "./Nav";
 import NoPermission from "./NoPermission";
@@ -23,6 +26,7 @@ const CurrentProject = ({
     userLoggedIn,
     userInfo,
     currentProjectId,
+    formatTextForUrl,
 }) => {
 
     const [currentProject, setCurrentProject] = useState([]);
@@ -79,17 +83,20 @@ const CurrentProject = ({
         }
     }, [currentUser])
 
+
+    //Formats the string 
+    //For the category names
     const formatString = (string) => {
         string = string.replace(/-/g, ' ');
         return string.replace(/\b\w/g, l => l.toUpperCase())
     }
 
-
-
+    //Formats the number to 'en-US'
     const formatNumber = (number) => {
         return parseInt(number).toLocaleString('en-US');
     }
 
+    //Calculates the progress of the project
     const calculateProgress = (total, raised) => {
         let percent = 0;
         let progress = raised / total;
@@ -101,12 +108,34 @@ const CurrentProject = ({
         return parseInt(Math.floor(percent));
     }
 
+    //Goes to the donation page if 
+    //The user has never donated to this project
     const handleDonateToProject = () => {
         if (hasDonatedToProject === false) {
             navigate(`../fund-project/${sessionStorage.getItem("currentProjectId")}`)
         } else {
             handleShowPopUp()
         }
+    }
+
+    //Deletes the project if the current user is the owner of the project
+    //And updates the isProjectOwner field to false for the current user
+    const handleDeleteProject = () => {
+        deleteDoc(doc(db, "projects", sessionStorage.getItem("userId")))
+            .then(() => {
+                updateDoc(doc(db, "users", sessionStorage.getItem("userId")), {
+                    isProjectOwner: false,
+                })
+                .then(() => {
+                    navigate(`../users/(${formatTextForUrl(sessionStorage.getItem("username"))}`, {replace: true});
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                })
+            })
+            .catch((err) => {
+                console.log(err.message);
+            })
     }
 
 
@@ -190,12 +219,22 @@ const CurrentProject = ({
                                         </div>
                                     </div>
                                     <div className="back-project-btn-container">
-                                        <div
-                                            className="back-project-btn"
-                                            onClick={handleDonateToProject}
-                                        >
-                                            Back this project
-                                        </div>
+                                        {
+                                            sessionStorage.getItem("userId") === project.documentId ?
+                                                <div
+                                                    className="back-project-btn delete"
+                                                    onClick={handleDeleteProject}
+                                                >
+                                                    Delete my project
+                                                </div>
+                                                :
+                                                <div
+                                                    className="back-project-btn"
+                                                    onClick={handleDonateToProject}
+                                                >
+                                                    Back this project
+                                                </div>
+                                        }
                                     </div>
                                 </div>
                             </div>

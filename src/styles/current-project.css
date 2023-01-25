@@ -149,6 +149,11 @@
     cursor: pointer;
 }
 
+.back-project-btn.delete {
+    background-color: rgb(132, 43, 43);
+    color: #fff;
+}
+
 .current-project-number-bold {
     font-size: 25px;
     font-weight: 500;

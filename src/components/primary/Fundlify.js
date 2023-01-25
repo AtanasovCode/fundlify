@@ -159,6 +159,10 @@ const Fundlify = ({ app }) => {
         }
     }
 
+    const formatTextForURL = (text) => {
+        return text == undefined ? '' : text.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
+    }
+
 
 
     return (
@@ -286,6 +290,7 @@ const Fundlify = ({ app }) => {
                             userInfo={userInfo}
                             db={db}
                             currentProjectId={currentProjectId}
+                            formatTextForURL={formatTextForURL}
                         />
                     } />
                     <Route path="/discover" element={
@@ -293,6 +298,7 @@ const Fundlify = ({ app }) => {
                             auth={auth}
                             db={db}
                             storage={storage}
+                            formatTextForURL={formatTextForURL}
                             user={user}
                             userLoggedIn={userLoggedIn}
                             setCurrentProjectId={setCurrentProjectId}
@@ -303,6 +309,7 @@ const Fundlify = ({ app }) => {
                             user={user}
                             db={db}
                             auth={auth}
+                            formatTextForURL={formatTextForURL}
                             userLoggedIn={userLoggedIn}
                             preventLetters={preventLetters}
                             preventNumbers={preventNumbers}

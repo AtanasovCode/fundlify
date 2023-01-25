@@ -18,6 +18,7 @@ const Discover = ({
     user,
     userLoggedIn,
     setCurrentProjectId,
+    formatTextForUrl,
 }) => {
 
     const [grow, setGrow] = useState(true);
@@ -63,10 +64,6 @@ const Discover = ({
 
     const formatNumber = (number) => {
         return parseInt(number).toLocaleString('en-US');
-    }
-
-    const formatTextForURL = (text) => {
-        return text == undefined ? '' : text.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
     }
 
     return (
