@@ -212,6 +212,17 @@
     cursor: pointer;
 }
 
+.profile-loading-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+    background-color: var(--main-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 @media only screen and (max-width: 900px) {
     .profile-display-name {

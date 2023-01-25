@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../../styles/discover.css';
 import FundProject from './FundProject';
+import Loading from './Loading';
 
 const DisplayProject = ({
     projects,
@@ -31,8 +32,8 @@ const DisplayProject = ({
                         Explore {projectCount} projects
                     </div>
                     :
-                    <div className="displayed-projects-heading">
-                        Loading...
+                    <div className="displayed-projects-loading">
+                        <Loading />
                     </div>
             }
             {

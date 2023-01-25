@@ -3,6 +3,7 @@ import '../../styles/profile.css';
 import Nav from '../secondary/Nav';
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Loading from '../secondary/Loading';
 import {
     signOut,
 } from 'firebase/auth';
@@ -28,6 +29,7 @@ const Profile = ({
     const [projectsDonatedTo, setProjectsDonatedTo] = useState([]);
     const [categorySelected, setCategorySelected] = useState("backed");
     const [userProject, setUserProject] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     let navigate = useNavigate();
     const colRef = collection(db, "users");
@@ -39,6 +41,10 @@ const Profile = ({
             sessionStorage.setItem("updateId", info.id)
         })
     }, [])
+
+    useEffect(() => {
+        if (userInfo.length !== 0 && projects.length !== 0) setIsLoading(false);
+    }, [userInfo, projects])
 
     const formatTextForURL = (text) => {
         return text == undefined ? '' : text.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
@@ -97,44 +103,54 @@ const Profile = ({
             <div className="profile-title-container">
                 Profile
             </div>
-            {userInfo.map((user) => {
-                return (
-                    <div className="profile-info-container" key={user.userId}>
-                        <div className="profile-info">
-                            <div className="profile-icon-container">
-                                <img
-                                    src={pfp}
-                                    alt="profile picture"
-                                    className="pfp"
-                                />
-                                <Link
-                                    to={`/edit-profile/${formatTextForURL(sessionStorage.getItem("username"))}`}
-                                    className="edit-profile"
-                                >
-                                    Edit Profile
-                                </Link>
-                            </div>
-                            <div className="profile-name-container">
-                                <div className="profile-display-name">
-                                    {user.username}
-                                </div>
-                                <div className="profile-location-container">
-                                    <div className="profile-location">
-                                        {user.location ? user.location : ""}
-                                    </div>
-                                    <div className="projects-backed-container">
-                                        Projects Backed {user.projectsBacked}
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div className="profile-desc">
-                            {user.bio}
-                        </div>
+            {
+                isLoading ?
+                    <div className="profile-loading-container">
+                        <Loading />
                     </div>
-                );
-            })}
+                    :
+                    ""
+            }
+            {
+                userInfo.map((user) => {
+                    return (
+                        <div className="profile-info-container" key={user.userId}>
+                            <div className="profile-info">
+                                <div className="profile-icon-container">
+                                    <img
+                                        src={pfp}
+                                        alt="profile picture"
+                                        className="pfp"
+                                    />
+                                    <Link
+                                        to={`/edit-profile/${formatTextForURL(sessionStorage.getItem("username"))}`}
+                                        className="edit-profile"
+                                    >
+                                        Edit Profile
+                                    </Link>
+                                </div>
+                                <div className="profile-name-container">
+                                    <div className="profile-display-name">
+                                        {user.username}
+                                    </div>
+                                    <div className="profile-location-container">
+                                        <div className="profile-location">
+                                            {user.location ? user.location : ""}
+                                        </div>
+                                        <div className="projects-backed-container">
+                                            Projects Backed {user.projectsBacked}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div className="profile-desc">
+                                {user.bio}
+                            </div>
+                        </div>
+                    );
+                })
+            }
             <div className="projects-backed-section" key={user.userId}>
                 <div className="projects-backed-filter-container">
                     <div
