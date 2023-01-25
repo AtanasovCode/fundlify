@@ -59,8 +59,21 @@ const FundProject = ({
             [backersTier]: increment(1),
         })
             .then(() => {
-                setPledgeAmount("");
-                navigate("../donation-finished", { replace: true });
+                updateDoc(doc(db, "users", sessionStorage.getItem("userId")), {
+                    projectsDonatedTo: arrayUnion(sessionStorage.getItem("currentProjectId")),
+                    projectsBacked: increment(1),
+                })
+                    .then(() => {
+                        setPledgeAmount("");
+                        navigate("../donation-finished", { replace: true });
+                    })
+                    .catch((err) => {
+                        console.log(err.message);
+                    })
+
+            })
+            .catch((err) => {
+                console.log(err.message);
             })
     }
 
@@ -77,7 +90,6 @@ const FundProject = ({
                     })
                         .then(() => {
                             setFundNoReward("");
-                            console.log("user updated");
                             navigate("../donation-finished", { replace: true });
                         })
                         .catch((err) => {
