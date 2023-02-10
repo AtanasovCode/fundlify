@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 export const Container = styled.div`
     padding-top: 50px;
     max-width: 1440px;
-    width: 100vw;
     background-color: var(--main-bg);
     color: #fff;
     display: flex;
@@ -16,12 +15,12 @@ export const Container = styled.div`
 export const Logo = styled(Link)`
     position: absolute;
     top: 0;
+    left: 0;
     font-size: 32px;
     font-weight: 100;
     text-decoration: none;
     color: #ffffff;
-    max-width: 1440px;
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,6 +56,7 @@ export const Input = styled.input`
     color: #fff;
     padding-left: 10px;
     border: 1px solid #ffffff40;
+    font-weight: 600;
     ${props => props.type === "button" && `cursor: pointer`};
     &:hover {
         ${props => props.type === "button" && `
@@ -83,6 +83,14 @@ export const InputGoogle = styled(Input)`
     }
 `;
 
+export const Agreement = styled.div`
+    width: 90%; 
+    font-size: 14px;
+    color: darkgray;
+    text-align: center;
+    margin-bottom: 35px;
+`
+
 export const NewUser = styled.div`
     width: 80%;
     text-align: center;
@@ -94,6 +102,5 @@ export const A = styled(Link)`
     text-decoration: none;
     color: dodgerblue;
     cursor: pointer;
-    display: inline-block;
-    margin-left: 8px;
+    margin: 0 8px;
 `;

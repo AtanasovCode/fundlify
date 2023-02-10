@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import '../../styles/sign-up.css';
+import * as Styled from '../../styles/Auth.Styled';
 import {
     createUserWithEmailAndPassword,
     updateProfile,
@@ -106,72 +106,68 @@ const SignUp = ({
     }
 
     return (
-        <div className="auth-container">
-            <div className="auth-nav-container">
-                <Link
-                    to="/"
-                    className="auth-logo"
-                >
-                    Fundlify
-                </Link>
-            </div>
-            <div className="auth-form-container">
-                <div className="auth-heading">Sign Up</div>
-                <input
+        <Styled.Container>
+            <Styled.Logo to="/" >
+                Fundlify
+            </Styled.Logo>
+            <Styled.SignIn>
+                <Styled.Heading>
+                    Sign Up
+                </Styled.Heading>
+                <Styled.Input
                     type="text"
                     placeholder="Name"
-                    className="auth-input"
                     name="name"
                     value={name}
                     maxLength={35}
                     onChange={(e) => setName(e.currentTarget.value)}
                 />
-                <input
+                <Styled.Input
                     type="email"
                     placeholder="Email"
-                    className="auth-input"
                     name="mail"
                     maxLength={40}
                     value={regMail}
                     onChange={(e) => setRegMail(e.currentTarget.value)}
                 />
-                <input
+                <Styled.Input
                     type="password"
                     placeholder="Password"
-                    className="auth-input"
                     maxLength={35}
                     value={regPassword}
                     onChange={(e) => setRegPassword(e.currentTarget.value)}
                 />
-                <input
+                <Styled.Input
                     type="button"
                     value="Create Account"
                     className="auth-btn"
                     onClick={handleSignUp}
                 />
-                <div className="agree-container">
+                <Styled.AlternateOption>
+                    or
+                    <Styled.InputGoogle 
+                        onClick={handleSignUpWithGoogle}
+                        type="button"
+                        value="Sign op with Google"
+                    />
+                </Styled.AlternateOption>
+                <Styled.Agreement>
                     By signing up you agree to our
-                    <span className="link-agree">
+                    <Styled.A>
                         Privacy Policy,
                         Cookie Policy
-                    </span>
+                    </Styled.A>
                     and
-                    <span className="link-agree">
+                    <Styled.A>
                         Terms of Use
-                    </span>
-                </div>
-                <div className="auth-change">
+                    </Styled.A>
+                </Styled.Agreement>
+                <Styled.NewUser>
                     Already Have An Account?
-                    <Link to="/sign-in" className="link">Sign In</Link>
-                </div>
-                <div className="other-options-container">
-                    <div>or</div>
-                    <div className="sign-up-google" onClick={handleSignUpWithGoogle}>
-                        Sign Up With Google
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <Styled.A to="/sign-in">Sign In</Styled.A>
+                </Styled.NewUser>
+            </Styled.SignIn>
+        </Styled.Container>
     );
 }
 
