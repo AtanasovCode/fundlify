@@ -1,5 +1,3 @@
-
-
 const ProjectStats = ({
     backers,
     totalFundsRaised,

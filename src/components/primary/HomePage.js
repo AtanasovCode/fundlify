@@ -8,6 +8,9 @@ import {
     orderBy,
 } from 'firebase/firestore';
 import ProjectStats from './homepage-sections/ProjectStats';
+import ProjectSteps from './homepage-sections/ProjectSteps';
+import ExploreProjects from './homepage-sections/ExploreProjects';
+import GetStarted from './homepage-sections/GetStarted';
 import Nav from '../secondary/Nav';
 import NoPermission from '../secondary/NoPermission';
 import '../../styles/homepage.css';
@@ -190,173 +193,16 @@ const HomePage = ({
                 backer={backers}
 
             />
-            <div className="fund-steps-container">
-                <div className="fund-steps-desc">
-                    <div className="fund-steps-sub-text">What to expect?</div>
-                    <div className="fund-steps-heading">
-                        Fundraising on Fundlify
-                        takes just a few minutes
-                    </div>
-                </div>
-                <div className="steps-full-container">
-                    <div className="step-container">
-                        <div className="step-icon">
-                            1
-                        </div>
-                        <div className="step-desc">
-                            <div className="step-desc-title">
-                                Start with the basics
-                            </div>
-                            <div className="step-desc-sub-title">
-                                Kick things off with your product name and description
-                            </div>
-                        </div>
-                    </div>
-                    <div className="step-container">
-                        <div className="step-icon">
-                            2
-                        </div>
-                        <div className="step-desc">
-                            <div className="step-desc-title">
-                                Describe your product
-                            </div>
-                            <div className="step-desc-sub-title">
-                                We'll guide with tips along the way
-                            </div>
-                        </div>
-                    </div>
-                    <div className="step-container">
-                        <div className="step-icon">
-                            3
-                        </div>
-                        <div className="step-desc">
-                            <div className="step-desc-title">
-                                Share with the world
-                            </div>
-                            <div className="step-desc-sub-title">
-                                People out there want to help you
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="most-popular-container">
-                <div className="most-popular-title">
-                    Discover popular projects
-                </div>
-                <div className="popular-projects-container">
-                    <div className="main-project-container">
-                        {
-                            popularProjects.map((project, i) => {
-                                if (i === 0) {
-                                    return (
-                                        <div
-                                            className="main-project"
-                                            key={project.documentId}
-                                            onClick={() => {
-                                                sessionStorage.setItem("currentProjectId", project.documentId);
-                                                navigate(`/projects/${project.documentId}`);
-                                            }}
-                                        >
-                                            <div className="main-project-img-container">
-                                                <img
-                                                    src={project.projectImageUrl}
-                                                    className="main-project-img"
-                                                />
-                                            </div>
-                                            <div className="main-project-info">
-                                                <div className="main-project-heading">
-                                                    <div className="main-project-name">
-                                                        {project.projectTitle}
-                                                    </div>
-                                                    <div className="main-project-desc">
-                                                        {project.projectDescription}
-                                                    </div>
-                                                </div>
-                                                <div className="main-project-made-by">
-                                                    By: {project.createdBy}
-                                                </div>
-                                                <div className="percent-funded">
-                                                    {calculateProgress(project.fundingGoal, project.moneyBacked)}%
-                                                    funded
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                }
-                            })
-                        }
-                    </div>
-                    <div className="side-projects-container">
-                        {
-                            popularProjects.map((project, i) => {
-                                if (i > 0 && i <= 3) {
-                                    return (
-                                        <div
-                                            className="side-project"
-                                            key={project.documentId}
-                                            onClick={() => {
-                                                sessionStorage.setItem("currentProjectId", project.documentId);
-                                                navigate(`/projects/${project.documentId}`);
-                                            }}
-                                        >
-                                            <div className="side-project-img-container">
-                                                <img
-                                                    src={project.projectImageUrl}
-                                                    className="side-project-img"
-                                                />
-                                            </div>
-                                            <div className="side-project-info">
-                                                <div className="side-project-heading">
-                                                    <div className="side-project-name">
-                                                        {project.projectTitle}
-                                                    </div>
-                                                    <div className="side-project-made-by">
-                                                        By: {project.createdBy}
-                                                    </div>
-                                                </div>
-                                                <div className="side-project-percent">
-                                                    {calculateProgress(project.fundingGoal, project.moneyBacked)}%
-                                                    funded
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                }
-                            })
-                        }
-                    </div>
-                </div>
-            </div>
-            <div className="get-started-container">
-                <div className="get-started-text-container">
-                    <div className="get-started-heading">
-                        Ready to get started?
-                        Join thousands of others today!
-                    </div>
-                    <div className="get-started-btn">
-                        <Link
-                            to="/sign-up"
-                            className="create-acc-btn started-btn"
-                        >
-                            Get Started
-                        </Link>
-                        <Link
-                            to="/how-it-works"
-                            className="how-it-works-btn started-btn"
-                        >
-                            How it works
-                        </Link>
-                    </div>
-                </div>
-                <div className="get-started-icon-container">
-                    <img
-                        src={illustration}
-                        alt="illustration"
-                        className="illustration-icon"
-                    />
-                </div>
-            </div>
+            <ProjectSteps />
+            <ExploreProjects 
+                popularProjects={popularProjects}
+                navigate={navigate}
+                calculateProgress={calculateProgress}
+            />
+            <GetStarted 
+                Link={Link}
+                illustration={illustration}
+            />
         </Styled.Container>
     );
 }
