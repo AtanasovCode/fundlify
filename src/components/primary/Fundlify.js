@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ThemeProvider } from "styled-components";
 import {
     getAuth,
     onAuthStateChanged,
@@ -39,6 +40,39 @@ import FundProject from "../secondary/FundProject";
 import DonationFinished from "../secondary/DonationFinished";
 import HowItWorks from "./HowItWorks";
 import '../../styles/fundlify.css';
+
+
+const theme = {
+    background: "#0A1B29", //"#0F1F2C",
+
+    font: "#F3DE8a",
+    fadedFontColor: "",
+    creativeFontColor: "",
+    fontFamily: "",
+    fontBlack: "900",
+    fontBold: "600",
+    fontRegular: "400",
+    fontSlim: "300",
+    fontExtraSlim: "100",
+
+    projectInfoTint: "",
+
+    borderBg: "",
+
+    defaultBtn: "#75DDDD",
+    defaultBtnHover: "#75FFFF",
+    authBtn: "#333",
+    authBtnHover: "",
+    googleAuthBtn: "",
+    googleAuthBtnHover: "",
+    howItWorksBtn: "",
+    howItWorksBtnHover: "",
+    pledgeBtn: "#09BC8A",
+    pledgeBtnHover: "",
+
+    stepsBackground: "#005F64",
+    stepsFontColor: "",
+}
 
 const Fundlify = ({ app }) => {
 
@@ -166,160 +200,162 @@ const Fundlify = ({ app }) => {
 
 
     return (
-        <div className="app">
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<HomePage
-                        userLoggedIn={userLoggedIn}
-                        auth={auth}
-                        db={db}
-                        userInfo={userInfo}
-                        formatNumber={formatNumber}
-                    />} />
-                    <Route path="/users/:username" element={<Profile
-                        user={user}
-                        setUser={setUser}
-                        userInfo={userInfo}
-                        projects={projects}
-                        auth={auth}
-                        userLoggedIn={userLoggedIn}
-                        setUpdateId={setUpdateId}
-                        db={db}
-                    />} />
-                    <Route path="/edit-profile/:profileName" element={<EditProfile
-                        userLoggedIn={userLoggedIn}
-                        auth={auth}
-                        user={user}
-                        setUser={setUser}
-                        userInfo={userInfo}
-                        setUpdateId={setUpdateId}
-                        updateId={updateId}
-                        db={db}
-                    />} />
-                    <Route path="/create-project" element={<CreateProject
-                        user={user}
-                        db={db}
-                        auth={auth}
-                        userLoggedIn={userLoggedIn}
-                    />} >
-                        <Route path="/create-project/start" element={
-                            <StartProject
-                                db={db}
-                                auth={auth}
+        <ThemeProvider theme={theme}>
+            <div className="app">
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<HomePage
+                            userLoggedIn={userLoggedIn}
+                            auth={auth}
+                            db={db}
+                            userInfo={userInfo}
+                            formatNumber={formatNumber}
+                        />} />
+                        <Route path="/users/:username" element={<Profile
+                            user={user}
+                            setUser={setUser}
+                            userInfo={userInfo}
+                            projects={projects}
+                            auth={auth}
+                            userLoggedIn={userLoggedIn}
+                            setUpdateId={setUpdateId}
+                            db={db}
+                        />} />
+                        <Route path="/edit-profile/:profileName" element={<EditProfile
+                            userLoggedIn={userLoggedIn}
+                            auth={auth}
+                            user={user}
+                            setUser={setUser}
+                            userInfo={userInfo}
+                            setUpdateId={setUpdateId}
+                            updateId={updateId}
+                            db={db}
+                        />} />
+                        <Route path="/create-project" element={<CreateProject
+                            user={user}
+                            db={db}
+                            auth={auth}
+                            userLoggedIn={userLoggedIn}
+                        />} >
+                            <Route path="/create-project/start" element={
+                                <StartProject
+                                    db={db}
+                                    auth={auth}
+                                    user={user}
+                                    categorySelected={categorySelected}
+                                    setCategorySelected={setCategorySelected}
+                                    setSubCategorySelected={setSubCategorySelected}
+                                    subCategorySelected={subCategorySelected}
+                                    setCurrentProjectId={setCurrentProjectId}
+                                />
+                            } />
+                            <Route path="/create-project/project-location" element={
+                                <ProjectLocation
+                                    db={db}
+                                    auth={auth}
+                                    user={user}
+                                    locationSelected={locationSelected}
+                                    setLocationSelected={setLocationSelected}
+                                />
+                            } />
+                            <Route path="/create-project/project-basics" element={
+                                <ProjectBasics
+                                    db={db}
+                                    auth={auth}
+                                    storage={storage}
+                                    user={user}
+
+                                    projectTitle={projectTitle}
+                                    setProjectTitle={setProjectTitle}
+                                    projectDescription={projectDescription}
+                                    setProjectDescription={setProjectDescription}
+                                    fundingGoal={fundingGoal}
+                                    setFundingGoal={setFundingGoal}
+
+                                    preventLetters={preventLetters}
+                                    preventNumbers={preventNumbers}
+                                />
+                            } />
+                            <Route path="/create-project/project-rewards" element={
+                                <ProjectRewards
+                                    db={db}
+                                    auth={auth}
+                                    user={user}
+                                    storage={storage}
+
+                                    preventLetters={preventLetters}
+                                    preventNumbers={preventNumbers}
+
+                                    tierOneName={tierOneName}
+                                    setTierOneName={setTierOneName}
+                                    tierTwoName={tierTwoName}
+                                    setTierTwoName={setTierTwoName}
+                                    tierThreeName={tierThreeName}
+                                    setTierThreeName={setTierThreeName}
+
+                                    reward1={reward1}
+                                    setReward1={setReward1}
+                                    reward2={reward2}
+                                    setReward2={setReward2}
+                                    reward3={reward3}
+                                    setReward3={setReward3}
+
+                                    pledge1={pledge1}
+                                    setPledge1={setPledge1}
+                                    pledge2={pledge2}
+                                    setPledge2={setPledge2}
+                                    pledge3={pledge3}
+                                    setPledge3={setPledge3}
+
+                                    storage={storage}
+                                    currentProjectId={currentProjectId}
+
+                                />
+                            } />
+                            <Route path="/create-project/congratulations" element={
+                                <Congratulations />
+                            } />
+                        </Route>
+                        <Route path="/sign-in" element={<SignIn auth={auth} />} />
+                        <Route path="/sign-up" element={<SignUp auth={auth} db={db} user={user} userLoggedIn={userLoggedIn} />} />
+                        <Route path="/projects/:projectId" element={
+                            <CurrentProject
                                 user={user}
-                                categorySelected={categorySelected}
-                                setCategorySelected={setCategorySelected}
-                                setSubCategorySelected={setSubCategorySelected}
-                                subCategorySelected={subCategorySelected}
+                                userLoggedIn={userLoggedIn}
+                                userInfo={userInfo}
+                                db={db}
+                                currentProjectId={currentProjectId}
+                                formatTextForURL={formatTextForURL}
+                            />
+                        } />
+                        <Route path="/discover" element={
+                            <Discover
+                                auth={auth}
+                                db={db}
+                                storage={storage}
+                                formatTextForURL={formatTextForURL}
+                                user={user}
+                                userLoggedIn={userLoggedIn}
                                 setCurrentProjectId={setCurrentProjectId}
                             />
                         } />
-                        <Route path="/create-project/project-location" element={
-                            <ProjectLocation
+                        <Route path="/fund-project/:projectId" element={
+                            <FundProject
+                                user={user}
                                 db={db}
                                 auth={auth}
-                                user={user}
-                                locationSelected={locationSelected}
-                                setLocationSelected={setLocationSelected}
-                            />
-                        } />
-                        <Route path="/create-project/project-basics" element={
-                            <ProjectBasics
-                                db={db}
-                                auth={auth}
-                                storage={storage}
-                                user={user}
-
-                                projectTitle={projectTitle}
-                                setProjectTitle={setProjectTitle}
-                                projectDescription={projectDescription}
-                                setProjectDescription={setProjectDescription}
-                                fundingGoal={fundingGoal}
-                                setFundingGoal={setFundingGoal}
-
+                                formatTextForURL={formatTextForURL}
+                                userLoggedIn={userLoggedIn}
                                 preventLetters={preventLetters}
                                 preventNumbers={preventNumbers}
                             />
                         } />
-                        <Route path="/create-project/project-rewards" element={
-                            <ProjectRewards
-                                db={db}
-                                auth={auth}
-                                user={user}
-                                storage={storage}
-
-                                preventLetters={preventLetters}
-                                preventNumbers={preventNumbers}
-
-                                tierOneName={tierOneName}
-                                setTierOneName={setTierOneName}
-                                tierTwoName={tierTwoName}
-                                setTierTwoName={setTierTwoName}
-                                tierThreeName={tierThreeName}
-                                setTierThreeName={setTierThreeName}
-
-                                reward1={reward1}
-                                setReward1={setReward1}
-                                reward2={reward2}
-                                setReward2={setReward2}
-                                reward3={reward3}
-                                setReward3={setReward3}
-
-                                pledge1={pledge1}
-                                setPledge1={setPledge1}
-                                pledge2={pledge2}
-                                setPledge2={setPledge2}
-                                pledge3={pledge3}
-                                setPledge3={setPledge3}
-
-                                storage={storage}
-                                currentProjectId={currentProjectId}
-
-                            />
-                        } />
-                        <Route path="/create-project/congratulations" element={
-                            <Congratulations />
-                        } />
-                    </Route>
-                    <Route path="/sign-in" element={<SignIn auth={auth} />} />
-                    <Route path="/sign-up" element={<SignUp auth={auth} db={db} user={user} userLoggedIn={userLoggedIn} />} />
-                    <Route path="/projects/:projectId" element={
-                        <CurrentProject
-                            user={user}
-                            userLoggedIn={userLoggedIn}
-                            userInfo={userInfo}
-                            db={db}
-                            currentProjectId={currentProjectId}
-                            formatTextForURL={formatTextForURL}
-                        />
-                    } />
-                    <Route path="/discover" element={
-                        <Discover
-                            auth={auth}
-                            db={db}
-                            storage={storage}
-                            formatTextForURL={formatTextForURL}
-                            user={user}
-                            userLoggedIn={userLoggedIn}
-                            setCurrentProjectId={setCurrentProjectId}
-                        />
-                    } />
-                    <Route path="/fund-project/:projectId" element={
-                        <FundProject
-                            user={user}
-                            db={db}
-                            auth={auth}
-                            formatTextForURL={formatTextForURL}
-                            userLoggedIn={userLoggedIn}
-                            preventLetters={preventLetters}
-                            preventNumbers={preventNumbers}
-                        />
-                    } />
-                    <Route path="/donation-finished" element={<DonationFinished />} />
-                    <Route path="/how-it-works" element={<HowItWorks userLoggedIn={userLoggedIn} />} />
-                </Routes>
-            </BrowserRouter>
-        </div>
+                        <Route path="/donation-finished" element={<DonationFinished />} />
+                        <Route path="/how-it-works" element={<HowItWorks userLoggedIn={userLoggedIn} />} />
+                    </Routes>
+                </BrowserRouter>
+            </div>
+        </ThemeProvider>
     );
 }
 

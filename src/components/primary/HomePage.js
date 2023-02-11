@@ -1,11 +1,13 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import * as Styled from '../../styles/Homepage.Styled';
 import {
     onSnapshot,
     collection,
     query,
     orderBy,
 } from 'firebase/firestore';
+import ProjectStats from './homepage-sections/ProjectStats';
 import Nav from '../secondary/Nav';
 import NoPermission from '../secondary/NoPermission';
 import '../../styles/homepage.css';
@@ -99,16 +101,16 @@ const HomePage = ({
 
     const handleAddProject = () => {
         if (userLoggedIn) {
-            if(userInfo) {
+            if (userInfo) {
                 userInfo.map((user) => {
-                    if(user.IsProjectOwner) {
+                    if (user.IsProjectOwner) {
                         handleShowPopUp();
-                    }else {
+                    } else {
                         navigate("/create-project/start");
                     }
                 })
             }
-        } else  {
+        } else {
             setLoginBox(true);
         }
     }
@@ -125,51 +127,47 @@ const HomePage = ({
     }
 
     return (
-        <div className="home-page-container">
-            <div className="home-nav-container">
+        <Styled.Container>
+            <Styled.Navigation>
                 <Nav
                     userLoggedIn={userLoggedIn}
                     auth={auth}
                     user={user}
                 />
-                <div className="home-nav-img-container">
+                <Styled.NavigationImage>
                     {/*Image Goes Here*/}
-                </div>
-                <div className={loginBox ? "login-box show" : "login-box"}>
-                    <img
-                        className="close-icon"
-                        src={close}
-                        alt="close icon"
-                        onClick={() => {
-                            setLoginBox(false);
-                        }}
-                    />
-                    <div className="login-box-img">{/*image goes here*/}</div>
-                    <div className="login-box-info">
-                        <div className="login-box-heading">
-                            <div className="login-box-title">
-                                Join Us!
-                            </div>
-                            <div className="login-box-subtitle">
-                                Join hundreds of others today and
-                                turn your dream project into
-                                a reality.
-                            </div>
-                        </div>
-                        <div className="login-box-join-container">
-                            <Link
-                                to="/sign-up"
-                                className="login-box-btn"
-                            >
+                </Styled.NavigationImage>
+                {
+                    loginBox &&
+                    <Styled.LoginBox onClick={() => handleAddProject}>
+                        <Styled.CloseIcon
+                            src={close}
+                            alt="close icon"
+                            onClick={() => {
+                                setLoginBox(false);
+                            }}
+                        />
+                        <Styled.BoxInfo>
+                            <Styled.BoxHeading>
+                                <Styled.BoxTitle>
+                                    Join Us!
+                                </Styled.BoxTitle>
+                                <Styled.BoxSubtitle>
+                                    Join hundreds of others today and
+                                    turn your dream project into
+                                    a reality.
+                                </Styled.BoxSubtitle>
+                            </Styled.BoxHeading>
+                            <Styled.BoxJoin to="/sign-up" >
                                 Sign Up
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-                <NoPermission 
-                    permissionType="project" 
-                    showPopUp={showPopUp} 
-                    handleClosePopUp={handleClosePopUp} 
+                            </Styled.BoxJoin>
+                        </Styled.BoxInfo>
+                    </Styled.LoginBox>
+                }
+                <NoPermission
+                    permissionType="project"
+                    showPopUp={showPopUp}
+                    handleClosePopUp={handleClosePopUp}
                 />
                 <div
                     className="add-project-btn-container"
@@ -184,41 +182,14 @@ const HomePage = ({
                         alt="group icon"
                     />
                 </div>
-            </div>
-            <div className="funds-raised-full-container">
-                <div className="fundlify-funds-desc">
-                    <div className="title">
-                        Bring A
-                        <span className="creative">
-                            creative
-                        </span>
-                        Project To Life!
-                    </div>
-                    <div className="subtitle">
-                        On Fundlify:
-                    </div>
-                </div>
-                <div className="funds-raised-container">
-                    <div className="fund-stats-container">
-                        <div className="fund-number">
-                            {formatNumber(totalProjects)}
-                        </div>
-                        <div className="fund-text">Projects Funded</div>
-                    </div>
-                    <div className="fund-stats-container">
-                        <div className="fund-number">
-                            ${formatNumber(totalFundsRaised)}
-                        </div>
-                        <div className="fund-text">Funds Raised</div>
-                    </div>
-                    <div className="fund-stats-container">
-                        <div className="fund-number">
-                            {formatNumber(backers)}
-                        </div>
-                        <div className="fund-text">Pledges Made</div>
-                    </div>
-                </div>
-            </div>
+            </Styled.Navigation>
+            <ProjectStats 
+                formatNumber={formatNumber}
+                totalProjects={totalProjects}
+                totalFundsRaised={totalFundsRaised}
+                backer={backers}
+
+            />
             <div className="fund-steps-container">
                 <div className="fund-steps-desc">
                     <div className="fund-steps-sub-text">What to expect?</div>
@@ -386,7 +357,7 @@ const HomePage = ({
                     />
                 </div>
             </div>
-        </div>
+        </Styled.Container>
     );
 }
 

@@ -28,17 +28,24 @@ export const Logo = styled(Link)`
 `;
 
 export const SignIn = styled.div`
+    max-width: 500px;
+    width: 90vw;
     border: 1px solid #fff;
-    width: 80vw;
-    max-width: 450px;
-    padding: 5px;
-    margin: 50px 0;
+    padding: 20px;
+    margin: 50px 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     border: 1px solid rgba(255, 255, 255, .4);
     position: relative;
+    @media (max-width: 600px) {
+        margin: 50px;
+        padding: 10px;
+    }
+    @media (max-width: 500px) {
+        margin: 50px 20px;
+    }
 `;
 
 
@@ -60,8 +67,11 @@ export const Input = styled.input`
     ${props => props.type === "button" && `cursor: pointer`};
     &:hover {
         ${props => props.type === "button" && `
-            background-color: #ffffff40
+            background-color: #ffffff10
         `};
+    }
+    @media (max-width: 500px) {
+        width: 100%;
     }
 `;
 
@@ -79,12 +89,11 @@ export const InputGoogle = styled(Input)`
     color: #000;
     margin-top: 35px;
     &:hover {
-        background-color: #CCC;
+        background-color: #BBB;
     }
 `;
 
 export const Agreement = styled.div`
-    width: 90%; 
     font-size: 14px;
     color: darkgray;
     text-align: center;
@@ -92,7 +101,6 @@ export const Agreement = styled.div`
 `
 
 export const NewUser = styled.div`
-    width: 80%;
     text-align: center;
     font-size: 15px;
     font-weight: 300;

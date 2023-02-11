@@ -1,9 +1,7 @@
 .how-it-works-container {
     border: 1px solid transparent;
     width: 100%;
-    max-width: 100%;
-    min-height: 100vh;
-    height: max-content;
+    max-width: 1440px;
     background-color: var(--main-bg);
 }
 
