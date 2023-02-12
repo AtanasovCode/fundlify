@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import '../../styles/nav.css';
 import * as Styled from '../../styles/Nav.Styled';
 import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
@@ -40,7 +39,7 @@ const Nav = ({
         }
         if (sticky) {
             window.addEventListener("scroll", () => {
-                setNavResponsive(false);
+                setNavResponsive(true);
             })
         }
     }, [])

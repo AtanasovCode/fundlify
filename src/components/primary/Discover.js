@@ -11,7 +11,6 @@ import {
 import DisplayProject from "../secondary/DisplayProject.js";
 import Nav from "../secondary/Nav";
 import Loading from "../secondary/Loading";
-import '../../styles/discover.css';
 
 
 const Discover = ({
