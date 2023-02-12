@@ -48,6 +48,7 @@ const theme = {
     font: "#F9F9F9",
     fadedFont: "#888",
     creative: "rgb(97, 136, 255)",
+    logoColor: "#F9F9F9",
     fontFamily: "",
     fontBlack: "900",
     fontBold: "600",

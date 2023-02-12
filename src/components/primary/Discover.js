@@ -76,7 +76,7 @@ const Discover = ({
     return (
         <div className="discover-container">
             {isLoading ? <div className="loading-container"><Loading /></div> : <span></span>}
-            <Nav grow={grow} sticky={true} userLoggedIn={userLoggedIn} />
+            <Nav grow={true} sticky={true} userLoggedIn={userLoggedIn} />
             <div className="discover-filter-container">
                 <div className="discover-category-filter discover-filter">
                     <div className="discover-filter-text">
