@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import * as Styled from '../../styles/DisplayProject.Styled'
 import { useNavigate, Link } from 'react-router-dom';
 import '../../styles/discover.css';
 import FundProject from './FundProject';
@@ -25,102 +26,96 @@ const DisplayProject = ({
     }
 
     return (
-        <div className="discover-projects-container">
-            {
-                <div className="displayed-projects-heading">
-                    Explore {projectCount} projects
-                </div>
-            }
+        <Styled.Container>
+            <Styled.Heading>
+                Explore {projectCount} projects
+            </Styled.Heading>
             {
                 category === "all-categories" ?
                     projects.map((project) => {
                         return (
-                            <div
-                                className="displayed-project-container"
+                            <Styled.Project
                                 key={project.id}
                                 onClick={() => {
                                     sessionStorage.setItem("currentProjectId", project.documentId);
                                     navigate(`/projects/${project.documentId}`);
                                 }}
                             >
-                                <div className="displayed-project-image">
-                                    <img
+                                <Styled.ProjectImage>
+                                    <Styled.Image
                                         src={project.projectImageUrl}
-                                        className="displayed-image"
+                                        alt="main image of the project"
                                     />
-                                </div>
-                                <div className="displayed-project-info">
-                                    <div className="displayed-project-name">
+                                </Styled.ProjectImage>
+                                <Styled.Info>
+                                    <Styled.Name>
                                         {project.projectTitle}
-                                    </div>
-                                    <div className="displayed-project-desc">
+                                    </Styled.Name>
+                                    <Styled.Desc>
                                         {project.projectDescription}
-                                    </div>
-                                    <div className="displayed-project-info-container">
-                                        <div className="displayed-project-by">
+                                    </Styled.Desc>
+                                    <Styled.FundingInfo>
+                                        <Styled.MadeBy>
                                             By: {project.createdBy}
-                                        </div>
-                                        <div className="displayed-project-funded">
+                                        </Styled.MadeBy>
+                                        <Styled.Number>
                                             ${formatNumber(project.moneyBacked)} pledged
-                                        </div>
-                                        <div className="percent-pledged">
-                                            <span className="percent-number">
-                                                {`${formatNumber(calculateProgress(project.fundingGoal, project.moneyBacked))}%`}
-                                            </span>
+                                        </Styled.Number>
+                                        <Styled.Percent>
+                                            {`${formatNumber(calculateProgress(project.fundingGoal, project.moneyBacked))}%`}
                                             <span>funded</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                        </Styled.Percent>
+                                    </Styled.FundingInfo>
+                                </Styled.Info>
+                            </Styled.Project>
                         )
                     })
                     :
                     projects.map((project) => {
                         if (project.category === category) {
                             return (
-                                <div
-                                    className="displayed-project-container"
+                                <Styled.Project
                                     key={project.id}
                                     onClick={() => {
                                         sessionStorage.setItem("currentProjectId", project.documentId);
                                         navigate(`/projects/${project.documentId}`);
                                     }}
                                 >
-                                    <div className="displayed-project-image">
-                                        <img
+                                    <Styled.ProjectImage>
+                                        <Styled.Image
+                                            alt="main image of the project"
                                             src={project.projectImageUrl}
-                                            className="displayed-image"
                                         />
-                                    </div>
-                                    <div className="displayed-project-info">
-                                        <div className="displayed-project-name">
+                                    </Styled.ProjectImage>
+                                    <Styled.Info>
+                                        <Styled.Name>
                                             {project.projectTitle}
-                                        </div>
-                                        <div className="displayed-project-desc">
+                                        </Styled.Name>
+                                        <Styled.Desc>
                                             {project.projectDescription}
-                                        </div>
-                                        <div className="displayed-project-info-container">
-                                            <div className="displayed-project-by">
+                                        </Styled.Desc>
+                                        <Styled.FundingInfo>
+                                            <Styled.MadeBy>
                                                 By: {project.createdBy}
-                                            </div>
-                                            <div className="displayed-project-funded">
+                                            </Styled.MadeBy>
+                                            <Styled.Number>
                                                 ${formatNumber(project.moneyBacked)} pledged
-                                            </div>
-                                            <div className="percent-pledged">
+                                            </Styled.Number>
+                                            <Styled.Percent>
                                                 <span className="percent-number">
                                                     {`${formatNumber(calculateProgress(project.fundingGoal, project.moneyBacked))
                                                         }`}
                                                 </span>
                                                 <span>% funded</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            </Styled.Percent>
+                                        </Styled.FundingInfo>
+                                    </Styled.Info>
+                                </Styled.Project>
                             )
                         }
                     })
             }
-        </div>
+        </Styled.Container>
     );
 }
 

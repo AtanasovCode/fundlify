@@ -99,6 +99,11 @@ export const Links = styled.div`
         align-items: flex-start;
         justify-content: flex-start;
     }
+    @media (max-width: 500px) {
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start;
+    } 
 `;
 
 export const NavLink = styled(Link)`

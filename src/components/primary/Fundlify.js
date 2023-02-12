@@ -48,6 +48,7 @@ const theme = {
     font: "#F9F9F9",
     fadedFont: "#888",
     creative: "rgb(97, 136, 255)",
+    moneyColor: "rgb(141, 255, 141)",
     logoColor: "#F9F9F9",
     fontFamily: "",
     fontBlack: "900",
@@ -59,6 +60,7 @@ const theme = {
     tint: "rgba(0, 0, 0, .666)",
 
     borderBg: "",
+    borderFaded: "#FFFFFF40",
 
     defaultBtn: "#75DDDD",
     defaultBtnHover: "#75FFFF",
