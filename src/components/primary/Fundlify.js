@@ -43,11 +43,11 @@ import '../../styles/fundlify.css';
 
 
 const theme = {
-    background: "#0A1B29", //"#0F1F2C",
+    background: "#111715", //"#0F1F2C",
 
-    font: "#F3DE8a",
-    fadedFontColor: "",
-    creativeFontColor: "",
+    font: "#F9F9F9",
+    fadedFont: "#888",
+    creative: "rgb(97, 136, 255)",
     fontFamily: "",
     fontBlack: "900",
     fontBold: "600",
@@ -55,7 +55,7 @@ const theme = {
     fontSlim: "300",
     fontExtraSlim: "100",
 
-    projectInfoTint: "",
+    tint: "rgba(0, 0, 0, .666)",
 
     borderBg: "",
 
@@ -65,13 +65,17 @@ const theme = {
     authBtnHover: "",
     googleAuthBtn: "",
     googleAuthBtnHover: "",
-    howItWorksBtn: "",
-    howItWorksBtnHover: "",
+    howItWorksBtn: "#68274A",
+    howItWorksBtnHover: "#943869",
+    getStartedBtn: "#2B2F23",
+    getStartedBtnHover: "#404634",
     pledgeBtn: "#09BC8A",
     pledgeBtnHover: "",
 
-    stepsBackground: "#005F64",
-    stepsFontColor: "",
+    stepsBackground: "#15258E",
+    stepsFontColor: "#fff",
+    stepsFadedFont: "#ffffff90",
+    stepIconBg: "#60AEBE",
 }
 
 const Fundlify = ({ app }) => {

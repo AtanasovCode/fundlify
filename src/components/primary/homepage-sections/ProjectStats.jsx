@@ -1,44 +1,52 @@
+import { useEffect } from 'react';
+import * as Styled from '../../../styles/ProjectStats.Styled';
+
 const ProjectStats = ({
     backers,
     totalFundsRaised,
-    formatNumber,
     totalProjects,
+    formatNumber,
 }) => {
+
+    useEffect(() => {
+        console.log(backers);
+    }, [])
+
     return (
-        <div className="funds-raised-full-container">
-            <div className="fundlify-funds-desc">
-                <div className="title">
+        <Styled.Container>
+            <Styled.Heading>
+                <Styled.Title>
                     Bring A
-                    <span className="creative">
+                    <Styled.Creative>
                         creative
-                    </span>
+                    </Styled.Creative>
                     Project To Life!
-                </div>
-                <div className="subtitle">
+                </Styled.Title>
+                <Styled.Subtitle>
                     On Fundlify:
-                </div>
-            </div>
-            <div className="funds-raised-container">
-                <div className="fund-stats-container">
-                    <div className="fund-number">
+                </Styled.Subtitle>
+            </Styled.Heading>
+            <Styled.Funds>
+                <Styled.FundStats>
+                    <Styled.FundNumber>
                         {formatNumber(totalProjects)}
-                    </div>
-                    <div className="fund-text">Projects Funded</div>
-                </div>
-                <div className="fund-stats-container">
-                    <div className="fund-number">
+                    </Styled.FundNumber>
+                    <Styled.FundText>Projects Funded</Styled.FundText>
+                </Styled.FundStats>
+                <Styled.FundStats>
+                    <Styled.FundNumber>
                         ${formatNumber(totalFundsRaised)}
-                    </div>
-                    <div className="fund-text">Funds Raised</div>
-                </div>
-                <div className="fund-stats-container">
-                    <div className="fund-number">
+                    </Styled.FundNumber>
+                    <Styled.FundText>Funds Raised</Styled.FundText>
+                </Styled.FundStats>
+                <Styled.FundStats>
+                    <Styled.FundNumber>
                         {formatNumber(backers)}
-                    </div>
-                    <div className="fund-text">Pledges Made</div>
-                </div>
-            </div>
-        </div>
+                    </Styled.FundNumber>
+                    <Styled.FundText>Pledges Made</Styled.FundText>
+                </Styled.FundStats>
+            </Styled.Funds>
+        </Styled.Container>
     );
 }
 

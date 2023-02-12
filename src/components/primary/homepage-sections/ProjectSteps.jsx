@@ -1,57 +1,59 @@
-
+import * as Styled from '../../../styles/ProjectSteps.Styled';
 
 const ProjectSteps = ({ }) => {
     return (
-        <div className="fund-steps-container">
-            <div className="fund-steps-desc">
-                <div className="fund-steps-sub-text">What to expect?</div>
-                <div className="fund-steps-heading">
+        <Styled.Container>
+            <Styled.Heading>
+                <Styled.Question>
+                    What to expect?
+                </Styled.Question>
+                <Styled.Title>
                     Fundraising on Fundlify
                     takes just a few minutes
-                </div>
-            </div>
-            <div className="steps-full-container">
-                <div className="step-container">
-                    <div className="step-icon">
+                </Styled.Title>
+            </Styled.Heading>
+            <Styled.StepsContainer>
+                <Styled.Step>
+                    <Styled.Number>
                         1
-                    </div>
-                    <div className="step-desc">
-                        <div className="step-desc-title">
+                    </Styled.Number>
+                    <Styled.StepDescription>
+                        <Styled.StepTitle>
                             Start with the basics
-                        </div>
-                        <div className="step-desc-sub-title">
+                        </Styled.StepTitle>
+                        <Styled.stepSubtitle>
                             Kick things off with your product name and description
-                        </div>
-                    </div>
-                </div>
-                <div className="step-container">
-                    <div className="step-icon">
+                        </Styled.stepSubtitle>
+                    </Styled.StepDescription>
+                </Styled.Step>
+                <Styled.Step>
+                    <Styled.Number>
                         2
-                    </div>
-                    <div className="step-desc">
-                        <div className="step-desc-title">
+                    </Styled.Number>
+                    <Styled.StepDescription>
+                        <Styled.StepTitle>
                             Describe your product
-                        </div>
-                        <div className="step-desc-sub-title">
+                        </Styled.StepTitle>
+                        <Styled.stepSubtitle>
                             We'll guide with tips along the way
-                        </div>
-                    </div>
-                </div>
-                <div className="step-container">
-                    <div className="step-icon">
+                        </Styled.stepSubtitle>
+                    </Styled.StepDescription>
+                </Styled.Step>
+                <Styled.Step>
+                    <Styled.Number>
                         3
-                    </div>
-                    <div className="step-desc">
-                        <div className="step-desc-title">
+                    </Styled.Number>
+                    <Styled.StepDescription>
+                        <Styled.StepTitle>
                             Share with the world
-                        </div>
-                        <div className="step-desc-sub-title">
+                        </Styled.StepTitle>
+                        <Styled.stepSubtitle>
                             People out there want to help you
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </Styled.stepSubtitle>
+                    </Styled.StepDescription>
+                </Styled.Step>
+            </Styled.StepsContainer>
+        </Styled.Container>
     );
 }
 

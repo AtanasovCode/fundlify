@@ -1,37 +1,36 @@
+import * as Styled from '../../../styles/GetStarted.Styled';
+
 const GetStarted = ({
     Link,
     illustration,
 }) => {
     return (
-        <div className="get-started-container">
-            <div className="get-started-text-container">
-                <div className="get-started-heading">
+        <Styled.Container>
+            <Styled.Info>
+                <Styled.Title>
                     Ready to get started?
                     Join thousands of others today!
-                </div>
-                <div className="get-started-btn">
-                    <Link
+                </Styled.Title>
+                <Styled.Buttons>
+                    <Styled.Button
                         to="/sign-up"
-                        className="create-acc-btn started-btn"
                     >
                         Get Started
-                    </Link>
-                    <Link
+                    </Styled.Button>
+                    <Styled.HIWBtn
                         to="/how-it-works"
-                        className="how-it-works-btn started-btn"
                     >
                         How it works
-                    </Link>
-                </div>
-            </div>
-            <div className="get-started-icon-container">
-                <img
+                    </Styled.HIWBtn>
+                </Styled.Buttons>
+            </Styled.Info>
+            <Styled.ImageContainer>
+                <Styled.Image
                     src={illustration}
                     alt="illustration"
-                    className="illustration-icon"
                 />
-            </div>
-        </div>
+            </Styled.ImageContainer>
+        </Styled.Container>
     );
 }
 

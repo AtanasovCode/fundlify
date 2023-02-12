@@ -85,15 +85,16 @@ const HomePage = ({
         return string.replace(/\b\w/g, l => l.toUpperCase())
     }
 
-    let total = 0;
-    let totalBackers = 0;
-    let totalFunds = 0;
+
 
     useEffect(() => {
+        let total = 0;
+        let totalBackers = 0;
+        let totalFunds = 0;
         if (projects) {
             projects.map((project) => {
                 total++;
-                totalBackers += project.backers;
+                totalBackers += parseInt(project.backers);
                 totalFunds += project.moneyBacked;
             })
             setTotalFundsRaised(totalFunds);
@@ -190,8 +191,7 @@ const HomePage = ({
                 formatNumber={formatNumber}
                 totalProjects={totalProjects}
                 totalFundsRaised={totalFundsRaised}
-                backer={backers}
-
+                backers={backers}
             />
             <ProjectSteps />
             <ExploreProjects 

@@ -1,97 +1,56 @@
+import * as Styled from '../../../styles/ExploreProjects.Styled';
+
 const ExploreProjects = ({
     navigate,
     popularProjects,
     calculateProgress,
 }) => {
     return (
-        <div className="most-popular-container">
-            <div className="most-popular-title">
+        <Styled.Container>
+            <Styled.Title>
                 Discover popular projects
-            </div>
-            <div className="popular-projects-container">
-                <div className="main-project-container">
-                    {
-                        popularProjects.map((project, i) => {
-                            if (i === 0) {
-                                return (
-                                    <div
-                                        className="main-project"
-                                        key={project.documentId}
-                                        onClick={() => {
-                                            sessionStorage.setItem("currentProjectId", project.documentId);
-                                            navigate(`/projects/${project.documentId}`);
-                                        }}
-                                    >
-                                        <div className="main-project-img-container">
-                                            <img
-                                                src={project.projectImageUrl}
-                                                className="main-project-img"
-                                            />
-                                        </div>
-                                        <div className="main-project-info">
-                                            <div className="main-project-heading">
-                                                <div className="main-project-name">
-                                                    {project.projectTitle}
-                                                </div>
-                                                <div className="main-project-desc">
-                                                    {project.projectDescription}
-                                                </div>
-                                            </div>
-                                            <div className="main-project-made-by">
-                                                By: {project.createdBy}
-                                            </div>
-                                            <div className="percent-funded">
-                                                {calculateProgress(project.fundingGoal, project.moneyBacked)}%
-                                                funded
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            }
-                        })
-                    }
-                </div>
-                <div className="side-projects-container">
-                    {
-                        popularProjects.map((project, i) => {
-                            if (i > 0 && i <= 3) {
-                                return (
-                                    <div
-                                        className="side-project"
-                                        key={project.documentId}
-                                        onClick={() => {
-                                            sessionStorage.setItem("currentProjectId", project.documentId);
-                                            navigate(`/projects/${project.documentId}`);
-                                        }}
-                                    >
-                                        <div className="side-project-img-container">
-                                            <img
-                                                src={project.projectImageUrl}
-                                                className="side-project-img"
-                                            />
-                                        </div>
-                                        <div className="side-project-info">
-                                            <div className="side-project-heading">
-                                                <div className="side-project-name">
-                                                    {project.projectTitle}
-                                                </div>
-                                                <div className="side-project-made-by">
-                                                    By: {project.createdBy}
-                                                </div>
-                                            </div>
-                                            <div className="side-project-percent">
-                                                {calculateProgress(project.fundingGoal, project.moneyBacked)}%
-                                                funded
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            }
-                        })
-                    }
-                </div>
-            </div>
-        </div>
+            </Styled.Title>
+            <Styled.Projects>
+                {
+                    popularProjects.map((project, i) => {
+                        if (i <= 2) {
+                            return (
+                                <Styled.Project
+                                    key={project.documentId}
+                                    onClick={() => {
+                                        sessionStorage.setItem("currentProjectId", project.documentId);
+                                        navigate(`/projects/${project.documentId}`);
+                                    }}
+                                >
+                                    <Styled.ProjectImageContainer>
+                                        <Styled.ProjectImage
+                                            src={project.projectImageUrl}
+                                        />
+                                    </Styled.ProjectImageContainer>
+                                    <Styled.ProjectInfo>
+                                        <Styled.ProjectHeading>
+                                            <Styled.ProjectName>
+                                                {project.projectTitle}
+                                            </Styled.ProjectName>
+                                            <Styled.ProjectDesc>
+                                                {project.projectDescription}
+                                            </Styled.ProjectDesc>
+                                        </Styled.ProjectHeading>
+                                        <Styled.MadeBy>
+                                            By: {project.createdBy}
+                                        </Styled.MadeBy>
+                                        <Styled.Percent>
+                                            {calculateProgress(project.fundingGoal, project.moneyBacked)}%
+                                            funded
+                                        </Styled.Percent>
+                                    </Styled.ProjectInfo>
+                                </Styled.Project>
+                            );
+                        }
+                    })
+                }
+            </Styled.Projects>
+        </Styled.Container>
     );
 }
 
