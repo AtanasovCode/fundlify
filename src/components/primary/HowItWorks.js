@@ -1,7 +1,6 @@
 import Nav from '../secondary/Nav';
 import * as Styled from '../../styles/HowItWorks.Styled';
 import image from '../../images/image/how-it-works.webp';
-import '../../styles/how-it-works.css';
 
 const HowItWorks = ({
     userLoggedIn,

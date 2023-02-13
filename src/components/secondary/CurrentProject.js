@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, } from "react-router-dom";
+import * as Styled from '../../styles/CurrentProject.Styled';
 import {
     collection,
     onSnapshot,
@@ -128,7 +129,7 @@ const CurrentProject = ({
                     isProjectOwner: false,
                 })
                     .then(() => {
-                        navigate(`../users/(${formatTextForURL(sessionStorage.getItem("username"))}`, {replace: true});
+                        navigate(`../users/(${formatTextForURL(sessionStorage.getItem("username"))}`, { replace: true });
                     })
                     .catch((err) => {
                         console.log(err.message);
@@ -141,85 +142,83 @@ const CurrentProject = ({
 
 
     return (
-        <div className="current-project-full-container">
+        <Styled.Container>
             <Nav
-                grow={grow}
-                sticky={sticky}
+                grow={true}
+                sticky={true}
                 userLoggedIn={userLoggedIn}
                 user={user}
             />
             {
                 currentProject.map((project) => {
                     return (
-                        <div className="current-project-container" key={project.documentId}>
+                        <Styled.Project key={project.documentId}>
                             <NoPermission
                                 permissionType="donation"
                                 showPopUp={showPopUp}
                                 handleClosePopUp={handleClosePopUp}
                             />
-                            <div className="current-project-title-container">
-                                <div className="current-project-title">
+                            <Styled.Heading>
+                                <Styled.Title>
                                     {project.projectTitle}
-                                </div>
-                            </div>
-                            <div className="current-project-info-container">
-                                <div className="current-project-image-container">
-                                    <img
+                                </Styled.Title>
+                            </Styled.Heading>
+                            <Styled.Info>
+                                <Styled.ImageContainer>
+                                    <Styled.Image
                                         alt="project image"
                                         src={project.projectImageUrl}
-                                        className="current-project-image"
                                     />
-                                    <div className="current-project-category-container">
-                                        <div className="current-project-category">
-                                            <img
+                                    <Styled.Categories>
+                                        <Styled.Category>
+                                            <Styled.CategoryIcon
                                                 src={categoryIcon}
-                                                className="category-icon"
                                             />
-                                            {formatString(project.category)}
-                                        </div>
-                                        <div className="current-project-category">
-                                            <img
+                                            <Styled.CategoryName>
+                                                {formatString(project.category)}
+                                            </Styled.CategoryName>
+                                        </Styled.Category>
+                                        <Styled.Category>
+                                            <Styled.CategoryIcon
                                                 src={subCategoryIcon}
-                                                className="category-icon"
                                             />
-                                            {formatString(project.subCategory)}
-                                        </div>
-                                        <div className="current-project-category">
-                                            <img
+                                            <Styled.CategoryName>
+                                                {formatString(project.subCategory)}
+                                            </Styled.CategoryName>
+                                        </Styled.Category>
+                                        <Styled.Category>
+                                            <Styled.CategoryIcon
                                                 src={locationIcon}
-                                                className="category-icon"
                                             />
-                                            {formatString(project.location)}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="current-project-funding-container">
-                                    <div className="progress-bar">
-                                        <div className="progress" style={{
-                                            width: `${calculateProgress(project.fundingGoal, project.moneyBacked)}%`
-                                        }}></div>
-                                    </div>
-                                    <div className="backers-info-container">
-                                        <div className="current-project-funds-raised-container">
-                                            <div className="current-project-number-bold money">
-                                                ${formatNumber(project.moneyBacked)}
-                                            </div>
-                                            <div className="current-project-text-sub">
-                                                out of
-                                                <span className="money-goal">${formatNumber(project.fundingGoal)}</span>
-                                                goal
-                                            </div>
-                                        </div>
-                                        <div className="current-project-backers-container">
-                                            <div className="current-project-number-bold">
-                                                {project.backers}
-                                            </div>
-                                            <div className="current-project-text-sub">
-                                                backers
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="back-project-btn-container">
+                                            <Styled.CategoryName>
+                                                {formatString(project.location)}
+                                            </Styled.CategoryName>
+                                        </Styled.Category>
+                                    </Styled.Categories>
+                                </Styled.ImageContainer>
+                                <Styled.Funding>
+                                    <Styled.ProgressBar>
+                                        <Styled.Progress progress={calculateProgress(project.fundingGoal, project.moneyBacked)}></Styled.Progress>
+                                    </Styled.ProgressBar>
+                                    <Styled.Funds>
+                                        <Styled.FundingMoney>
+                                            ${formatNumber(project.moneyBacked)}
+                                        </Styled.FundingMoney>
+                                        <Styled.FundingText>
+                                            out of
+                                            <Styled.MoneyGoal>${formatNumber(project.fundingGoal)}</Styled.MoneyGoal>
+                                            goal
+                                        </Styled.FundingText>
+                                    </Styled.Funds>
+                                    <Styled.Funds>
+                                        <Styled.FundingNumber>
+                                            {project.backers}
+                                        </Styled.FundingNumber>
+                                        <Styled.FundingText color="${props => props.theme.font}">
+                                            backers
+                                        </Styled.FundingText>
+                                    </Styled.Funds>
+                                    <Styled.BackProject>
                                         {
                                             sessionStorage.getItem("userId") === project.documentId ?
                                                 <div
@@ -229,21 +228,20 @@ const CurrentProject = ({
                                                     Delete my project
                                                 </div>
                                                 :
-                                                <div
-                                                    className="back-project-btn"
+                                                <Styled.Button
                                                     onClick={handleDonateToProject}
                                                 >
                                                     Back this project
-                                                </div>
+                                                </Styled.Button>
                                         }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    </Styled.BackProject>
+                                </Styled.Funding>
+                            </Styled.Info>
+                        </Styled.Project>
                     );
                 })
             }
-        </div>
+        </Styled.Container>
     );
 }
 

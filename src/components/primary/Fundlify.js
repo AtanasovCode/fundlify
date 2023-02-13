@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
+import * as Styled from '../../styles/Fundlify.Styled';
 import {
     getAuth,
     onAuthStateChanged,
@@ -48,7 +49,7 @@ const theme = {
     font: "#F9F9F9",
     fadedFont: "#888",
     creative: "rgb(97, 136, 255)",
-    moneyColor: "rgb(141, 255, 141)",
+    fontMoney: "#38E000",
     logoColor: "#F9F9F9",
     fontFamily: "",
     fontBlack: "900",
@@ -58,12 +59,20 @@ const theme = {
     fontExtraSlim: "100",
 
     tint: "rgba(0, 0, 0, .666)",
+    lightTint: "rgba(0, 0, 0, .444)",
 
     borderBg: "",
     borderFaded: "#FFFFFF40",
 
+    progressBar: "rgb(52, 49, 49);",
+    progress: "#38E000",
+
     defaultBtn: "#75DDDD",
     defaultBtnHover: "#75FFFF",
+    fundButton: "#68274A",
+    fundButtonHover: "#943869",
+    addProjectBtn: "#111715",
+    addProjectBtnHover: "#1d2522",
     authBtn: "#333",
     authBtnHover: "",
     googleAuthBtn: "",
@@ -208,7 +217,7 @@ const Fundlify = ({ app }) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <div className="app">
+            <Styled.App>
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<HomePage
@@ -361,7 +370,7 @@ const Fundlify = ({ app }) => {
                         <Route path="/how-it-works" element={<HowItWorks userLoggedIn={userLoggedIn} />} />
                     </Routes>
                 </BrowserRouter>
-            </div>
+            </Styled.App>
         </ThemeProvider>
     );
 }

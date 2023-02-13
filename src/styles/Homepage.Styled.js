@@ -27,6 +27,33 @@ export const NavigationImage = styled.div`
     background-size: cover;
 `;
 
+
+export const Button = styled.div`
+    z-index: 3;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    background-color: ${props => props.theme.addProjectBtn};
+    width: 250px;
+    padding: 20px 25px;
+    border-radius: 22px;
+    &:hover {
+        background-color: ${props => props.theme.addProjectBtnHover};
+    }
+`;
+
+export const ButtonText = styled.div`
+    font-size: 15px;
+`;
+
+export const ButtonImage = styled.img`
+    width: 22px;
+    height: 22px;
+`;
+
+
 export const LoginBox = styled.div`
     max-width: 500px;
     width: 90vw;

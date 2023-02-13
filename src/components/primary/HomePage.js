@@ -13,7 +13,6 @@ import ExploreProjects from './homepage-sections/ExploreProjects';
 import GetStarted from './homepage-sections/GetStarted';
 import Nav from '../secondary/Nav';
 import NoPermission from '../secondary/NoPermission';
-import '../../styles/homepage.css';
 import illustration from '../../images/icons/illustration.svg';
 import categoryIcon from '../../images/icons/category.png';
 import subCategoryIcon from '../../images/icons/sub-category.png';
@@ -173,19 +172,17 @@ const HomePage = ({
                     showPopUp={showPopUp}
                     handleClosePopUp={handleClosePopUp}
                 />
-                <div
-                    className="add-project-btn-container"
+                <Styled.Button
                     onClick={handleAddProject}
                 >
-                    <div className="add-project-text">
+                    <Styled.ButtonText>
                         Add Fundlify Project
-                    </div>
-                    <img
+                    </Styled.ButtonText>
+                    <Styled.ButtonImage
                         src={group}
-                        className="group-icon"
                         alt="group icon"
                     />
-                </div>
+                </Styled.Button>
             </Styled.Navigation>
             <ProjectStats 
                 formatNumber={formatNumber}

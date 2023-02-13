@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import * as Styled from '../../styles/DisplayProject.Styled'
 import { useNavigate, Link } from 'react-router-dom';
-import '../../styles/discover.css';
 import FundProject from './FundProject';
 import Loading from './Loading';
 
