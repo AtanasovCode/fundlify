@@ -2,22 +2,15 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
     background-color: ${props => props.theme.background};
 `;
 
 export const Project = styled.div`
-    width: 100%;
-    padding: 35px;
-    padding-top: 100px;
+    padding: 100px 40px 40px 40px;
     color: ${props => props.theme.font};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 45px;
+    @media (max-width: 800px) {
+        padding: 100px 15px 40px 15px;
+    }
 `;
 
 export const Heading = styled.div`
@@ -40,17 +33,15 @@ export const Title = styled.div`
 `;
 
 export const Info = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px;
     @media (max-width: 800px) {
-        flex-direction: column;   
+        grid-template-columns: 1fr;
     }
 `;
 
 export const ImageContainer = styled.div`
-    width: 65vw;
-    height: 85vh;
     max-width: 900px;
     max-height: 400px;
     display: flex;
@@ -59,16 +50,7 @@ export const ImageContainer = styled.div`
     justify-content: center;
     position: relative;
     @media (max-width: 800px) {
-        width: 85vw;
-        max-width: 600px;
-        margin-bottom: 45px;
-    }
-    @media (max-width: 600px) {
-        align-items: center;
-    }
-    @media (max-width: 500px) {
-        width: 90vw;
-        max-width: 400px;
+        min-height: 300px;
     }
 `;
 
@@ -103,8 +85,9 @@ export const Category = styled.div`
         aligm-items: center;
         justify-content: flex-start;
         padding: 10px 0;
+        padding-right: 4px;
         padding-right: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         background-color: ${props => props.theme.background};
         height: 35px;
         max-height: 35px;
@@ -118,9 +101,13 @@ export const Category = styled.div`
 export const CategoryName = styled.div`
     font-size: 14px;
     color: ${props => props.theme.fontFaded};
-    @media (max-width: 600px) {
-        font-size: 11px;
+    @media (max-width: 800px) {
+        font-size: 12px;
         font-weight: 300;
+    }
+    @media (max-width: 500px) {
+        font-size: 11px;
+        font-weight: 200;
     }
 `;
 
@@ -128,16 +115,13 @@ export const CategoryIcon = styled.img`
     width: 20px;
     height: 20px;
     margin-right: 8px;
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
         width: 15px;
         height: 15px;
     }
 `;
 
 export const Funding = styled.div`
-    width: 35%;
-    margin-left: 30px;
-    height: 85vh;
     max-height: 400px;
     max-width: 500px;
     display: flex;
