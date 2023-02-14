@@ -37,7 +37,7 @@ import ProjectRewards from "../secondary/ProjectRewards";
 import Congratulations from "../secondary/Congratulations";
 import CurrentProject from "../secondary/CurrentProject";
 import Discover from "./Discover";
-import FundProject from "../secondary/FundProject";
+import FundProject from "../primary/FundProject";
 import DonationFinished from "../secondary/DonationFinished";
 import HowItWorks from "./HowItWorks";
 import '../../styles/fundlify.css';

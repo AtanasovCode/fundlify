@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import * as Styled from '../../styles/DisplayProject.Styled'
 import { useNavigate, Link } from 'react-router-dom';
-import FundProject from './FundProject';
+import FundProject from '../primary/FundProject';
 import Loading from './Loading';
 
 const DisplayProject = ({
