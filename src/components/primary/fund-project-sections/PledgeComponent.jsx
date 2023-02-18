@@ -1,29 +1,39 @@
+import * as Styled from '../../../styles/PledgeComponent.Styled';
+import { Container, Pledge, Input, Button } from '../../../styles/NoRewardsPledge.Styled';
 
-
-
-const PledgeComponent = () => {
+const PledgeComponent = ({
+    project,
+    preventLetters,
+    formatNumber,
+    pledgeAmount,
+    setPledgeAmount,
+    handleFundProject,
+    pledge,
+    tier,
+    reward,
+    backers,
+}) => {
     return (
-        <div className="pledge-container">
-            <div className="pledge-amount">
-                Pledge ${project.pledge1}
-            </div>
-            <div className="tier-pledge-name">
-                {project.tierOne}
-            </div>
-            <div className="tier-description">
-                {project.reward1}
-            </div>
-            <div className="tier-backers-amount">
-                {project.backersTierOne} backers
-            </div>
-            <div className="pledge-input-container">
-                <div className="pledge-input-label">
-                    Bonus support <span className="optional">(Optional)</span>
-                </div>
-                <div className="pledge-input">
-                    <input
+        <Container>
+            <Styled.Title>
+                Pledge ${pledge}
+            </Styled.Title>
+            <Styled.Tier>
+                {tier}
+            </Styled.Tier>
+            <Styled.Reward>
+                {reward}
+            </Styled.Reward>
+            <Styled.Backers>
+                {backers} backers
+            </Styled.Backers>
+            <Styled.Pledge>
+                <Styled.Bonus>
+                    Bonus support <Styled.Optional>(Optional)</Styled.Optional>
+                </Styled.Bonus>
+                <Pledge>
+                    <Input
                         type="input"
-                        className="pledge-input-amount"
                         placeholder="10"
                         maxLength={4}
                         onKeyPress={(e) => preventLetters(e)}
@@ -31,23 +41,22 @@ const PledgeComponent = () => {
                             setPledgeAmount(e.currentTarget.value);
                         }}
                     />
-                    <input
+                    <Button
                         type="button"
-                        className="pledge-btn"
                         value={
                             pledgeAmount !== "" ?
-                                `Pledge $${formatNumber(parseInt(project.pledge1) + parseInt(pledgeAmount))}`
+                                `Pledge $${formatNumber(parseInt(pledge) + parseInt(pledgeAmount))}`
                                 :
-                                `Pledge $${formatNumber(parseInt(project.pledge1))}`
+                                `Pledge $${formatNumber(parseInt(pledge))}`
                         }
                         onClick={() => {
                             let backersTier = "backersTierOne";
-                            handleFundProject(project.pledge1, backersTier)
+                            handleFundProject(pledge, backersTier)
                         }}
                     />
-                </div>
-            </div>
-        </div>
+                </Pledge>
+            </Styled.Pledge>
+        </Container>
     );
 }
 

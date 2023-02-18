@@ -122,7 +122,7 @@ const FundProject = ({
 
     return (
         <Styled.FullContainer>
-            <Nav grow={true} sticky={true} userLoggedIn={userLoggedIn} />
+            <Nav grow={true} sticky={false} userLoggedIn={userLoggedIn} />
             {
                 project ?
                     project.map((project) => {
@@ -136,160 +136,63 @@ const FundProject = ({
                                         {project.projectDescription}
                                     </Styled.SubTitle>
                                 </Styled.Heading>
-                                <Styled.Funding>
-                                    <div className="rewards-pledge-container">
-                                        <div className="rewards-pledge-heading">
-                                            <div className="rewards-pledge-title">
+                                <Styled.FundingFAQ>
+                                    <Styled.Funding>
+                                        <Styled.PledgeHeading>
+                                            <Styled.PledgeTitle>
                                                 Select your reward
-                                            </div>
-                                            <div className="rewards-pledge-subtitle">
+                                            </Styled.PledgeTitle>
+                                            <Styled.PledgeSubtitle>
                                                 Select an option below
-                                            </div>
-                                        </div>
-                                        
-
-                                        <div className="pledge-container">
-                                            <div className="pledge-amount">
-                                                Pledge ${project.pledge1}
-                                            </div>
-                                            <div className="tier-pledge-name">
-                                                {project.tierOne}
-                                            </div>
-                                            <div className="tier-description">
-                                                {project.reward1}
-                                            </div>
-                                            <div className="tier-backers-amount">
-                                                {project.backersTierOne} backers
-                                            </div>
-                                            <div className="pledge-input-container">
-                                                <div className="pledge-input-label">
-                                                    Bonus support <span className="optional">(Optional)</span>
-                                                </div>
-                                                <div className="pledge-input">
-                                                    <input
-                                                        type="input"
-                                                        className="pledge-input-amount"
-                                                        placeholder="10"
-                                                        maxLength={4}
-                                                        onKeyPress={(e) => preventLetters(e)}
-                                                        onChange={(e) => {
-                                                            setPledgeAmount(e.currentTarget.value);
-                                                        }}
-                                                    />
-                                                    <input
-                                                        type="button"
-                                                        className="pledge-btn"
-                                                        value={
-                                                            pledgeAmount !== "" ?
-                                                                `Pledge $${formatNumber(parseInt(project.pledge1) + parseInt(pledgeAmount))}`
-                                                                :
-                                                                `Pledge $${formatNumber(parseInt(project.pledge1))}`
-                                                        }
-                                                        onClick={() => {
-                                                            let backersTier = "backersTierOne";
-                                                            handleFundProject(project.pledge1, backersTier)
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="pledge-container">
-                                            <div className="pledge-amount">
-                                                Pledge ${project.pledge2}
-                                            </div>
-                                            <div className="tier-pledge-name">
-                                                {project.tierTwo}
-                                            </div>
-                                            <div className="tier-description">
-                                                {project.reward2}
-                                            </div>
-                                            <div className="tier-backers-amount">
-                                                {project.backersTierTwo} backers
-                                            </div>
-                                            <div className="pledge-input-container">
-                                                <div className="pledge-input-label">
-                                                    Bonus support <span className="optional">(Optional)</span>
-                                                </div>
-                                                <div className="pledge-input">
-                                                    <input
-                                                        type="input"
-                                                        className="pledge-input-amount"
-                                                        placeholder="10"
-                                                        maxLength={4}
-                                                        onKeyPress={(e) => preventLetters(e)}
-                                                        onChange={(e) => {
-                                                            setPledgeAmount(e.currentTarget.value);
-                                                        }}
-                                                    />
-                                                    <input
-                                                        type="button"
-                                                        className="pledge-btn"
-                                                        value={
-                                                            pledgeAmount !== "" ?
-                                                                `Pledge $${formatNumber(parseInt(project.pledge2) + parseInt(pledgeAmount))}`
-                                                                :
-                                                                `Pledge $${parseInt(formatNumber(project.pledge2))}`
-                                                        }
-                                                        onClick={() => {
-                                                            let backersTier = "backersTierTwo";
-                                                            handleFundProject(project.pledge2, backersTier)
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="pledge-container">
-                                            <div className="pledge-amount">
-                                                Pledge ${project.pledge3}
-                                            </div>
-                                            <div className="tier-pledge-name">
-                                                {project.tierThree}
-                                            </div>
-                                            <div className="tier-description">
-                                                {project.reward3}
-                                            </div>
-                                            <div className="tier-backers-amount">
-                                                {project.backersTierThree} backers
-                                            </div>
-                                            <div className="pledge-input-container">
-                                                <div className="pledge-input-label">
-                                                    Bonus support <span className="optional">(Optional)</span>
-                                                </div>
-                                                <div className="pledge-input">
-                                                    <input
-                                                        type="input"
-                                                        className="pledge-input-amount"
-                                                        placeholder="10"
-                                                        maxLength={4}
-                                                        onKeyPress={(e) => preventLetters(e)}
-                                                        onChange={(e) => {
-                                                            setPledgeAmount(e.currentTarget.value);
-                                                        }}
-                                                    />
-                                                    <input
-                                                        type="button"
-                                                        className="pledge-btn"
-                                                        value={
-                                                            pledgeAmount !== "" ?
-                                                                `Pledge $${formatNumber(parseInt(project.pledge3) + parseInt(pledgeAmount))}`
-                                                                :
-                                                                `Pledge $${parseInt(project.pledge3)}`
-                                                        }
-                                                        onClick={() => {
-                                                            let backersTier = "backersTierThree";
-                                                            handleFundProject(project.pledge3, backersTier);
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Styled.Funding>
-                                <FAQ 
-                                    faqClassName={faqClassName}
-                                />
+                                            </Styled.PledgeSubtitle>
+                                        </Styled.PledgeHeading>
+                                        <NoRewardPledge
+                                            fundNoReward={fundNoReward}
+                                            preventLetters={preventLetters}
+                                            setFundNoReward={setFundNoReward}
+                                            handleFundNoReward={handleFundNoReward}
+                                        />
+                                        <PledgeComponent
+                                            project={project}
+                                            preventLetters={preventLetters}
+                                            pledgeAmount={pledgeAmount}
+                                            setPledgeAmount={setPledgeAmount}
+                                            formatNumber={formatNumber}
+                                            handleFundProject={handleFundNoReward}
+                                            pledge={project.pledge1}
+                                            tier={project.tierOne}
+                                            reward={project.reward1}
+                                            backers={project.backersTierOne}
+                                        />
+                                        <PledgeComponent
+                                            project={project}
+                                            preventLetters={preventLetters}
+                                            pledgeAmount={pledgeAmount}
+                                            setPledgeAmount={setPledgeAmount}
+                                            formatNumber={formatNumber}
+                                            handleFundProject={handleFundNoReward}
+                                            pledge={project.pledge2}
+                                            tier={project.tierTwo}
+                                            reward={project.reward2}
+                                            backers={project.backersTierTwo}
+                                        />
+                                        <PledgeComponent
+                                            project={project}
+                                            preventLetters={preventLetters}
+                                            pledgeAmount={pledgeAmount}
+                                            setPledgeAmount={setPledgeAmount}
+                                            formatNumber={formatNumber}
+                                            handleFundProject={handleFundNoReward}
+                                            pledge={project.pledge3}
+                                            tier={project.tierThree}
+                                            reward={project.reward3}
+                                            backers={project.backersTierThree}
+                                        />
+                                    </Styled.Funding>
+                                    <FAQ
+                                        faqClassName={faqClassName}
+                                    />
+                                </Styled.FundingFAQ>
                             </Styled.Container>
                         );
                     })
