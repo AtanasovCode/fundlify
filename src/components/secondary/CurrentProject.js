@@ -200,24 +200,26 @@ const CurrentProject = ({
                                     <Styled.ProgressBar>
                                         <Styled.Progress progress={calculateProgress(project.fundingGoal, project.moneyBacked)}></Styled.Progress>
                                     </Styled.ProgressBar>
-                                    <Styled.Funds>
-                                        <Styled.FundingMoney>
-                                            ${formatNumber(project.moneyBacked)}
-                                        </Styled.FundingMoney>
-                                        <Styled.FundingText>
-                                            out of
-                                            <Styled.MoneyGoal>${formatNumber(project.fundingGoal)}</Styled.MoneyGoal>
-                                            goal
-                                        </Styled.FundingText>
-                                    </Styled.Funds>
-                                    <Styled.Funds>
-                                        <Styled.FundingNumber>
-                                            {project.backers}
-                                        </Styled.FundingNumber>
-                                        <Styled.FundingText color="${props => props.theme.font}">
-                                            backers
-                                        </Styled.FundingText>
-                                    </Styled.Funds>
+                                    <Styled.FundsContainer>
+                                        <Styled.Funds>
+                                            <Styled.FundingMoney>
+                                                ${formatNumber(project.moneyBacked)}
+                                            </Styled.FundingMoney>
+                                            <Styled.FundingText>
+                                                out of
+                                                <Styled.MoneyGoal>${formatNumber(project.fundingGoal)}</Styled.MoneyGoal>
+                                                goal
+                                            </Styled.FundingText>
+                                        </Styled.Funds>
+                                        <Styled.Funds>
+                                            <Styled.FundingNumber>
+                                                {project.backers}
+                                            </Styled.FundingNumber>
+                                            <Styled.FundingText color="${props => props.theme.font}">
+                                                backers
+                                            </Styled.FundingText>
+                                        </Styled.Funds>
+                                    </Styled.FundsContainer>
                                     <Styled.BackProject>
                                         {
                                             sessionStorage.getItem("userId") === project.documentId ?

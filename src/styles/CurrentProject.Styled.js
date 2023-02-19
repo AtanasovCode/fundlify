@@ -161,6 +161,18 @@ export const Progress = styled.div`
     background-color: ${props => props.theme.progress};
 `;
 
+export const FundsContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 800px) {
+        flex-direction: row;
+        padding-top: 30px;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+`;
+
 export const Funds = styled.div`
     display: flex;
     flex-direction: column;
