@@ -19,7 +19,7 @@ export const Projects = styled.div`
     padding: 40px 60px;
     max-width: 1440px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     grid-gap: 35px;
     @media (max-width: 1000px) {
         padding: 40px 30px;
@@ -44,6 +44,10 @@ export const Project = styled.div`
     justify-content: flex-end;
     border-radius: 22px;
     overflow: hidden;
+`;
+
+export const SplitProject = styled(Project)`
+    width: 100%;
 `;
 
 export const ProjectImageContainer = styled.div`
@@ -72,6 +76,12 @@ export const ProjectInfo = styled.div`
     background-color: ${props => props.theme.tint};
 `;
 
+export const SplitProjectInfo = styled(ProjectInfo)`
+    margin-top: 125px;
+    align-items: space-evenly;
+    width: 100%;
+`;
+
 export const ProjectHeading = styled.div`
 
 `;
@@ -91,6 +101,10 @@ export const ProjectName = styled.div`
     }
 `;
 
+export const SplitProjectName = styled(ProjectName)`
+    padding-bottom: 10px;
+`;
+
 export const ProjectDesc = styled.div`
     font-size: 15px;
     font-weight: 400;
@@ -107,3 +121,14 @@ export const MadeBy = styled.div`
     color: darkgray;
     padding-bottom: 10px;
 `;
+
+
+
+export const SplitProjects = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    place-items: center;
+`;
+
+

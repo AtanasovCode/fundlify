@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     padding: 70px 40px;
-    background-color: ${props => props.theme.stepsBackground};
+    background: ${props => props.theme.stepsBackground};
     color: ${props => props.theme.stepsFontColor};
     display: flex;
     flex-direction: column;

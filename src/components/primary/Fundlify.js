@@ -44,7 +44,7 @@ import '../../styles/fundlify.css';
 
 
 const theme = {
-    background: "#111715", //"#0F1F2C",
+    background: "#010400", //"#111715", //"#0F1F2C",
 
     font: "#F9F9F9",
     fadedFont: "#888",
@@ -84,10 +84,10 @@ const theme = {
     pledgeBtn: "#09BC8A",
     pledgeBtnHover: "",
 
-    stepsBackground: "#15258E",
-    stepsFontColor: "#fff",
+    stepsBackground: "#F0F0C9", //"linear-gradient(to right, #010400 50%, #69121D, #B01C41)", //"#15258E",
+    stepsFontColor: "#010400",
     stepsFadedFont: "#ffffff90",
-    stepIconBg: "#60AEBE",
+    stepIconBg: "#010400",
 }
 
 const Fundlify = ({ app }) => {
