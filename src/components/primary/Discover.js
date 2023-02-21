@@ -23,14 +23,15 @@ const Discover = ({
     formatTextForUrl,
 }) => {
 
-    const [grow, setGrow] = useState(true);
     const [projects, setProjects] = useState([]);
     const [filterCategory, setFilterCategory] = useState("all-categories");
+    const [orderDataBy, setOrderDataBy] = useState("moneyBacked");
+    const [filterBy, setFilterBy] = useState("desc");
     const [projectCount, setProjectCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
     const colRef = collection(db, "projects");
-    const q = query(colRef, orderBy("moneyBacked", "desc"));
+    const q = query(colRef, orderBy('moneyBacked', 'desc'));
 
     useEffect(() => {
         onSnapshot(q, (snapshot) => {
@@ -56,18 +57,36 @@ const Discover = ({
         }
     }, [projects])
 
-    useEffect(() => {
-        if (filterCategory === "all-categories") return;
+    const handleCutString = (string) => { //Replace the string after a certain point with '...'
+        let result = string;
+        if (string.length > 70) {
+            result = string.slice(0, 70).trimEnd() + "...";
+        }
 
-        const q = query(colRef, where("category", "==", filterCategory));
-        onSnapshot(q, (snapshot) => {
-            let project = [];
-            snapshot.docs.forEach((doc) => {
-                project.push({ ...doc.data(), id: doc.id });
+        return result;
+    }
+
+    useEffect(() => {
+        if (filterCategory === "all-categories") {
+            const q = query(colRef, orderBy(orderDataBy, filterBy));
+            onSnapshot(q, (snapshot) => {
+                let project = [];
+                snapshot.docs.forEach((doc) => {
+                    project.push({ ...doc.data(), id: doc.id });
+                })
+                setProjects(project)
             })
-            setProjects(project)
-        })
-    }, [])
+        } else if (filterCategory != "") {
+            const q = query(colRef, where("category", "==", filterCategory), orderBy(orderDataBy, filterBy));
+            onSnapshot(q, (snapshot) => {
+                let project = [];
+                snapshot.docs.forEach((doc) => {
+                    project.push({ ...doc.data(), id: doc.id });
+                })
+                setProjects(project)
+            })
+        }
+    }, [filterCategory, orderDataBy, filterBy])
 
     const formatNumber = (number) => {
         return parseInt(number).toLocaleString('en-US');
@@ -106,46 +125,15 @@ const Discover = ({
                     <Styled.Input
                         defaultValue="most-funded"
                         onChange={(e) => {
-                            if (e.currentTarget.value === "newest") {
-                                const q = query(colRef, orderBy("createdAt", "desc"));
-                                onSnapshot(q, (snapshot) => {
-                                    let project = [];
-                                    snapshot.docs.forEach((doc) => {
-                                        project.push({ ...doc.data(), id: doc.id });
-                                    })
-                                    setProjects(project)
-                                })
-                            }
-                            if (e.currentTarget.value === "oldest") {
-                                const q = query(colRef, orderBy("createdAt", "asc"));
-                                onSnapshot(q, (snapshot) => {
-                                    let project = [];
-                                    snapshot.docs.forEach((doc) => {
-                                        project.push({ ...doc.data(), id: doc.id });
-                                    })
-                                    setProjects(project)
-                                })
-                            }
-                            if (e.currentTarget.value === "most-funded") {
-                                const q = query(colRef, orderBy("moneyBacked", "desc"));
-                                onSnapshot(q, (snapshot) => {
-                                    let project = [];
-                                    snapshot.docs.forEach((doc) => {
-                                        project.push({ ...doc.data(), id: doc.id });
-                                    })
-                                    setProjects(project)
-                                })
-                            }
-                            if (e.currentTarget.value === "most-backers") {
-                                const q = query(colRef, orderBy("backers", "desc"));
-                                onSnapshot(q, (snapshot) => {
-                                    let project = [];
-                                    snapshot.docs.forEach((doc) => {
-                                        project.push({ ...doc.data(), id: doc.id });
-                                    })
-                                    setProjects(project)
-                                })
-                            }
+                            if (e.currentTarget.value === "newest") setOrderDataBy("createdAt");
+                            if (e.currentTarget.value === "oldest") setOrderDataBy("createdAt");
+                            if (e.currentTarget.value === "most-funded") setOrderDataBy("moneyBacked");
+                            if (e.currentTarget.value === "most-backers") setOrderDataBy("backers");
+
+                            if (e.currentTarget.value === "newest") setFilterBy("desc");
+                            if(e.currentTarget.value === "most-backers") setFilterBy("desc");
+                            if(e.currentTarget.value === "most-funded") setFilterBy("desc");
+                            if(e.currentTarget.value === "oldest") setFilterBy("asc");
                         }}
                     >
                         <option value="newest">
@@ -163,11 +151,13 @@ const Discover = ({
                     </Styled.Input>
                 </Styled.Filter>
             </Styled.Filters>
+            <Styled.Heading>
+                Explore {projectCount} projects
+            </Styled.Heading>
             <DisplayProject
                 projects={projects}
-                projectCount={projectCount}
-                category={filterCategory}
                 formatNumber={formatNumber}
+                handleCutString={handleCutString}
             />
         </Styled.Container>
     );

@@ -68,12 +68,12 @@ const Nav = ({
                 </Styled.NavLink>
                 {
                     userLoggedIn ?
-                        <Styled.NavLink to={`/users/${formatTextForURL(sessionStorage.getItem("username"))}`}>
+                        <Styled.Profile to={`/users/${formatTextForURL(sessionStorage.getItem("username"))}`}>
                             <Styled.ProfileIcon
                                 src={pfp}
                                 alt="profile icon"
                             />
-                        </Styled.NavLink>
+                        </Styled.Profile>
                         :
                         <Styled.NavLink to="/sign-in">
                             Log In

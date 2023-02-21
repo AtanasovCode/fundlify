@@ -124,7 +124,7 @@ export const NavLink = styled(Link)`
 `;
 
 
-export const Profile = styled.div`
+export const Profile = styled(Link)`
     width: 35px;
     height: 35px;
     padding: 0;

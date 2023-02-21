@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 export const Container = styled.div`
     padding-top: 50px;
     max-width: 1440px;
-    background-color: var(--main-bg);
-    color: #fff;
+    background-color: ${props => props.theme.background};
+    color: ${props => props.theme.font};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,7 +59,7 @@ export const Input = styled.input`
     height: 50px;
     width: 80%;
     margin-bottom: 30px;
-    background-color: transparent;
+    background-color: ${props => props.theme.authBtn};
     color: #fff;
     padding-left: 10px;
     border: 1px solid #ffffff40;
@@ -85,7 +85,7 @@ export const AlternateOption = styled.div`
 
 export const InputGoogle = styled(Input)`
     height: 60px;
-    background-color: #F7F4F3;
+    background-color: ${props => props.theme.googleAuthBtn};
     color: #000;
     margin-top: 35px;
     &:hover {

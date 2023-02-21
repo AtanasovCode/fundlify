@@ -21,6 +21,8 @@ export const Filters = styled.div`
     }
 `;
 
+
+
 export const Filter = styled.div`
     font-size: 18px;
     display: flex;
@@ -59,4 +61,14 @@ export const Input = styled.select`
     @media (max-width: 400px) {
         width: 250px;
     }
-`;   
+`;
+
+export const Heading = styled.div`
+    font-size: 22px;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 25px;
+`;

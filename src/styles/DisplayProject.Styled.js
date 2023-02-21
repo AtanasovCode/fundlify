@@ -6,7 +6,7 @@ export const Container = styled.div`
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 35px;
     place-content: center;
-    padding: 120px 20px 60px 20px;
+    padding: 50px 20px 60px 20px;
     position: relative;
     @media (max-width: 900px) {
         grid-template-columns: repeat(2, 1fr);

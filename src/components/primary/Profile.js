@@ -1,9 +1,6 @@
-import pfp from '../../images/icons/pfp.avif';
-import '../../styles/profile.css';
-import Nav from '../secondary/Nav';
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import Loading from '../secondary/Loading';
+
 import {
     signOut,
 } from 'firebase/auth';
@@ -13,6 +10,18 @@ import {
     query,
     where,
 } from 'firebase/firestore';
+
+import * as Styled from '../../styles/Profile.Styled';
+import Loading from '../secondary/Loading';
+import Nav from '../secondary/Nav';
+
+import pfp from '../../images/icons/pfp.avif';
+import location from '../../images/icons/location.png';
+import backers from '../../images/icons/sub-category.png';
+
+import '../../styles/profile.css';
+
+
 
 const Profile = ({
     user,
@@ -95,7 +104,7 @@ const Profile = ({
 
 
     return (
-        <div className="profile-container">
+        <Styled.Container>
             <Nav
                 userLoggedIn={userLoggedIn}
                 grow={grow}
@@ -114,40 +123,48 @@ const Profile = ({
             {
                 userInfo.map((user) => {
                     return (
-                        <div className="profile-info-container" key={user.userId}>
-                            <div className="profile-info">
-                                <div className="profile-icon-container">
-                                    <img
+                        <Styled.Info key={user.userId}>
+                            <Styled.ProfileInfo>
+                                <Styled.ProfilePhotoContainer>
+                                    <Styled.ProfilePhoto
                                         src={pfp}
                                         alt="profile picture"
-                                        className="pfp"
                                     />
-                                    <Link
+                                    <Styled.EditProfile
                                         to={`/edit-profile/${formatTextForURL(sessionStorage.getItem("username"))}`}
-                                        className="edit-profile"
                                     >
                                         Edit Profile
-                                    </Link>
-                                </div>
-                                <div className="profile-name-container">
-                                    <div className="profile-display-name">
+                                    </Styled.EditProfile>
+                                </Styled.ProfilePhotoContainer>
+                                <Styled.ProfileName>
+                                    <Styled.Name>
                                         {user.username}
-                                    </div>
-                                    <div className="profile-location-container">
-                                        <div className="profile-location">
-                                            {user.location ? user.location : ""}
-                                        </div>
-                                        <div className="projects-backed-container">
-                                            Projects Backed {user.projectsBacked}
-                                        </div>
-                                    </div>
+                                    </Styled.Name>
+                                    <Styled.LocationContainer>
+                                        <Styled.LocationIcon
+                                            src={location}
+                                            alt="location icon"
+                                        />
+                                        <Styled.Location>
+                                            {user.location ? user.location : "Mystery"}
+                                        </Styled.Location>
+                                    </Styled.LocationContainer>
+                                    <Styled.BackersContainer>
+                                        <Styled.BackersIcon
+                                            src={backers}
+                                            alt="backers icon"
+                                        />
+                                        <Styled.Backers>
+                                            Projects Backed: {user.projectsBacked}
+                                        </Styled.Backers>
+                                    </Styled.BackersContainer>
 
-                                </div>
-                            </div>
-                            <div className="profile-desc">
+                                </Styled.ProfileName>
+                            </Styled.ProfileInfo>
+                            <Styled.Description>
                                 {user.bio}
-                            </div>
-                        </div>
+                            </Styled.Description>
+                        </Styled.Info>
                     );
                 })
             }
@@ -247,7 +264,7 @@ const Profile = ({
                     }
                 </div>
             </div>
-        </div>
+        </Styled.Container>
     );
 }
 
