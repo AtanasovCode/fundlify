@@ -194,15 +194,27 @@ export const Projects = styled.div`
     ${props => props.user && `
         display: grid;
         grid-template-columns: .5fr;
+        ${props => props.center && `
+        grid-template-columns: 1fr;
+    `}
     `}
     @media (max-width: 800px) {
         padding: 10px 20px;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 20px;
+        ${props => props.center && `
+        grid-template-columns: 1fr;
+    `}
     }
     @media (max-width: 500px) {
         grid-template-columns: 1fr;
+        ${props => props.center && `
+        grid-template-columns: 1fr;
+    `}
     }
+    ${props => props.center && `
+        grid-template-columns: 1fr;
+    `}
 `;
 
 export const Project = styled.div`
@@ -272,7 +284,11 @@ export const NoProjects = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    @media (max-width: 500px) {
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
 export const NoProjectsLink = styled(Link)`
@@ -280,6 +296,9 @@ export const NoProjectsLink = styled(Link)`
     padding-left: 7px;
     text-decoration: none;
     cursor: pointer;
+    @media (max-width: 500px) {
+        padding-left: 5px;
+    }
 `;
 
 export const LoadingContainer = styled.div`
