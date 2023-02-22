@@ -40,7 +40,6 @@ import Discover from "./Discover";
 import FundProject from "../primary/FundProject";
 import DonationFinished from "../secondary/DonationFinished";
 import HowItWorks from "./HowItWorks";
-import '../../styles/fundlify.css';
 
 
 const theme = {
@@ -52,11 +51,6 @@ const theme = {
     fontMoney: "#38E000",
     logoColor: "#F9F9F9",
     fontFamily: "",
-    fontBlack: "900",
-    fontBold: "600",
-    fontRegular: "400",
-    fontSlim: "300",
-    fontExtraSlim: "100",
 
     tint: "rgba(0, 0, 0, .666)",
     lightTint: "rgba(0, 0, 0, .444)",
@@ -88,6 +82,9 @@ const theme = {
     stepsFontColor: "#010400",
     stepsFadedFont: "#ffffff90",
     stepIconBg: "#010400",
+
+    filterColor: "#222",
+    filterColorActive: "#F9F9F9",
 }
 
 const Fundlify = ({ app }) => {

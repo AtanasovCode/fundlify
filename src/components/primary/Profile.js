@@ -19,8 +19,6 @@ import pfp from '../../images/icons/pfp.avif';
 import location from '../../images/icons/location.png';
 import backers from '../../images/icons/sub-category.png';
 
-import '../../styles/profile.css';
-
 
 
 const Profile = ({
@@ -34,7 +32,6 @@ const Profile = ({
     projects,
 }) => {
 
-    const [grow, setGrow] = useState(true);
     const [projectsDonatedTo, setProjectsDonatedTo] = useState([]);
     const [categorySelected, setCategorySelected] = useState("backed");
     const [userProject, setUserProject] = useState([]);
@@ -103,22 +100,30 @@ const Profile = ({
     }
 
 
+    const handleCutString = (string, index) => { //Replace the string after a certain point with '...'
+        let result = string;
+        if (string.length > index) {
+            result = string.slice(0, index).trimEnd() + "...";
+        }
+
+        return result;
+    }
+
     return (
         <Styled.Container>
             <Nav
                 userLoggedIn={userLoggedIn}
-                grow={grow}
+                grow={true}
+                sticky={true}
             />
-            <div className="profile-title-container">
+            <Styled.Heading>
                 Profile
-            </div>
+            </Styled.Heading>
             {
-                isLoading ?
-                    <div className="loading-container">
-                        <Loading />
-                    </div>
-                    :
-                    ""
+                isLoading &&
+                <Styled.LoadingContainer>
+                    <Loading />
+                </Styled.LoadingContainer>
             }
             {
                 userInfo.map((user) => {
@@ -146,7 +151,7 @@ const Profile = ({
                                             alt="location icon"
                                         />
                                         <Styled.Location>
-                                            {user.location ? user.location : "Mystery"}
+                                            {handleCutString(user.location ? user.location : "Mystery", 20)}
                                         </Styled.Location>
                                     </Styled.LocationContainer>
                                     <Styled.BackersContainer>
@@ -168,104 +173,102 @@ const Profile = ({
                     );
                 })
             }
-            <div className="projects-backed-section" key={user.userId}>
-                <div className="projects-backed-filter-container">
-                    <div
-                        className={
-                            categorySelected === "backed" ? "projects-backed-section-filter active" : "projects-backed-section-filter"
-                        }
+            <Styled.ProjectsBacked key={user.userId}>
+                <Styled.Filters>
+                    <Styled.BackedFilter
                         id="backed"
+                        active={categorySelected === "backed" ? true : false}
                         onClick={(e) => handleSwitchCategory(e)}
                     >
                         Projects backed
-                    </div>
-                    <div
-                        className={categorySelected === "my-project" ? "projects-backed-section-filter active" : "projects-backed-section-filter"}
-                        id="my-project"
+                    </Styled.BackedFilter>
+                    <Styled.UserFilter
+                        id="users"
+                        active={categorySelected === "users" ? true : false}
                         onClick={(e) => handleSwitchCategory(e)}
                     >
                         My Project
-                    </div>
-                </div>
-                <div className={categorySelected === "backed" ? "projects-backed" : "projects-backed user-project"}>
+                    </Styled.UserFilter>
+                </Styled.Filters>
+                <Styled.Projects user={categorySelected != "backed" ? true : false}>
                     {
                         categorySelected === "backed" ?
                             projectsDonatedTo.length > 0 ?
                                 projectsDonatedTo.map((project) => {
                                     return (
-                                        <div
-                                            className="project-donated-container"
+                                        <DisplayProfileProjects
                                             key={project.documentId}
-                                            onClick={() => {
-                                                sessionStorage.setItem("currentProjectId", project.documentId);
-                                                handleProjectClick();
-                                            }}
-                                        >
-                                            <div className="project-donated-img-container">
-                                                <img
-                                                    src={project.projectImageUrl}
-                                                    className="project-donated-img"
-                                                />
-                                            </div>
-                                            <div className="project-donated-info">
-                                                <div className="project-donated-heading">
-                                                    {project.projectTitle}
-                                                </div>
-                                                <div className="project-donated-funding">
-                                                    <span className="donated-money">${formatNumber(project.moneyBacked)}</span> Raised
-                                                </div>
-                                            </div>
-                                        </div>
+                                            project={project}
+                                            formatNumber={formatNumber}
+                                            handleProjectClick={handleProjectClick}
+                                        />
                                     );
                                 })
-                                :
-                                <div className="no-projects-container">
+                                : //If there are no donated projects
+                                <Styled.NoProjects>
                                     No projects found,
-                                    <Link className="no-projects-link" to="/discover">
+                                    <Styled.NoProjectsLink to="/discover">
                                         explore projects?
-                                    </Link>
-                                </div>
+                                    </Styled.NoProjectsLink>
+                                </Styled.NoProjects>
                             :
                             userProject.length > 0 ?
                                 userProject.map((project) => {
                                     return (
-                                        <div
-                                            className="project-donated-container user-project"
+                                        <DisplayProfileProjects
                                             key={project.documentId}
-                                            onClick={() => {
-                                                sessionStorage.setItem("currentProjectId", project.documentId);
-                                                handleProjectClick();
-                                            }}
-                                        >
-                                            <div className="project-donated-img-container">
-                                                <img
-                                                    src={project.projectImageUrl}
-                                                    className="project-donated-img"
-                                                />
-                                            </div>
-                                            <div className="project-donated-info">
-                                                <div className="project-donated-heading">
-                                                    {project.projectTitle}
-                                                </div>
-                                                <div className="project-donated-funding">
-                                                    <span className="donated-money">${formatNumber(project.moneyBacked)}</span> Raised
-                                                </div>
-                                            </div>
-                                        </div>
+                                            childKey={project.documentId}
+                                            project={project}
+                                            formatNumber={formatNumber}
+                                            handleProjectClick={handleProjectClick}
+                                        />
                                     );
                                 })
                                 :
-                                <div className="no-projects-container">
+                                <Styled.NoProjects>
                                     No project found,
-                                    <Link className="no-projects-link" to="/create-project/start">
+                                    <Styled.NoProjectsLink to="/create-project/start">
                                         crate a new project?
-                                    </Link>
-                                </div>
+                                    </Styled.NoProjectsLink>
+                                </Styled.NoProjects>
                     }
-                </div>
-            </div>
+                </Styled.Projects>
+            </Styled.ProjectsBacked>
         </Styled.Container>
     );
 }
 
+
 export default Profile;
+
+const DisplayProfileProjects = ({
+    project,
+    handleProjectClick,
+    formatNumber,
+}) => {
+    return (
+        <Styled.Project
+            onClick={() => {
+                sessionStorage.setItem("currentProjectId", project.documentId);
+                handleProjectClick();
+            }}
+        >
+            <Styled.ProjectImageContainer>
+                <Styled.ProjectImage
+                    src={project.projectImageUrl}
+                    alt="official image of the project"
+                />
+            </Styled.ProjectImageContainer>
+            <Styled.ProjectInfo>
+                <Styled.ProjectTitle>
+                    {project.projectTitle}
+                </Styled.ProjectTitle>
+                <Styled.ProjectFunding>
+                    <Styled.Money>
+                        ${formatNumber(project.moneyBacked)}
+                    </Styled.Money> Raised
+                </Styled.ProjectFunding>
+            </Styled.ProjectInfo>
+        </Styled.Project>
+    );
+}

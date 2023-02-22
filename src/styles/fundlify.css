@@ -7,11 +7,3 @@
 html, body {
     max-height: 100vh;
 }
-
-.app {
-    max-width: 100vw;
-    min-height: 100vh;
-    color: #fff;
-    background-color: var(--main-bg);
-    font-family: 'Poppins', sans-serif;
-}
