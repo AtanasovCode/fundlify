@@ -85,6 +85,8 @@ const theme = {
 
     filterColor: "#222",
     filterColorActive: "#F9F9F9",
+
+    editProfileBorder: "#943869",
 }
 
 const Fundlify = ({ app }) => {

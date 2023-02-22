@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
-import '../../styles/edit-profile.css';
 import { useNavigate } from 'react-router-dom';
 import { updateProfile, signOut } from 'firebase/auth';
 import {
     updateDoc,
     doc,
 } from 'firebase/firestore';
+
 import Nav from './Nav';
+
+import * as Styled from '../../styles/EditProfile.Styled';
+
+import exit from '../../images/icons/exit.png';
 
 const EditProfile = ({
     user,
@@ -78,74 +82,75 @@ const EditProfile = ({
     }
 
     return (
-        <div className="edit-profile-container">
+        <Styled.Container>
             <Nav sticky={true} grow={true} userLoggedIn={userLoggedIn} />
-            <div className="edit-profile-heading">
+            <Styled.Heading>
                 Edit Profile
-            </div>
-            <div className="edit-profile-info">
-                <div className="edit-container">
-                    <div className="edit-property">Name</div>
-                    <input
+            </Styled.Heading>
+            <Styled.Info>
+                <Styled.Edit>
+                    <Styled.EditProperty>
+                        Name
+                    </Styled.EditProperty>
+                    <Styled.Input
                         type="text"
                         value={name}
                         maxLength={35}
                         name="name"
-                        className="edit-profile-input"
                         onChange={(e) => setName(e.currentTarget.value)}
 
                     />
-                    <div className="edit-property-desc">
+                    <Styled.Desc>
                         Your name is displayed
                         on your profile
-                    </div>
-                </div>
-                <div className="edit-container">
-                    <div className="edit-property">Biograpghy</div>
-                    <textarea
-                        className="input-bio"
+                    </Styled.Desc>
+                </Styled.Edit>
+                <Styled.Edit>
+                    <Styled.EditProperty>Biograpghy</Styled.EditProperty>
+                    <Styled.Bio
                         maxLength={200}
                         value={bio}
                         onChange={(e) => setBio(e.currentTarget.value)}
 
                     />
-                    <div className="edit-property-desc">
+                    <Styled.Desc>
                         We suggest a short bio, anything under 200
                         characters looks best.
-                    </div>
-                </div>
-                <div className="edit-container">
-                    <div className="edit-property">
+                    </Styled.Desc>
+                </Styled.Edit>
+                <Styled.Edit>
+                    <Styled.EditProperty>
                         Location
-                    </div>
-                    <input
+                    </Styled.EditProperty>
+                    <Styled.Input
                         type="text"
                         placeholder="Eg. London, UK"
                         name="location"
                         value={location}
                         maxLength35
-                        className="edit-profile-input"
                         onChange={(e) => setLocation(e.currentTarget.value)}
                     />
-                </div>
-                <div className="edit-container">
-                    <input
+                </Styled.Edit>
+                <Styled.Edit>
+                    <Styled.Button
                         type="button"
                         value="Update Profile"
-                        className="edit-profile-btn"
                         onClick={handleUpdateProfile}
                     />
-                </div>
-                <div className="edit-container">
-                    <input
-                        type="button"
-                        value="Sign Out"
-                        className="edit-profile-sign-out"
+                </Styled.Edit>
+                <Styled.SignOutContainer>
+                    <Styled.SignOut
                         onClick={handleSignOut}
-                    />
-                </div>
-            </div>
-        </div>
+                    >
+                        <Styled.SignOutIcon
+                            src={exit}
+                            alt="exit icon"
+                        />
+                        Sign Out
+                    </Styled.SignOut>
+                </Styled.SignOutContainer>
+            </Styled.Info>
+        </Styled.Container>
     );
 }
 
