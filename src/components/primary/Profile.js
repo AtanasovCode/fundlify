@@ -196,52 +196,50 @@ const Profile = ({
                         :
                         false
                     }
-                    center={projectsDonatedTo.length > 0 ? false : true}
-                    center={userProject.length > 0  ? false : true}
                 >
-                {
-                    categorySelected === "backed" ?
-                        projectsDonatedTo.length > 0 ?
-                            projectsDonatedTo.map((project) => {
-                                return (
-                                    <DisplayProfileProjects
-                                        key={project.documentId}
-                                        project={project}
-                                        formatNumber={formatNumber}
-                                        handleProjectClick={handleProjectClick}
-                                    />
-                                );
-                            })
-                            : //If there are no donated projects
-                            <Styled.NoProjects>
-                                No projects found,
-                                <Styled.NoProjectsLink to="/discover">
-                                    explore projects?
-                                </Styled.NoProjectsLink>
-                            </Styled.NoProjects>
-                        :
-                        userProject.length > 0 ?
-                            userProject.map((project) => {
-                                return (
-                                    <DisplayProfileProjects
-                                        key={project.documentId}
-                                        childKey={project.documentId}
-                                        project={project}
-                                        formatNumber={formatNumber}
-                                        handleProjectClick={handleProjectClick}
-                                    />
-                                );
-                            })
+                    {
+                        categorySelected === "backed" ?
+                            projectsDonatedTo.length > 0 ?
+                                projectsDonatedTo.map((project) => {
+                                    return (
+                                        <DisplayProfileProjects
+                                            key={project.documentId}
+                                            project={project}
+                                            formatNumber={formatNumber}
+                                            handleProjectClick={handleProjectClick}
+                                        />
+                                    );
+                                })
+                                : //If there are no donated projects
+                                <Styled.NoProjects>
+                                    No projects found,
+                                    <Styled.NoProjectsLink to="/discover">
+                                        explore projects?
+                                    </Styled.NoProjectsLink>
+                                </Styled.NoProjects>
                             :
-                            <Styled.NoProjects>
-                                No project found,
-                                <Styled.NoProjectsLink to="/create-project/start">
-                                    crate a new project?
-                                </Styled.NoProjectsLink>
-                            </Styled.NoProjects>
-                }
-            </Styled.Projects>
-        </Styled.ProjectsBacked>
+                            userProject.length > 0 ?
+                                userProject.map((project) => {
+                                    return (
+                                        <DisplayProfileProjects
+                                            key={project.documentId}
+                                            childKey={project.documentId}
+                                            project={project}
+                                            formatNumber={formatNumber}
+                                            handleProjectClick={handleProjectClick}
+                                        />
+                                    );
+                                })
+                                :
+                                <Styled.NoProjects>
+                                    No project found,
+                                    <Styled.NoProjectsLink to="/create-project/start">
+                                        crate a new project?
+                                    </Styled.NoProjectsLink>
+                                </Styled.NoProjects>
+                    }
+                </Styled.Projects>
+            </Styled.ProjectsBacked>
         </Styled.Container >
     );
 }

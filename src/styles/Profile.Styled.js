@@ -186,38 +186,19 @@ export const UserFilter = styled(Filter)`
 
 export const Projects = styled.div`
     width: 100%;
-    display: grid;
     margin: 40px 0;
     padding: 10px 35px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 35px;
-    ${props => props.user && `
-        display: grid;
-        grid-template-columns: .5fr;
-        ${props => props.center && `
-        grid-template-columns: 1fr;
-    `}
-    `}
-    @media (max-width: 800px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: 900px) {
         padding: 10px 20px;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 20px;
-        ${props => props.center && `
-        grid-template-columns: 1fr;
-    `}
+        flex-wrap: wrap;
     }
-    @media (max-width: 500px) {
-        grid-template-columns: 1fr;
-        ${props => props.center && `
-        grid-template-columns: 1fr;
-    `}
-    }
-    ${props => props.center && `
-        grid-template-columns: 1fr;
-    `}
 `;
 
 export const Project = styled.div`
+    flex: 33%;
     height: 350px;
     border: 1px solid #ffffff80;
     border-radius: 22px;
@@ -232,6 +213,15 @@ export const Project = styled.div`
         transform: scale(1.04);
         border: 1px solid lime;
         transition: all .3s ease-in;
+    }
+    @media (max-width: 900px) {
+        margin-bottom: 15px;
+        margin-right: 10px;
+        margin-left: 10px;
+        flex: 33%;
+    }
+    @media (max-width: 500px) {
+        flex: 100%;
     }
 `;
 
@@ -263,7 +253,7 @@ export const ProjectTitle = styled.div`
     font-size: 18px;
     font-weight: 500;
     padding-bottom: 8px;
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
         font-size: 17px;
     }
     @media (max-width: 500px) {
@@ -281,9 +271,11 @@ export const Money = styled.span`
 `;
 
 export const NoProjects = styled.div`
+    flex: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    place-self: center;
     @media (max-width: 500px) {
         font-size: 14px;
         display: flex;
