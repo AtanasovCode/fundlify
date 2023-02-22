@@ -209,6 +209,7 @@ export const Project = styled.div`
     align-items: center;
     justify-content: center;
     transition: all .3s ease-in;
+    margin: 0 15px;
     &:hover {
         transform: scale(1.04);
         border: 1px solid lime;
@@ -220,7 +221,7 @@ export const Project = styled.div`
         margin-left: 10px;
         flex: 33%;
     }
-    @media (max-width: 500px) {
+    @media (max-width: 575px) {
         flex: 100%;
     }
 `;
