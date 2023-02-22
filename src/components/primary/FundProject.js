@@ -16,7 +16,6 @@ import Nav from "../secondary/Nav";
 import FAQ from "./fund-project-sections/FAQ";
 import PledgeComponent from "./fund-project-sections/PledgeComponent";
 import NoRewardPledge from "./fund-project-sections/NoRewardPledge";
-import '../../styles/fund-project.css';
 
 const FundProject = ({
     db,

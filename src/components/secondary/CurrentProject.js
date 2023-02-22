@@ -15,7 +15,6 @@ import {
 import Nav from "./Nav";
 import NoPermission from "./NoPermission";
 import FundProject from "../primary/FundProject";
-import '../../styles/current-project.css';
 import categoryIcon from '../../images/icons/category.png';
 import subCategoryIcon from '../../images/icons/sub-category.png';
 import locationIcon from '../../images/icons/location.png';

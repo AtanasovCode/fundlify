@@ -34,7 +34,7 @@ const EditProfile = ({
     useEffect(() => {
         userInfo.forEach((info) => {
             setBio(info.bio);
-            console.log(info.bio);
+            setLocation(info.location)
         })
         if (userLoggedIn) {
             setName(user.displayName);

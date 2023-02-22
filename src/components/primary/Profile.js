@@ -116,9 +116,6 @@ const Profile = ({
                 grow={true}
                 sticky={true}
             />
-            <Styled.Heading>
-                Profile
-            </Styled.Heading>
             {
                 isLoading &&
                 <Styled.LoadingContainer>
@@ -151,7 +148,7 @@ const Profile = ({
                                             alt="location icon"
                                         />
                                         <Styled.Location>
-                                            {handleCutString(user.location ? user.location : "Mystery", 20)}
+                                            {handleCutString(user.location, 20)}
                                         </Styled.Location>
                                     </Styled.LocationContainer>
                                     <Styled.BackersContainer>

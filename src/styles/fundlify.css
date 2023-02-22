@@ -1,9 +1,0 @@
-:root {
-    --main-bg: rgb(26, 45, 36);
-    --auth-btn-bg: rgb(0, 171, 231);
-    --box-step-bg: #073f7a; /*012851 #07284B */
-}
-
-html, body {
-    max-height: 100vh;
-}

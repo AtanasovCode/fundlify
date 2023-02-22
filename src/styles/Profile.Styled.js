@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
     max-width: 1700px;
-    padding-top: 100px;
+    padding-top: 80px;
     background-color: ${props => props.theme.background};
     color: ${props => props.theme.font};
     display: flex;
@@ -13,17 +13,6 @@ export const Container = styled.div`
     overflow-x: hidden;
 `;
 
-export const Heading = styled.div`
-    height: 40px;
-    width: 100%;
-    padding-left: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, .2);
-    border-top: 1px solid rgba(255, 255, 255, .2);
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: 22px;
-`;
 
 export const Info = styled.div`
     width: 100%;

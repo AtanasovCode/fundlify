@@ -44,7 +44,7 @@ const SignUp = ({
                     username: name,
                     userId: currentUser.user.uid,
                     bio: "I am a mysterious person that has not yet updated their bio.",
-                    location: false,
+                    location: "Mystery",
                     createdAt: serverTimestamp(),
                     projectsBacked: 0,
                     projectsDonatedTo: [],
