@@ -94,17 +94,20 @@ const Nav = ({
                     }}
                 />
                 <Styled.NavIcon
-                    src={sessionStorage.getItem("activeIcon") === "question" ? questionIconActive  : questionIcon}
+                    src={sessionStorage.getItem("activeIcon") === "question" ? questionIconActive : questionIcon}
                     onClick={() => {
                         navigate("../how-it-works");
                         sessionStorage.setItem("activeIcon", "question");
                     }}
                 />
                 <Styled.NavIcon
-                    src={sessionStorage.getItem("activeIcon") === "user" ? userIconActive  : userIcon}
+                    src={sessionStorage.getItem("activeIcon") === "user" ? userIconActive : userIcon}
                     onClick={() => {
-                        navigate(`../users/${formatTextForURL(sessionStorage.getItem("username"))}`);
-                        sessionStorage.setItem("activeIcon", "user");
+                        userLoggedIn ?
+                            navigate(`../users/${formatTextForURL(sessionStorage.getItem("username"))}`)
+                            :
+                            navigate("../sign-in");
+                sessionStorage.setItem("activeIcon", "user");
                     }}
                 />
             </Styled.NavIcons>
