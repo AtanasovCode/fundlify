@@ -1,14 +1,17 @@
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import * as Styled from '../../styles/NoPermission.Styled';
+
 import graph from '../../images/image/graph1.png';
 import '../../styles/no-permission.css';
 import close from '../../images/icons/close.png';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+
 
 
 const NoPermission = ({
-    permissionType, 
-    showPopUp, 
-    handleClosePopUp 
+    permissionType,
+    showPopUp,
+    handleClosePopUp
 }) => {
 
     const navigate = useNavigate();
@@ -25,31 +28,25 @@ const NoPermission = ({
 
 
     return (
-        <div className={showPopUp ? "no-permission-container show" : "no-permission-container"}>
-            <div className="no-permission-img-container">
-                <img 
+        <Styled.Container showPopUp={showPopUp}>
+            <Styled.ImageContainer>
+                <Styled.Close
                     src={close}
                     alt="close icon"
-                    className="permission-close-icon"
                     onClick={handleClosePopUp}
                 />
-                <img
-                    src={graph}
-                    alt="graphic art"
-                    className="permission-img"
-                />
-            </div>
-            <div className="no-permission-info-container">
-                <div className="permission-heading-container">
-                    <div className="permission-title">
+            </Styled.ImageContainer>
+            <Styled.Info>
+                <Styled.Heading>
+                    <Styled.Title>
                         {
                             permissionType === "donation" ?
                                 "You are allowed only one donation per project"
                                 :
                                 "You can only have one project at a time"
                         }
-                    </div>
-                    <div className="permission-subtitle">
+                    </Styled.Title>
+                    <Styled.Subtitle>
                         {
                             permissionType === "donation" ?
                                 <span>
@@ -65,23 +62,20 @@ const NoPermission = ({
                                     project.
                                 </span>
                         }
-                    </div>
-                </div>
-                <div className="permission-btn-container">
-                    <input
-                        type="button"
-                        className="permission-btn"
-                        value={permissionType === "donation" ? "Explore other projects" : "Go to my project"}
-                        onClick={
-                            permissionType === "donation" ?
+                    </Styled.Subtitle>
+                </Styled.Heading>
+                <Styled.Button
+                    type="button"
+                    value={permissionType === "donation" ? "Explore other projects" : "Go to my project"}
+                    onClick={
+                        permissionType === "donation" ?
                             handleGoToDiscover
                             :
                             handleGoToProject
-                        }
-                    />
-                </div>
-            </div>
-        </div>
+                    }
+                />
+            </Styled.Info>
+        </Styled.Container>
     );
 }
 

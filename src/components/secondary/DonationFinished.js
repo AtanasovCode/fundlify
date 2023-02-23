@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import * as Styled from '../../styles/DonationFinished.Styled';
-import '../../styles/donation-finished.css';
 import check from '../../images/icons/checkmark.png';
 
 const DonationFinished = () => {
