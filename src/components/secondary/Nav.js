@@ -10,6 +10,9 @@ import menu from '../../images/icons/menu.png';
 import userIcon from '../../images/icons/user.png';
 import userIconActive from '../../images/icons/user-active.png';
 
+import questionIcon from '../../images/icons/question.png';
+import questionIconActive from '../../images/icons/question-active.png';
+
 import discoverIcon from '../../images/icons/search.png';
 import discoverIconActive from '../../images/icons/search-active.png';
 
@@ -88,6 +91,13 @@ const Nav = ({
                     onClick={() => {
                         navigate("../discover");
                         sessionStorage.setItem("activeIcon", "discover");
+                    }}
+                />
+                <Styled.NavIcon
+                    src={sessionStorage.getItem("activeIcon") === "question" ? questionIconActive  : questionIcon}
+                    onClick={() => {
+                        navigate("../how-it-works");
+                        sessionStorage.setItem("activeIcon", "question");
                     }}
                 />
                 <Styled.NavIcon
