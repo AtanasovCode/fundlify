@@ -73,8 +73,9 @@ export const Menu = styled.img`
 
 export const Logo = styled(Link)`
     padding-left: 20px;
-    font-size: 23px;
+    font-size: 28px;
     font-weight: 200;
+    font-family: 'Catamaran', sans-serif;    
     cursor: pointer;
     color: ${props => props.theme.logoColor};
     text-decoration: none;
@@ -102,7 +103,7 @@ export const Links = styled.div`
         transform: ${props => props.navResponsive ? `translateX(100%)` : `translateX(0)`};
         transition: all .3s ease-in;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end;
         justify-content: flex-start;
     }
     @media (max-width: 500px) {
@@ -163,14 +164,16 @@ export const NavIcon = styled.img`
 
 
 export const Profile = styled(Link)`
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     padding: 0;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
     @media (max-width: 700px) {
-        margin-top: 25px;
+        margin-top: 30px;
+        width: 45px;
+        height: 45px;
     }
 `;
 

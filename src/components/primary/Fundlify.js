@@ -74,6 +74,8 @@ const theme = {
     howItWorksBtn: "#68274A",
     howItWorksBtnHover: "#943869",
     getStartedBtn: "#2B2F23",
+    donationCompleteBtn: "#2766E2",
+    donationCompleteBtnHover: "#4E87f7",
     getStartedBtnHover: "#404634",
     pledgeBtn: "#09BC8A",
     pledgeBtnHover: "",
