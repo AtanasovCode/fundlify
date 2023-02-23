@@ -170,7 +170,7 @@ const HomePage = ({
                 <NoPermission
                     permissionType="project"
                     showPopUp={showPopUp}
-                    handleClosePopUp={handleClosePopUp}
+                    setShowPopUp={setShowPopUp}
                 />
                 <Styled.Button
                     onClick={handleAddProject}

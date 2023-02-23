@@ -2,8 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import * as Styled from '../../styles/NoPermission.Styled';
 
-import graph from '../../images/image/graph1.png';
-import '../../styles/no-permission.css';
 import close from '../../images/icons/close.png';
 
 
@@ -11,7 +9,7 @@ import close from '../../images/icons/close.png';
 const NoPermission = ({
     permissionType,
     showPopUp,
-    handleClosePopUp
+    setShowPopUp,
 }) => {
 
     const navigate = useNavigate();
@@ -33,7 +31,7 @@ const NoPermission = ({
                 <Styled.Close
                     src={close}
                     alt="close icon"
-                    onClick={handleClosePopUp}
+                    onClick={() => setShowPopUp(false)}
                 />
             </Styled.ImageContainer>
             <Styled.Info>

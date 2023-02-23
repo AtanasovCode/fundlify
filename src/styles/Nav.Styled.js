@@ -110,6 +110,7 @@ export const Links = styled.div`
         width: 0;
         height: 0;
         opacity: 0;
+        transform: translateX(300%);
     } 
 `;
 

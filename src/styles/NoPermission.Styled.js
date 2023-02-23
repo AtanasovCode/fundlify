@@ -58,6 +58,9 @@ export const Close = styled.img`
     top: 10px;
     right: 10px;
     cursor: pointer;
+    &:hover {
+        background-color: red;
+    }
 `;
 
 export const Info = styled.div`

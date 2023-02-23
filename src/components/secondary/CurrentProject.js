@@ -155,6 +155,7 @@ const CurrentProject = ({
                             <NoPermission
                                 permissionType="donation"
                                 showPopUp={showPopUp}
+                                setShowPopUp={setShowPopUp}
                                 handleClosePopUp={handleClosePopUp}
                             />
                             <Styled.Heading>
