@@ -63,6 +63,12 @@ export const Menu = styled.img`
         opacity: 1;
         right: 35px;
     }
+    @media (max-width: 500px) {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        position: absolute;
+    }
 `;
 
 export const Logo = styled(Link)`
@@ -100,9 +106,9 @@ export const Links = styled.div`
         justify-content: flex-start;
     }
     @media (max-width: 500px) {
-        width: 100%;
-        align-items: center;
-        justify-content: flex-start;
+        width: 0;
+        height: 0;
+        opacity: 0;
     } 
 `;
 
@@ -120,17 +126,52 @@ export const NavLink = styled(Link)`
     }
     @media (max-width: 700px) {
         margin-top: 25px;
+        font-size: 17px;
+        font-weight: 600;
     }
+`;
+
+export const NavIcons = styled.div`
+    width: 0;
+    height: 0;
+    opacity: 0;
+    position: fixed;
+    @media (max-width: 500px) {
+        width: 90%;
+        height: 65px;
+        border: 1px solid #ffffff70;
+        border-radius: 10px;
+        z-index: 22;
+        position: fixed;
+        bottom: 20px;
+        left: 5%;
+        background-color: ${props => props.theme.background};
+        padding: 10px 35px;
+        opacity: 1;
+        display: flex;
+        transition: all .3s ease-in;
+        align-items: center;
+        justify-content: space-between;
+    }
+`;
+
+export const NavIcon = styled.img`
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
 `;
 
 
 export const Profile = styled(Link)`
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     padding: 0;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+    @media (max-width: 700px) {
+        margin-top: 25px;
+    }
 `;
 
 export const ProfileIcon = styled.img`
