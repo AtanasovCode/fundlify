@@ -29,7 +29,6 @@ const HomePage = ({
     formatNumber,
 }) => {
 
-    const [navClass, setNavClass] = useState("nav-container");
     const [projects, setProjects] = useState([]);
     const [totalProjects, setTotalProjects] = useState(0);
     const [totalFundsRaised, setTotalFundsRaised] = useState();

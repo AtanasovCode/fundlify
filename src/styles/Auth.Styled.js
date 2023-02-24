@@ -64,7 +64,9 @@ export const Input = styled.input`
     padding-left: 10px;
     border: 1px solid #ffffff40;
     font-weight: 600;
+    ${props => props.regPassError && `border: 1px solid #FF3333`};
     ${props => props.type === "button" && `cursor: pointer`};
+    ${props => props.inputFillError && `border: 1px solid #FF3333`};
     &:hover {
         ${props => props.type === "button" && `
             background-color: #ffffff10
@@ -73,6 +75,23 @@ export const Input = styled.input`
     @media (max-width: 500px) {
         width: 100%;
     }
+`;
+
+export const PassContainer = styled.div`
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const PassError = styled.div`
+    font-size: 13px;
+    font-weight: 400;
+    color: #FF3333;
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
 `;
 
 export const AlternateOption = styled.div`

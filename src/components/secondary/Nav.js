@@ -8,16 +8,9 @@ import pfp from '../../images/icons/pfp.avif';
 import menu from '../../images/icons/menu.png';
 
 import userIcon from '../../images/icons/user.png';
-import userIconActive from '../../images/icons/user-active.png';
-
 import questionIcon from '../../images/icons/question.png';
-import questionIconActive from '../../images/icons/question-active.png';
-
 import discoverIcon from '../../images/icons/search.png';
-import discoverIconActive from '../../images/icons/search-active.png';
-
 import homeIcon from '../../images/icons/home.png';
-import homeIconActive from '../../images/icons/home-active.png';
 
 
 
@@ -33,8 +26,6 @@ const Nav = ({
     const [navClass, setNavClass] = useState(grow ? "nav-container grow" : "nav-container");
     const [navResponsive, setNavResponsive] = useState(true);
     const [growNav, setGrowNav] = useState(false);
-
-    const [activeIcon, setActiveIcon] = useState("");
 
     const navigate = useNavigate();
 
@@ -80,34 +71,30 @@ const Nav = ({
             </Styled.Logo>
             <Styled.NavIcons>
                 <Styled.NavIcon
-                    src={sessionStorage.getItem("activeIcon") === "home" ? homeIconActive : homeIcon}
+                    src={homeIcon}
                     onClick={() => {
                         navigate("../");
-                        sessionStorage.setItem("activeIcon", "home");
                     }}
                 />
                 <Styled.NavIcon
-                    src={sessionStorage.getItem("activeIcon") === "discover" ? discoverIconActive : discoverIcon}
+                    src={discoverIcon}
                     onClick={() => {
                         navigate("../discover");
-                        sessionStorage.setItem("activeIcon", "discover");
                     }}
                 />
                 <Styled.NavIcon
-                    src={sessionStorage.getItem("activeIcon") === "question" ? questionIconActive : questionIcon}
+                    src={questionIcon}
                     onClick={() => {
                         navigate("../how-it-works");
-                        sessionStorage.setItem("activeIcon", "question");
                     }}
                 />
                 <Styled.NavIcon
-                    src={sessionStorage.getItem("activeIcon") === "user" ? userIconActive : userIcon}
+                    src={userIcon}
                     onClick={() => {
                         userLoggedIn ?
                             navigate(`../users/${formatTextForURL(sessionStorage.getItem("username"))}`)
                             :
                             navigate("../sign-in");
-                sessionStorage.setItem("activeIcon", "user");
                     }}
                 />
             </Styled.NavIcons>

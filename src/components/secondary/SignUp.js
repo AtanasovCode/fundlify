@@ -27,6 +27,9 @@ const SignUp = ({
     const [regPassword, setRegPassword] = useState("");
     const [name, setName] = useState("");
 
+    const [regPassError, setRegPassError] = useState();
+    const [inputFillError, setInputFillError] = useState();
+
 
     let navigate = useNavigate();
     const colRef = collection(db, "users");
@@ -34,6 +37,15 @@ const SignUp = ({
 
     const handleSignUp = (e) => {
         e.preventDefault();
+        regMail.length >= 6 ? //Error if pass length less than 6
+            setRegPassError(false)
+            :
+            setRegPassError(true);
+        if(regMail === "" || regPassword === "" || name === "") {
+            setInputFillError(true)
+        } else {
+            setInputFillError(false)
+        }
         createUserWithEmailAndPassword(auth, regMail, regPassword)
             .then((currentUser) => {
                 updateProfile(auth.currentUser, {
@@ -120,6 +132,7 @@ const SignUp = ({
                     name="name"
                     value={name}
                     maxLength={35}
+                    inputFillError={inputFillError}
                     onChange={(e) => setName(e.currentTarget.value)}
                 />
                 <Styled.Input
@@ -127,16 +140,29 @@ const SignUp = ({
                     placeholder="Email"
                     name="mail"
                     maxLength={40}
+                    inputFillError={inputFillError}
                     value={regMail}
                     onChange={(e) => setRegMail(e.currentTarget.value)}
                 />
-                <Styled.Input
-                    type="password"
-                    placeholder="Password"
-                    maxLength={35}
-                    value={regPassword}
-                    onChange={(e) => setRegPassword(e.currentTarget.value)}
-                />
+                <Styled.PassContainer>
+                    <Styled.Input
+                        type="password"
+                        placeholder="Password"
+                        maxLength={35}
+                        value={regPassword}
+                        inputFillError={inputFillError}
+                        regPassError={regPassError}
+                        onChange={(e) => {
+                            setRegPassword(e.currentTarget.value)
+                        }}
+                    />
+                    {
+                        regPassError &&
+                        <Styled.PassError>
+                            Password must be at least 6 characters long
+                        </Styled.PassError>
+                    }
+                </Styled.PassContainer>
                 <Styled.Input
                     type="button"
                     value="Create Account"
@@ -145,7 +171,7 @@ const SignUp = ({
                 />
                 <Styled.AlternateOption>
                     or
-                    <Styled.InputGoogle 
+                    <Styled.InputGoogle
                         onClick={handleSignUpWithGoogle}
                         type="button"
                         value="Sign op with Google"
