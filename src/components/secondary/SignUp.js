@@ -21,31 +21,43 @@ const SignUp = ({
     db,
     user,
     userLoggedIn,
+    inputFillError,
+    inputNameError,
+    inputMailError,
+    inputPassError,
+    setInputMailError,
+    setInputNameError,
+    setInputPassError,
+    checkMail,
 }) => {
 
     const [regMail, setRegMail] = useState("");
     const [regPassword, setRegPassword] = useState("");
     const [name, setName] = useState("");
 
-    const [regPassError, setRegPassError] = useState();
-    const [inputFillError, setInputFillError] = useState();
 
 
     let navigate = useNavigate();
     const colRef = collection(db, "users");
     const provider = new GoogleAuthProvider();
 
+
+    //Removes the error message if the users switches
+    //From Sign Up to Sign In or vide versa
+    useEffect(() => { 
+        setInputMailError(false);
+        setInputPassError(false);
+    }, [])
+
     const handleSignUp = (e) => {
         e.preventDefault();
-        regMail.length >= 6 ? //Error if pass length less than 6
-            setRegPassError(false)
-            :
-            setRegPassError(true);
-        if(regMail === "" || regPassword === "" || name === "") {
-            setInputFillError(true)
-        } else {
-            setInputFillError(false)
-        }
+
+        regPassword === "" || regPassword.length < 6 ? setInputPassError(true) : setInputPassError(false);
+        regMail === "" || checkMail(regMail) === false ? setInputMailError(true) : setInputMailError(false);
+        name === "" ? setInputNameError(true) : setInputNameError(false);
+
+
+
         createUserWithEmailAndPassword(auth, regMail, regPassword)
             .then((currentUser) => {
                 updateProfile(auth.currentUser, {
@@ -126,43 +138,58 @@ const SignUp = ({
                 <Styled.Heading>
                     Sign Up
                 </Styled.Heading>
-                <Styled.Input
-                    type="text"
-                    placeholder="Name"
-                    name="name"
-                    value={name}
-                    maxLength={35}
-                    inputFillError={inputFillError}
-                    onChange={(e) => setName(e.currentTarget.value)}
-                />
-                <Styled.Input
-                    type="email"
-                    placeholder="Email"
-                    name="mail"
-                    maxLength={40}
-                    inputFillError={inputFillError}
-                    value={regMail}
-                    onChange={(e) => setRegMail(e.currentTarget.value)}
-                />
-                <Styled.PassContainer>
+                <Styled.InputContainer>
+                    <Styled.Input
+                        type="text"
+                        placeholder="Name"
+                        name="name"
+                        value={name}
+                        maxLength={15}
+                        inputNameError={inputNameError}
+                        onChange={(e) => setName(e.currentTarget.value)}
+                    />
+                    {
+                        inputNameError &&
+                        <Styled.InputError>
+                            Input must be filled
+                        </Styled.InputError>
+                    }
+                </Styled.InputContainer>
+                <Styled.InputContainer>
+                    <Styled.Input
+                        type="email"
+                        placeholder="Email"
+                        name="mail"
+                        maxLength={40}
+                        value={regMail}
+                        inputMailError={inputMailError}
+                        onChange={(e) => setRegMail(e.currentTarget.value)}
+                    />
+                    {
+                        inputMailError &&
+                        <Styled.InputError>
+                            Pleas enter a valid e-mail address
+                        </Styled.InputError>
+                    }
+                </Styled.InputContainer>
+                <Styled.InputContainer>
                     <Styled.Input
                         type="password"
                         placeholder="Password"
                         maxLength={35}
                         value={regPassword}
-                        inputFillError={inputFillError}
-                        regPassError={regPassError}
+                        inputPassError={inputPassError}
                         onChange={(e) => {
                             setRegPassword(e.currentTarget.value)
                         }}
                     />
                     {
-                        regPassError &&
-                        <Styled.PassError>
+                        inputPassError &&
+                        <Styled.InputError>
                             Password must be at least 6 characters long
-                        </Styled.PassError>
+                        </Styled.InputError>
                     }
-                </Styled.PassContainer>
+                </Styled.InputContainer>
                 <Styled.Input
                     type="button"
                     value="Create Account"

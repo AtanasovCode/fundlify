@@ -64,9 +64,10 @@ export const Input = styled.input`
     padding-left: 10px;
     border: 1px solid #ffffff40;
     font-weight: 600;
-    ${props => props.regPassError && `border: 1px solid #FF3333`};
+    ${props => props.inputPassError && `border: 1px solid #FF3333`};
+    ${props => props.inputMailError && `border: 1px solid #FF3333`};
+    ${props => props.inputNameError && `border: 1px solid #FF3333`};
     ${props => props.type === "button" && `cursor: pointer`};
-    ${props => props.inputFillError && `border: 1px solid #FF3333`};
     &:hover {
         ${props => props.type === "button" && `
             background-color: #ffffff10
@@ -77,7 +78,7 @@ export const Input = styled.input`
     }
 `;
 
-export const PassContainer = styled.div`
+export const InputContainer = styled.div`
     position: relative;
     width: 100%;
     display: flex;
@@ -85,13 +86,17 @@ export const PassContainer = styled.div`
     justify-content: center;
 `;
 
-export const PassError = styled.div`
+export const InputError = styled.div`
+    width: 80%;
     font-size: 13px;
     font-weight: 400;
     color: #FF3333;
     position: absolute;
-    bottom: 10px;
-    left: 50px;
+    bottom: 8px;
+    @media (max-width: 500px) {
+        width: 100%;
+        font-size: 12px;
+    }
 `;
 
 export const AlternateOption = styled.div`

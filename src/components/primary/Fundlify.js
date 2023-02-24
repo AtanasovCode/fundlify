@@ -100,6 +100,10 @@ const Fundlify = ({ app }) => {
     const [userLoggedIn, setUserLoggedIn] = useState();
     const [updateId, setUpdateId] = useState("");
 
+    const [inputNameError, setInputNameError] = useState();
+    const [inputMailError, setInputMailError] = useState();
+    const [inputPassError, setInputPassError] = useState();
+
     const [categorySelected, setCategorySelected] = useState("");
     const [subCategorySelected, setSubCategorySelected] = useState("");
 
@@ -216,6 +220,16 @@ const Fundlify = ({ app }) => {
         return text == undefined ? '' : text.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
     }
 
+    const checkMail = (mail) => {
+         if(mail
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            )) {return true} else {
+                return false;
+            }
+    };
+
 
 
     return (
@@ -326,17 +340,38 @@ const Fundlify = ({ app }) => {
                                     pledge3={pledge3}
                                     setPledge3={setPledge3}
 
-                                    storage={storage}
                                     currentProjectId={currentProjectId}
-
                                 />
                             } />
                             <Route path="/create-project/congratulations" element={
                                 <Congratulations />
                             } />
                         </Route>
-                        <Route path="/sign-in" element={<SignIn auth={auth} />} />
-                        <Route path="/sign-up" element={<SignUp auth={auth} db={db} user={user} userLoggedIn={userLoggedIn} />} />
+                        <Route path="/sign-in" element={
+                            <SignIn
+                                auth={auth}
+                                inputMailError={inputMailError}
+                                inputPassError={inputPassError}
+                                checkMail={checkMail}
+                                setInputMailError={setInputMailError}
+                                setInputPassError={setInputPassError}
+                            />
+                        } />
+                        <Route path="/sign-up" element={
+                            <SignUp
+                                auth={auth}
+                                db={db}
+                                user={user}
+                                userLoggedIn={userLoggedIn}
+                                checkMail={checkMail}
+                                inputNameError={inputNameError}
+                                inputMailError={inputMailError}
+                                inputPassError={inputPassError}
+                                setInputNameError={setInputNameError}
+                                setInputMailError={setInputMailError}
+                                setInputPassError={setInputPassError}
+                            />
+                        } />
                         <Route path="/projects/:projectId" element={
                             <CurrentProject
                                 user={user}
