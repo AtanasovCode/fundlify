@@ -230,6 +230,15 @@ const Fundlify = ({ app }) => {
             }
     };
 
+    const handleCutString = (string, index) => { //Replace the string after a certain point with '...'
+        let result = string;
+        if (string.length > index) {
+            result = string.slice(0, index).trimEnd() + "...";
+        }
+
+        return result;
+    }
+
 
 
     return (
@@ -378,6 +387,7 @@ const Fundlify = ({ app }) => {
                                 userLoggedIn={userLoggedIn}
                                 userInfo={userInfo}
                                 db={db}
+                                handleCutString={handleCutString}
                                 currentProjectId={currentProjectId}
                                 formatTextForURL={formatTextForURL}
                             />
@@ -386,6 +396,7 @@ const Fundlify = ({ app }) => {
                             <Discover
                                 auth={auth}
                                 db={db}
+                                handleCutString={handleCutString}
                                 storage={storage}
                                 formatTextForURL={formatTextForURL}
                                 user={user}

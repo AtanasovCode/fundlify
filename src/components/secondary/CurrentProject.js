@@ -27,6 +27,7 @@ const CurrentProject = ({
     userInfo,
     currentProjectId,
     formatTextForURL,
+    handleCutString,
 }) => {
 
     const [currentProject, setCurrentProject] = useState([]);
@@ -191,7 +192,7 @@ const CurrentProject = ({
                                                 src={locationIcon}
                                             />
                                             <Styled.CategoryName>
-                                                {formatString(project.location)}
+                                                {handleCutString(formatString(project.location), 15)}
                                             </Styled.CategoryName>
                                         </Styled.Category>
                                     </Styled.Categories>

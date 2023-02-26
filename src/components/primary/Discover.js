@@ -21,6 +21,7 @@ const Discover = ({
     userLoggedIn,
     setCurrentProjectId,
     formatTextForUrl,
+    handleCutString,
 }) => {
 
     const [projects, setProjects] = useState([]);
@@ -57,14 +58,6 @@ const Discover = ({
         }
     }, [projects])
 
-    const handleCutString = (string) => { //Replace the string after a certain point with '...'
-        let result = string;
-        if (string.length > 70) {
-            result = string.slice(0, 70).trimEnd() + "...";
-        }
-
-        return result;
-    }
 
     useEffect(() => {
         if (filterCategory === "all-categories") {

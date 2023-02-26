@@ -47,7 +47,7 @@ const DisplayProject = ({
                                     {project.projectTitle}
                                 </Styled.Name>
                                 <Styled.Desc>
-                                    {handleCutString(project.projectDescription)}
+                                    {handleCutString(project.projectDescription, 70)}
                                 </Styled.Desc>
                                 <Styled.FundingInfo>
                                     <Styled.MadeBy>
