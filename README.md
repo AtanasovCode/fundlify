@@ -1,3 +1,4 @@
-# FundVenture
+# Fundlify
 
-A crowdfunding app
+A Crowdfunding app where you can donate to your favorite projects to see them come to life!
+
